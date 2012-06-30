@@ -1,0 +1,98 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    mc:Ignorable="d">
+	<!-- Resource dictionary entries should be defined here. -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ExpanderStyle" TargetType="{x:Type Expander}">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Application_Expander_Foreground}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=ExpanderTemplate, TypeInTargetAssembly={x:Type Expander}}}"/>
+	</Style>
+
+    <ControlTemplate x:Key="{ComponentResourceKey ResourceId=ExpanderTemplate, TypeInTargetAssembly={x:Type Expander}}" TargetType="Expander">
+        <ControlTemplate.Resources>
+            <Storyboard x:Key="MouseIn">
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Border">
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Expander_Background}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource Application_Expander_Background_Move}"/>
+                </ColorAnimationUsingKeyFrames>
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Expander_Foreground}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Expander_Foreground_Move}"/>
+                </ColorAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Key="MouseOut">
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Border">
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Expander_Background_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.4" Value="{StaticResource Application_Expander_Background}"/>
+                </ColorAnimationUsingKeyFrames>
+                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
+                    <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_Expander_Foreground_Move}"/>
+                    <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Application_Expander_Foreground}"/>
+                </ColorAnimationUsingKeyFrames>
+            </Storyboard>
+		</ControlTemplate.Resources>
+        <Grid>
+    		<Grid.RowDefinitions>
+    			<RowDefinition Height="Auto"/>
+    			<RowDefinition x:Name="ContentRow" Height="0"/>
+    		</Grid.RowDefinitions>
+    		<VisualStateManager.VisualStateGroups>
+    			<VisualStateGroup x:Name="CommonStates">
+    				<VisualState x:Name="Normal"/>
+    				<VisualState x:Name="MouseOver"/>
+    				<VisualState x:Name="Disabled"/>
+    			</VisualStateGroup>
+    		</VisualStateManager.VisualStateGroups>
+    		<Border x:Name="Border" Grid.Row="0" BorderThickness="1" CornerRadius="0" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
+    			<Border.Background>
+    				<SolidColorBrush Color="{StaticResource Application_Expander_Background}"/>
+    			</Border.Background>
+    			<Border.BorderBrush>
+    				<SolidColorBrush Color="{StaticResource Application_Expander_BorderBrush}"/>
+    			</Border.BorderBrush>
+    		</Border>
+    		<ContentPresenter x:Name="contentPresenter" Margin="3" ContentSource="Header" RecognizesAccessKey="True" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+    		<Border Grid.Row="1" BorderThickness="1,0,1,1" CornerRadius="0" Width="{TemplateBinding Width}" >
+    			<Border.Background>
+    				<SolidColorBrush Color="{StaticResource Application_Expander_Content_Background}"/>
+    			</Border.Background>
+    			<Border.BorderBrush>
+    				<SolidColorBrush Color="{StaticResource Application_Expander_BorderBrush}"/>
+    			</Border.BorderBrush>
+    			<ContentPresenter x:Name="Content" Margin="4" />
+    		</Border>
+    	</Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsExpanded" Value="True">
+                <Setter TargetName="ContentRow" Property="Height"
+                    Value="{Binding ElementName=Content, Path=DesiredHeight}" />
+				<Setter TargetName="Border" Property="BorderBrush">
+					<Setter.Value>
+						<SolidColorBrush Color="{StaticResource Application_Expander_BorderBrush_Expanded}"/>
+					</Setter.Value>
+				</Setter>
+            </Trigger>
+    		<Trigger Property="IsMouseOver" SourceName="Border" Value="True">
+    			<Trigger.ExitActions>
+    				<BeginStoryboard x:Name="MouseOut_BeginStoryboard" Storyboard="{StaticResource MouseOut}"/>
+    				<StopStoryboard BeginStoryboardName="MouseIn_BeginStoryboard"/>
+    			</Trigger.ExitActions>
+    			<Trigger.EnterActions>
+    				<BeginStoryboard x:Name="MouseIn_BeginStoryboard" Storyboard="{StaticResource MouseIn}"/>
+    			</Trigger.EnterActions>
+    			<Setter Property="IsHitTestVisible" TargetName="contentPresenter" Value="False"/>
+    		</Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

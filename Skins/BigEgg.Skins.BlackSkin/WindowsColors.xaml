@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!-- Resource dictionary entries should be defined here. -->
+
+    <!-- Windows Color -->
+    <Color x:Key="Application_Windows_Background" A="255" R="68" G="68" B="68"/>
+    <Color x:Key="Application_Windows_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Windows_BorderBrush" A="255" R="84" G="84" B="84"/>
+
+    <!-- Dialog Color -->
+    <Color x:Key="Application_Dialog_Background" A="255" R="102" G="102" B="102"/>
+    <Color x:Key="Application_Dialog_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Dialog_BorderBrush" A="255" R="84" G="84" B="84"/>
+    <Color x:Key="Application_Dialog_HeaderBrush" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Dialog_HeaderAlphaBrush" A="0" R="89" G="89" B="89"/>
+
+    <!-- Views Color -->
+    <Color x:Key="Application_Views_Background" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Views_Foreground" A="255" R="255" G="255" B="255"/>
+</ResourceDictionary>
