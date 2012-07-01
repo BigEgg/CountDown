@@ -71,6 +71,7 @@
     <Compile Include="TestClassBase.cs" />
     <Compile Include="ViewModels\Dialogs\AlertDialogViewModelTest.cs" />
     <Compile Include="ViewModels\Dialogs\DialogViewModelBaseTest.cs" />
+    <Compile Include="ViewModels\MainViewModelTest.cs" />
     <Compile Include="ViewModels\ShellViewModelTest.cs" />
     <Compile Include="Views\Dialogs\MockAboutDialogView.cs" />
     <Compile Include="Views\Dialogs\MockAlertDialogView.cs" />
