@@ -8,13 +8,13 @@ using CountDown.Application.Views.Dialog;
 namespace CountDown.Application.ViewModels.Dialog
 {
     [Export]
-    public class AboutDialogViewModel : DialogViewModel<IAboutDialog>
+    public class AboutDialogViewModel : DialogViewModel<IAboutDialogView>
     {
         private readonly DelegateCommand okCommand;
 
 
         [ImportingConstructor]
-        public AboutDialogViewModel(IAboutDialog view)
+        public AboutDialogViewModel(IAboutDialogView view)
             : base(view)
         {
             this.okCommand = new DelegateCommand(() => Close(true));

@@ -5,18 +5,19 @@ using System.Windows.Input;
 using BigEgg.Framework.Applications;
 using CountDown.Application.Domain;
 using CountDown.Application.Views.Dialog;
+using System.Collections.ObjectModel;
 
 namespace CountDown.Application.ViewModels.Dialog
 {
     [Export]
-    public class AlartDialogViewModel : DialogViewModel<IAlartDialog>
+    public class AlartDialogViewModel : DialogViewModel<IAlartDialogView>
     {
         private readonly DelegateCommand okCommand;
-        private readonly IEnumerable<ICountDownItem> items;
+        private readonly ObservableCollection<ICountDownItem> items;
 
 
         [ImportingConstructor]
-        public AlartDialogViewModel(IAlartDialog view, IEnumerable<ICountDownItem> items)
+        public AlartDialogViewModel(IAlartDialogView view, ObservableCollection<ICountDownItem> items)
             : base(view)
         {
             this.okCommand = new DelegateCommand(CloseCommand);
@@ -27,7 +28,7 @@ namespace CountDown.Application.ViewModels.Dialog
 
         public ICommand OKCommand { get { return this.okCommand; } }
 
-        public IEnumerable<ICountDownItem> Items { get { return this.items; } }
+        public ObservableCollection<ICountDownItem> Items { get { return this.items; } }
 
         public DateTime AlartTime { get; private set; }
 

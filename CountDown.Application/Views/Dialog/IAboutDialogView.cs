@@ -1,6 +1,6 @@
 ﻿namespace CountDown.Application.Views.Dialog
 {
-    public interface IAboutDialog : IDialogView
+    public interface IAboutDialogView : IDialogView
     {
     }
 }

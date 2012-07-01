@@ -8,6 +8,7 @@ namespace CountDown.Application.ViewModels.Dialog
     public abstract class DialogViewModel<TView> : ViewModel<TView>, IDataErrorInfo where TView : IDialogView
     {
         private bool? dialogResult;
+        private bool hasShow;
         private readonly DataErrorInfoSupport dataErrorInfoSupport;
 
 
@@ -15,20 +16,28 @@ namespace CountDown.Application.ViewModels.Dialog
             : base(view)
         {
             dataErrorInfoSupport = new DataErrorInfoSupport(this);
+
+            hasShow = false;
         }
 
 
         public static string Title { get { return ApplicationInfo.ProductName; } }
 
+        public bool HasShow { get { return this.hasShow; } }
+
 
         public bool? ShowDialog(object owner)
         {
+            this.hasShow = true;
+
             ViewCore.ShowDialog(owner);
             return this.dialogResult;
         }
 
         protected void Close(bool? dialogResult)
         {
+            this.hasShow = false;
+
             this.dialogResult = dialogResult;
             ViewCore.Close();
         }
