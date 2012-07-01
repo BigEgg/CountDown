@@ -19,7 +19,7 @@ namespace CountDown.Application.Domain
 
         #region Private Memebers
         private DateTime time;
-        private DateTime AlertTime;
+        private DateTime alertTime;
         private string notice;
         private bool hasAlert = false;
         #endregion
@@ -34,12 +34,12 @@ namespace CountDown.Application.Domain
         [Required(ErrorMessageResourceName = "AlertTimeMandatory", ErrorMessageResourceType = typeof(Resources))]
         public DateTime AlertTime 
         {
-            get { return this.AlertTime; }
+            get { return this.alertTime; }
             set
             {
-                if (this.AlertTime != value)
+                if (this.alertTime != value)
                 {
-                    this.AlertTime = value;
+                    this.alertTime = value;
                     RaisePropertyChanged("AlertTime");
                 }
             }

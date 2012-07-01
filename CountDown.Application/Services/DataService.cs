@@ -18,7 +18,7 @@ namespace CountDown.Application.Services
     {
         #region Members
         private readonly ObservableCollection<ICountDownItem> countDownItems;
-        private readonly ObservableCollection<ICountDownItem> AlertItems;
+        private readonly ObservableCollection<ICountDownItem> alertItems;
         private readonly ObservableCollection<string> branches;
         private readonly ObservableCollection<ICountDownItem> selectItems;
         private readonly NewCountDownModel newCountDownModel;
@@ -30,7 +30,7 @@ namespace CountDown.Application.Services
         public DataService()
         {
             this.countDownItems = new ObservableCollection<ICountDownItem>();
-            this.AlertItems = new ObservableCollection<ICountDownItem>();
+            this.alertItems = new ObservableCollection<ICountDownItem>();
             this.branches = new ObservableCollection<string>();
             this.selectItems = new ObservableCollection<ICountDownItem>();
             this.newCountDownModel = new NewCountDownModel
@@ -45,7 +45,7 @@ namespace CountDown.Application.Services
 
             AddWeakEventListener(this.selectItems, SelectItemsChanged);
             AddWeakEventListener(this.newCountDownModel, NewCountDownModelPropertyChanged);
-            AddWeakEventListener(this.AlertItems, AlertItemsChanged);
+            AddWeakEventListener(this.alertItems, AlertItemsChanged);
         }
 
 
@@ -64,9 +64,9 @@ namespace CountDown.Application.Services
         {
             get
             {
-                this.AlertItems.OrderBy(i => i.Time);
-                this.AlertItems.ToArray();
-                return this.AlertItems;
+                this.alertItems.OrderBy(i => i.Time);
+                this.alertItems.ToArray();
+                return this.alertItems;
             }
         }
 
@@ -108,12 +108,12 @@ namespace CountDown.Application.Services
         public void CleanExpiredItems()
         {
             DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
-            IEnumerable<ICountDownItem> expiredItems = this.AlertItems.Where(
+            IEnumerable<ICountDownItem> expiredItems = this.alertItems.Where(
                 c => (c.Time < expiredTime) && (c.HasAlert == true));
 
             foreach (ICountDownItem item in expiredItems)
             {
-                this.AlertItems.Remove(item);
+                this.alertItems.Remove(item);
             }
         }
 
@@ -125,7 +125,7 @@ namespace CountDown.Application.Services
             foreach(ICountDownItem item in newAlertItems)
             {
                 this.countDownItems.Remove(item);
-                this.AlertItems.Add(item);
+                this.alertItems.Add(item);
             }
         }
         #endregion
