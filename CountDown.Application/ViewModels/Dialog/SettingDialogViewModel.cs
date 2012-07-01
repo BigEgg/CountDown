@@ -1,30 +1,37 @@
 ﻿using System.ComponentModel.Composition;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Input;
 using BigEgg.Framework.Applications;
-using CountDown.Application.Views.Dialog;
-using CountDown.Application.Properties;
-using System.ComponentModel.DataAnnotations;
 using BigEgg.Framework.Foundation.Validations;
+using CountDown.Application.Properties;
+using CountDown.Application.Views.Dialog;
+using System.ComponentModel;
+using BigEgg.Framework.Applications.Services;
+using CountDown.Application.Services;
+using System.Globalization;
 
 namespace CountDown.Application.ViewModels.Dialog
 {
     [Export]
-    [RequiredIf("SoundPath", "HasAlertSound", true, ErrorMessageResourceName = "SoundPathMandatory", ErrorMessageResourceType = typeof(Resources))]
     public class SettingDialogViewModel : DialogViewModel<ISettingDialogView>
     {
         #region Members
         private readonly DelegateCommand submitCommand;
         private readonly DelegateCommand cancelCommand;
+        private readonly IMessageService messageService;
+        private readonly IShellService shellService;
 
         private bool hasAlertSound;
         #endregion
 
         [ImportingConstructor]
-        public SettingDialogViewModel(ISettingDialogView view)
+        public SettingDialogViewModel(ISettingDialogView view, IMessageService messageService, IShellService shellService)
             : base(view)
         {
             this.submitCommand = new DelegateCommand(SaveSettingCommand);
             this.cancelCommand = new DelegateCommand(() => Close(false));
+            this.messageService = messageService;
+            this.shellService = shellService;
 
             this.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
             this.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;
@@ -58,6 +65,7 @@ namespace CountDown.Application.ViewModels.Dialog
         }
 
         [Path(ErrorMessageResourceName = "SoundPathError", ErrorMessageResourceType = typeof(Resources))]
+        [RequiredIf("HasAlertSound", true, ErrorMessageResourceName = "SoundPathMandatory", ErrorMessageResourceType = typeof(Resources))]
         public string SoundPath { get; set; }
 
         public bool ResetCountDownData { get; set; }
@@ -65,13 +73,20 @@ namespace CountDown.Application.ViewModels.Dialog
 
         private void SaveSettingCommand()
         {
+            if (!string.IsNullOrWhiteSpace(this.dataErrorInfoSupport.Error))
+            {
+                messageService.ShowError(shellService.ShellView, 
+                    string.Format(CultureInfo.CurrentCulture, Resources.SettingError));
+                return;
+            }
+
             Settings.Default.DefautBeforeAlertMinutes = this.BeforeAlertMinutes;
             Settings.Default.DefaultExpiredMinutes = this.ExpiredMinutes;
             Settings.Default.HasAlertSound = this.HasAlertSound;
             Settings.Default.SoundPath = this.SoundPath;
             Settings.Default.ResetCountDownData = this.ResetCountDownData;
-
             Settings.Default.Save();
+
             Close(true);
         }
     }

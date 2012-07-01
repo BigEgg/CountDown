@@ -46,7 +46,6 @@ namespace CountDown.Application.Test.ViewModels.Dialogs
             Assert.AreEqual(items, viewModel.Items);
 
             object owner = new object();
-
             view.ShowDialogAction = v =>
             {
                 viewModel.OKCommand.Execute(null);

@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BigEgg.Framework, Version=1.1.0.34335, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BigEgg.Framework, Version=1.1.0.3091, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BigEgg.Framework.dll</HintPath>
     </Reference>
@@ -71,11 +71,13 @@
     <Compile Include="TestClassBase.cs" />
     <Compile Include="ViewModels\Dialogs\AlertDialogViewModelTest.cs" />
     <Compile Include="ViewModels\Dialogs\DialogViewModelBaseTest.cs" />
+    <Compile Include="ViewModels\Dialogs\SettingDialogViewModelTest.cs" />
     <Compile Include="ViewModels\MainViewModelTest.cs" />
     <Compile Include="ViewModels\ShellViewModelTest.cs" />
     <Compile Include="Views\Dialogs\MockAboutDialogView.cs" />
     <Compile Include="Views\Dialogs\MockAlertDialogView.cs" />
     <Compile Include="Views\Dialogs\MockDialogViewBase.cs" />
+    <Compile Include="Views\Dialogs\MockSettingDialogView.cs" />
     <Compile Include="Views\MockMainView.cs" />
     <Compile Include="Views\MockShellView.cs" />
     <Compile Include="Views\MockView.cs" />

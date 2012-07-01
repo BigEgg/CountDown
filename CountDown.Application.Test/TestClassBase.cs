@@ -23,13 +23,14 @@ namespace CountDown.Application.Test
             catalog.Catalogs.Add(new TypeCatalog(
                 typeof(ApplicationController), typeof(DataController),
                 typeof(ShellService), typeof(DataService),
-                typeof(MainViewModel), typeof(ShellViewModel), typeof(AlertDialogViewModel), typeof(AboutDialogViewModel)
+                typeof(MainViewModel), typeof(ShellViewModel), 
+                typeof(AlertDialogViewModel), typeof(AboutDialogViewModel), typeof(SettingDialogViewModel)
             ));
             catalog.Catalogs.Add(new TypeCatalog(
                 typeof(MockPresentationService),
                 typeof(MockMessageService), typeof(MockFileDialogService),
                 typeof(MockShellView), typeof(MockMainView),
-                typeof(MockAboutDialogView), typeof(MockAlertDialogView)
+                typeof(MockAboutDialogView), typeof(MockAlertDialogView), typeof(MockSettingDialogView)
             ));
             container = new CompositionContainer(catalog);
             CompositionBatch batch = new CompositionBatch();

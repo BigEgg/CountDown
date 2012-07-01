@@ -168,6 +168,9 @@
   <data name="SaveError" xml:space="preserve">
     <value>在保存数据的时候出错啦，%&gt;_&lt;%。。。\n请联系我如果这个对话框出现了。O(∩_∩)O~\n错误消息是： {0}</value>
   </data>
+  <data name="SettingError" xml:space="preserve">
+    <value>一个或多个设置有问题。</value>
+  </data>
   <data name="SoundPathError" xml:space="preserve">
     <value>声音文件路径只能为绝对或相对地址。</value>
   </data>

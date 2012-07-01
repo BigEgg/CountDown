@@ -168,6 +168,9 @@
   <data name="SaveError" xml:space="preserve">
     <value>Get an error when save the data. Please contact me when this happend. Error message: {0}</value>
   </data>
+  <data name="SettingError" xml:space="preserve">
+    <value>One or more settings not validate.</value>
+  </data>
   <data name="SoundPathError" xml:space="preserve">
     <value>The sound path should be a absolute or relative path.</value>
   </data>

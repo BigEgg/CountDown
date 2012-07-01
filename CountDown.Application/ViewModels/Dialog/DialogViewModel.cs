@@ -7,9 +7,9 @@ namespace CountDown.Application.ViewModels.Dialog
 {
     public abstract class DialogViewModel<TView> : ViewModel<TView>, IDataErrorInfo where TView : IDialogView
     {
-        private bool? dialogResult;
-        private bool hasShow;
-        private readonly DataErrorInfoSupport dataErrorInfoSupport;
+        protected bool? dialogResult;
+        protected bool hasShow;
+        protected readonly DataErrorInfoSupport dataErrorInfoSupport;
 
 
         public DialogViewModel(TView view)
@@ -43,8 +43,8 @@ namespace CountDown.Application.ViewModels.Dialog
         }
 
 
-        string IDataErrorInfo.Error { get { return dataErrorInfoSupport.Error; } }
+        string IDataErrorInfo.Error { get { return this.dataErrorInfoSupport.Error; } }
 
-        string IDataErrorInfo.this[string columnName] { get { return dataErrorInfoSupport[columnName]; } }
+        string IDataErrorInfo.this[string columnName] { get { return this.dataErrorInfoSupport[columnName]; } }
     }
 }

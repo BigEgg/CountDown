@@ -214,6 +214,15 @@ namespace CountDown.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more settings not validate..
+        /// </summary>
+        public static string SettingError {
+            get {
+                return ResourceManager.GetString("SettingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The sound path should be a absolute or relative path..
         /// </summary>
         public static string SoundPathError {

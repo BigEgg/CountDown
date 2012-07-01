@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BigEgg.Framework, Version=1.1.0.30489, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BigEgg.Framework, Version=1.1.0.3091, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BigEgg.Framework.dll</HintPath>
     </Reference>
@@ -89,7 +89,6 @@
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\IShellView.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
