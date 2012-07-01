@@ -115,6 +115,24 @@ namespace CountDown.Application.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The minutes to set alert expired is mandatory..
+        /// </summary>
+        public static string ExpiredMinutesMandatory {
+            get {
+                return ResourceManager.GetString("ExpiredMinutesMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minutes to set alert expired must be between {1} and {2}..
+        /// </summary>
+        public static string ExpiredMinutesRange {
+            get {
+                return ResourceManager.GetString("ExpiredMinutesRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Alert hours is mandatory..
         /// </summary>
         public static string HoursMandatory {
@@ -192,6 +210,24 @@ namespace CountDown.Application.Properties {
         public static string SaveError {
             get {
                 return ResourceManager.GetString("SaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sound path should be a absolute or relative path..
+        /// </summary>
+        public static string SoundPathError {
+            get {
+                return ResourceManager.GetString("SoundPathError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sound path is required..
+        /// </summary>
+        public static string SoundPathMandatory {
+            get {
+                return ResourceManager.GetString("SoundPathMandatory", resourceCulture);
             }
         }
         

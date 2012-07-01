@@ -111,7 +111,7 @@ namespace CountDown.Application.Models
         }
 
         [Required(ErrorMessageResourceName = "BeforeAlertMinutesMandatory", ErrorMessageResourceType = typeof(Resources))]
-        [Range(0, 65535, ErrorMessageResourceName = "BeforeAlertMinutesRange", ErrorMessageResourceType = typeof(Resources))]
+        [Range(1, 65535, ErrorMessageResourceName = "BeforeAlertMinutesRange", ErrorMessageResourceType = typeof(Resources))]
         public int BeforeAlertMinutes
         {
             get { return this.beforeAlertMinutes; }

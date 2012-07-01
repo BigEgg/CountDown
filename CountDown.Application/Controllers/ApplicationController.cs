@@ -8,6 +8,7 @@ using BigEgg.Framework.Applications;
 using CountDown.Application.Properties;
 using CountDown.Application.Services;
 using CountDown.Application.ViewModels;
+using CountDown.Application.ViewModels.Dialog;
 
 namespace CountDown.Application.Controllers
 {
@@ -17,8 +18,9 @@ namespace CountDown.Application.Controllers
         private readonly DataController dataController;
         private readonly ShellViewModel shellViewModel;
         private readonly MainViewModel mainViewModel;
+        private readonly SettingDialogViewModel settingDialog;
         private readonly DelegateCommand exitCommand;
-
+        private readonly DelegateCommand settingCommand;
 
         [ImportingConstructor]
         public ApplicationController(CompositionContainer container, IPresentationService presentationService, 
@@ -31,10 +33,12 @@ namespace CountDown.Application.Controllers
 
             this.shellViewModel = container.GetExportedValue<ShellViewModel>();
             this.mainViewModel = container.GetExportedValue<MainViewModel>();
+            this.settingDialog = container.GetExportedValue<SettingDialogViewModel>();
 
             shellService.ShellView = shellViewModel.View;
             this.shellViewModel.Closing += ShellViewModelClosing;
             this.exitCommand = new DelegateCommand(Close);
+            this.settingCommand = new DelegateCommand(SettingCommand);
         }
 
 
@@ -90,6 +94,17 @@ namespace CountDown.Application.Controllers
 
         private void ShellViewModelClosing(object sender, CancelEventArgs e)
         {
+        }
+
+        private void SettingCommand()
+        {
+            bool? result = settingDialog.ShowDialog(this.shellViewModel.View);
+
+            if (result == true)
+            {
+                this.mainViewModel.HasAlertSound = Settings.Default.HasAlertSound;
+                this.mainViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
+            }
         }
     }
 }

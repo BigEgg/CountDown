@@ -135,6 +135,12 @@
   <data name="DaysRange" xml:space="preserve">
     <value>The count down days must be between {1} and {2}.</value>
   </data>
+  <data name="ExpiredMinutesMandatory" xml:space="preserve">
+    <value>The minutes to set alert expired is mandatory.</value>
+  </data>
+  <data name="ExpiredMinutesRange" xml:space="preserve">
+    <value>The minutes to set alert expired must be between {1} and {2}.</value>
+  </data>
   <data name="HoursMandatory" xml:space="preserve">
     <value>The Alert hours is mandatory.</value>
   </data>
@@ -161,6 +167,12 @@
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Get an error when save the data. Please contact me when this happend. Error message: {0}</value>
+  </data>
+  <data name="SoundPathError" xml:space="preserve">
+    <value>The sound path should be a absolute or relative path.</value>
+  </data>
+  <data name="SoundPathMandatory" xml:space="preserve">
+    <value>The sound path is required.</value>
   </data>
   <data name="TimeMandatory" xml:space="preserve">
     <value>Time is mandatory.</value>

@@ -23,6 +23,12 @@
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <RunConfiguration id="3e1fae47-70e5-47ce-9b94-0f4fb75bb66e" name="Local" storage="local.testsettings" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </TestList>
+  <TestList name="MainModelView.Test" id="94f00e99-7408-4406-b7a7-3ac98947a041" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
+    <TestLinks>
+      <TestLink id="b8ce06fa-db4e-2e80-3b17-c141625bd0bd" name="SelectLanguageTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="99a978dc-f1b1-3302-684b-2205b4810007" name="PropertiesWithNotification" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="ShellService.Test" id="ab9dca6e-8ee3-4718-bcb9-a1edb794744f" parentListId="835f7f54-13b7-46a3-80e8-dfc172bbe26d">
     <TestLinks>
       <TestLink id="1a93acf0-fad1-f85e-ca25-f728832191ef" name="SetViewTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -31,10 +37,10 @@
   <TestList name="CountDownItem.Test" id="bc9ade45-2fc2-4a01-b34e-2ce224bdf662" parentListId="1b02127f-39c9-4565-83b1-b95e38846516">
     <TestLinks>
       <TestLink id="4dcf1798-22a9-70c0-007a-056bad622f6b" name="CountDownItemNoticeValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="5955dc99-4cad-cc25-6f5f-1f4fd537f1cc" name="GeneralCountDownItemTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="9d50d130-29ff-88d9-45ff-6d05cb41ed6e" name="CountDownItemAlertTimeValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="a891e4a2-8450-6909-c1b6-26388a963b06" name="PropertiesWithNotification" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="ff0485ce-ba02-3ab9-48d0-7759a2a9ba15" name="CountDownItemTimeValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="5955dc99-4cad-cc25-6f5f-1f4fd537f1cc" name="GeneralCountDownItemTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="ViewModels.Test" id="ca61d0db-db8c-4247-9772-24624fd8f0ca" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
