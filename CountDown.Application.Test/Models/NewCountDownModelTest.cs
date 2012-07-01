@@ -19,9 +19,9 @@ namespace CountDown.Application.Test.Models
             item.Days = 0;
             item.Hours = 0;
             item.Minutes = 0;
-            item.NoticeBranch = "Test Alart";
+            item.NoticeBranch = "Test Alert";
             item.Notice = "1";
-            item.BeforeAlartMinutes = 5;
+            item.BeforeAlertMinutes = 5;
 
             Assert.AreEqual("", item.Validate());
         }
@@ -40,14 +40,14 @@ namespace CountDown.Application.Test.Models
             AssertHelper.PropertyChangedEvent(item, x => x.Minutes, () => item.Minutes = 1);
             Assert.AreEqual(1, item.Minutes);
 
-            AssertHelper.PropertyChangedEvent(item, x => x.NoticeBranch, () => item.NoticeBranch = "Test Alart");
-            Assert.AreEqual("Test Alart", item.NoticeBranch);
+            AssertHelper.PropertyChangedEvent(item, x => x.NoticeBranch, () => item.NoticeBranch = "Test Alert");
+            Assert.AreEqual("Test Alert", item.NoticeBranch);
 
             AssertHelper.PropertyChangedEvent(item, x => x.Notice, () => item.Notice = "1");
             Assert.AreEqual("1", item.Notice);
 
-            AssertHelper.PropertyChangedEvent(item, x => x.BeforeAlartMinutes, () => item.BeforeAlartMinutes = 2);
-            Assert.AreEqual(2, item.BeforeAlartMinutes);
+            AssertHelper.PropertyChangedEvent(item, x => x.BeforeAlertMinutes, () => item.BeforeAlertMinutes = 2);
+            Assert.AreEqual(2, item.BeforeAlertMinutes);
         }
 
         [TestMethod]
@@ -141,37 +141,37 @@ namespace CountDown.Application.Test.Models
             Assert.AreEqual("", item.NoticeBranch);
             Assert.AreNotEqual("", item.Validate("NoticeBranch"));
 
-            item.NoticeBranch = "Test Alart";
-            Assert.AreEqual("Test Alart", item.NoticeBranch);
+            item.NoticeBranch = "Test Alert";
+            Assert.AreEqual("Test Alert", item.NoticeBranch);
             Assert.AreEqual("", item.Validate("NoticeBranch"));
         }
 
         [TestMethod]
-        public void NewCountDownModelBeforeAlartMinutesValidationTest()
+        public void NewCountDownModelBeforeAlertMinutesValidationTest()
         {
             NewCountDownModel item = new NewCountDownModel();
-            Assert.AreEqual(1, item.BeforeAlartMinutes);
-            Assert.AreEqual("", item.Validate("BeforeAlartMinutes"));
+            Assert.AreEqual(1, item.BeforeAlertMinutes);
+            Assert.AreEqual("", item.Validate("BeforeAlertMinutes"));
 
-            item.BeforeAlartMinutes = 29;
-            Assert.AreEqual(29, item.BeforeAlartMinutes);
-            Assert.AreEqual("", item.Validate("BeforeAlartMinutes"));
+            item.BeforeAlertMinutes = 29;
+            Assert.AreEqual(29, item.BeforeAlertMinutes);
+            Assert.AreEqual("", item.Validate("BeforeAlertMinutes"));
 
-            item.BeforeAlartMinutes = 65535;
-            Assert.AreEqual(65535, item.BeforeAlartMinutes);
-            Assert.AreEqual("", item.Validate("BeforeAlartMinutes"));
+            item.BeforeAlertMinutes = 65535;
+            Assert.AreEqual(65535, item.BeforeAlertMinutes);
+            Assert.AreEqual("", item.Validate("BeforeAlertMinutes"));
 
-            item.BeforeAlartMinutes = -0;
-            Assert.AreEqual(-0, item.BeforeAlartMinutes);
-            Assert.AreEqual("", item.Validate("BeforeAlartMinutes"));
+            item.BeforeAlertMinutes = -0;
+            Assert.AreEqual(-0, item.BeforeAlertMinutes);
+            Assert.AreEqual("", item.Validate("BeforeAlertMinutes"));
 
-            item.BeforeAlartMinutes = -1;
-            Assert.AreEqual(-1, item.BeforeAlartMinutes);
-            Assert.AreNotEqual("", item.Validate("BeforeAlartMinutes"));
+            item.BeforeAlertMinutes = -1;
+            Assert.AreEqual(-1, item.BeforeAlertMinutes);
+            Assert.AreNotEqual("", item.Validate("BeforeAlertMinutes"));
 
-            item.BeforeAlartMinutes = 65536;
-            Assert.AreEqual(65536, item.BeforeAlartMinutes);
-            Assert.AreNotEqual("", item.Validate("BeforeAlartMinutes"));
+            item.BeforeAlertMinutes = 65536;
+            Assert.AreEqual(65536, item.BeforeAlertMinutes);
+            Assert.AreNotEqual("", item.Validate("BeforeAlertMinutes"));
         }
     }
 }

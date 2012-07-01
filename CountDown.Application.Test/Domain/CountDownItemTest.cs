@@ -14,9 +14,9 @@ namespace CountDown.Application.Test.Domain
         {
             CountDownItem item = new CountDownItem();
             item.Time = DateTime.Now;
-            item.AlartTime = DateTime.Now.AddHours(1);
-            item.Notice = "Test Alart";
-            item.HasAlart = false;
+            item.AlertTime = DateTime.Now.AddHours(1);
+            item.Notice = "Test Alert";
+            item.HasAlert = false;
 
             Assert.AreEqual("", item.Validate());
         }
@@ -27,19 +27,19 @@ namespace CountDown.Application.Test.Domain
             DateTime now = DateTime.Now;
 
             CountDownItem item = new CountDownItem();
-            Assert.AreEqual(false, item.HasAlart);
+            Assert.AreEqual(false, item.HasAlert);
 
             AssertHelper.PropertyChangedEvent(item, x => x.Time, () => item.Time = now);
             Assert.AreEqual(now, item.Time);
 
-            AssertHelper.PropertyChangedEvent(item, x => x.AlartTime, () => item.AlartTime = now.AddHours(1));
-            Assert.AreEqual(now.AddHours(1), item.AlartTime);
+            AssertHelper.PropertyChangedEvent(item, x => x.AlertTime, () => item.AlertTime = now.AddHours(1));
+            Assert.AreEqual(now.AddHours(1), item.AlertTime);
            
-            AssertHelper.PropertyChangedEvent(item, x => x.Notice, () => item.Notice = "Test Alart");
-            Assert.AreEqual("Test Alart", item.Notice);
+            AssertHelper.PropertyChangedEvent(item, x => x.Notice, () => item.Notice = "Test Alert");
+            Assert.AreEqual("Test Alert", item.Notice);
 
-            item.HasAlart = true;
-            Assert.AreEqual(true, item.HasAlart);
+            item.HasAlert = true;
+            Assert.AreEqual(true, item.HasAlert);
         }
 
         [TestMethod]
@@ -55,15 +55,15 @@ namespace CountDown.Application.Test.Domain
         }
 
         [TestMethod]
-        public void CountDownItemAlartTimeValidationTest()
+        public void CountDownItemAlertTimeValidationTest()
         {
             CountDownItem item = new CountDownItem();
 
-            Assert.IsNotNull(item.AlartTime);
-            Assert.AreEqual("", item.Validate("AlartTime"));
+            Assert.IsNotNull(item.AlertTime);
+            Assert.AreEqual("", item.Validate("AlertTime"));
 
-            item.AlartTime = DateTime.Now;
-            Assert.AreEqual("", item.Validate("AlartTime"));
+            item.AlertTime = DateTime.Now;
+            Assert.AreEqual("", item.Validate("AlertTime"));
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace CountDown.Application.Test.Domain
             Assert.IsNull(item.Notice);
             Assert.AreNotEqual("", item.Validate("Notice"));
 
-            item.Notice = "Test Alart";
+            item.Notice = "Test Alert";
             Assert.AreEqual("", item.Validate("Notice"));
         }
     }
