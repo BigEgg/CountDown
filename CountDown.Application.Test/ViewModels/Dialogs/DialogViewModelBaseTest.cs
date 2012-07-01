@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CountDown.Application.ViewModels.Dialog;
-using CountDown.Application.Test.Views.Dialogs;
 using BigEgg.Framework.Applications;
+using CountDown.Application.Test.Views.Dialogs;
+using CountDown.Application.ViewModels.Dialog;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CountDown.Application.Test.ViewModels.Dialogs
 {

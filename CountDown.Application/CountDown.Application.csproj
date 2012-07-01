@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BigEgg.Framework, Version=1.1.0.30489, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BigEgg.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -73,21 +77,15 @@
     <Compile Include="Services\IShellService.cs" />
     <Compile Include="Services\ShellService.cs" />
     <Compile Include="ViewModels\Dialog\AboutDialogViewModel.cs" />
-    <Compile Include="ViewModels\Dialog\AlartDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialog\AlertDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialog\DialogViewModel.cs" />
     <Compile Include="ViewModels\MainModelView.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\Dialog\IAboutDialogView.cs" />
-    <Compile Include="Views\Dialog\IAlartDialogView.cs" />
+    <Compile Include="Views\Dialog\IAlertDialogView.cs" />
     <Compile Include="Views\Dialog\IDialogView.cs" />
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\IShellView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Framework\BigEgg.Framework\BigEgg.Framework.csproj">
-      <Project>{EE01D20C-0F89-4219-A615-E5566A73814E}</Project>
-      <Name>BigEgg.Framework</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

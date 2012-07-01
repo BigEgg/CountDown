@@ -3,24 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountDown.Application", "CountDown.Application\CountDown.Application.csproj", "{C1CCFCFE-E2E9-471E-91CD-5BF7FEE61663}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{E8EDA00E-F250-49AC-9122-03FA2B50802C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Skins", "Skins", "{F55D7343-AD7B-421B-8D40-A64DA264775E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigEgg.Skins", "Skins\BigEgg.Skins\BigEgg.Skins.csproj", "{164B8101-FDAE-4D14-8AC1-829A036EFE9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigEgg.Skins.BlackSkin", "Skins\BigEgg.Skins.BlackSkin\BigEgg.Skins.BlackSkin.csproj", "{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigEgg.Framework", "Framework\BigEgg.Framework\BigEgg.Framework.csproj", "{EE01D20C-0F89-4219-A615-E5566A73814E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigEgg.Framework.Test", "Framework\BigEgg.Framework.Test\BigEgg.Framework.Test.csproj", "{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigEgg.Framework.UnitTesting", "Framework\BigEgg.Framework.UnitTesting\BigEgg.Framework.UnitTesting.csproj", "{20069404-1E1C-4F1A-87D7-3D5B111745C2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountDown.Application.Test", "CountDown.Application.Test\CountDown.Application.Test.csproj", "{76B0BB06-3F94-4122-88B9-8A2295456592}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{506041FB-A585-4D59-99FB-E1A49CAA47D3}"
 	ProjectSection(SolutionItems) = preProject
+		BigEgg.Framework.dll = BigEgg.Framework.dll
+		BigEgg.Framework.UnitTesting.dll = BigEgg.Framework.UnitTesting.dll
 		CountDown.vsmdi = CountDown.vsmdi
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
@@ -47,18 +41,6 @@ Global
 		{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE01D20C-0F89-4219-A615-E5566A73814E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE01D20C-0F89-4219-A615-E5566A73814E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE01D20C-0F89-4219-A615-E5566A73814E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE01D20C-0F89-4219-A615-E5566A73814E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20069404-1E1C-4F1A-87D7-3D5B111745C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20069404-1E1C-4F1A-87D7-3D5B111745C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20069404-1E1C-4F1A-87D7-3D5B111745C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20069404-1E1C-4F1A-87D7-3D5B111745C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76B0BB06-3F94-4122-88B9-8A2295456592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76B0BB06-3F94-4122-88B9-8A2295456592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B0BB06-3F94-4122-88B9-8A2295456592}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,9 +50,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EE01D20C-0F89-4219-A615-E5566A73814E} = {E8EDA00E-F250-49AC-9122-03FA2B50802C}
-		{4ECBABE4-6EAB-47DB-9AD1-EAD9F6C655A0} = {E8EDA00E-F250-49AC-9122-03FA2B50802C}
-		{20069404-1E1C-4F1A-87D7-3D5B111745C2} = {E8EDA00E-F250-49AC-9122-03FA2B50802C}
 		{164B8101-FDAE-4D14-8AC1-829A036EFE9C} = {F55D7343-AD7B-421B-8D40-A64DA264775E}
 		{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE} = {F55D7343-AD7B-421B-8D40-A64DA264775E}
 	EndGlobalSection

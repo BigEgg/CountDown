@@ -25,8 +25,6 @@ namespace CountDown.Application.ViewModels.Dialog
 
         public string Version { get { return ApplicationInfo.Version; } }
 
-        public string Message { get { return string.Format(CultureInfo.CurrentCulture, Resources.AboutMessage); } }
-
 
         public ICommand OKCommand { get { return this.okCommand; } }
     }

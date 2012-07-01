@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CountDown.Application.Views.Dialog;
 using System.ComponentModel.Composition;
-using CountDown.Application.ViewModels.Dialog;
 using BigEgg.Framework.Applications;
+using CountDown.Application.ViewModels.Dialog;
+using CountDown.Application.Views.Dialog;
 
 namespace CountDown.Application.Test.Views.Dialogs
 {
