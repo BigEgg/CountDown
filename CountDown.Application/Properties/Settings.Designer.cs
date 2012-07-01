@@ -26,12 +26,12 @@ namespace CountDown.Application.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int DefautBeforeAlartMinutes {
+        public int DefautBeforeAlertMinutes {
             get {
-                return ((int)(this["DefautBeforeAlartMinutes"]));
+                return ((int)(this["DefautBeforeAlertMinutes"]));
             }
             set {
-                this["DefautBeforeAlartMinutes"] = value;
+                this["DefautBeforeAlertMinutes"] = value;
             }
         }
         
@@ -145,12 +145,12 @@ namespace CountDown.Application.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool HasAlartSound {
+        public bool HasAlertSound {
             get {
-                return ((bool)(this["HasAlartSound"]));
+                return ((bool)(this["HasAlertSound"]));
             }
             set {
-                this["HasAlartSound"] = value;
+                this["HasAlertSound"] = value;
             }
         }
         

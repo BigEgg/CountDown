@@ -18,7 +18,7 @@ namespace CountDown.Application.Services
     {
         #region Members
         private readonly ObservableCollection<ICountDownItem> countDownItems;
-        private readonly ObservableCollection<ICountDownItem> alartItems;
+        private readonly ObservableCollection<ICountDownItem> AlertItems;
         private readonly ObservableCollection<string> branches;
         private readonly ObservableCollection<ICountDownItem> selectItems;
         private readonly NewCountDownModel newCountDownModel;
@@ -30,7 +30,7 @@ namespace CountDown.Application.Services
         public DataService()
         {
             this.countDownItems = new ObservableCollection<ICountDownItem>();
-            this.alartItems = new ObservableCollection<ICountDownItem>();
+            this.AlertItems = new ObservableCollection<ICountDownItem>();
             this.branches = new ObservableCollection<string>();
             this.selectItems = new ObservableCollection<ICountDownItem>();
             this.newCountDownModel = new NewCountDownModel
@@ -40,12 +40,12 @@ namespace CountDown.Application.Services
                 Minutes = 0,
                 NoticeBranch = string.Empty,
                 Notice = string.Empty,
-                BeforeAlartMinutes = Settings.Default.DefautBeforeAlartMinutes
+                BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes
             };
 
             AddWeakEventListener(this.selectItems, SelectItemsChanged);
             AddWeakEventListener(this.newCountDownModel, NewCountDownModelPropertyChanged);
-            AddWeakEventListener(this.alartItems, AlartItemsChanged);
+            AddWeakEventListener(this.AlertItems, AlertItemsChanged);
         }
 
 
@@ -60,13 +60,13 @@ namespace CountDown.Application.Services
             } 
         }
 
-        public ObservableCollection<ICountDownItem> AlartItems
+        public ObservableCollection<ICountDownItem> AlertItems
         {
             get
             {
-                this.alartItems.OrderBy(i => i.Time);
-                this.alartItems.ToArray();
-                return this.alartItems;
+                this.AlertItems.OrderBy(i => i.Time);
+                this.AlertItems.ToArray();
+                return this.AlertItems;
             }
         }
 
@@ -108,24 +108,24 @@ namespace CountDown.Application.Services
         public void CleanExpiredItems()
         {
             DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
-            IEnumerable<ICountDownItem> expiredItems = this.alartItems.Where(
-                c => (c.Time < expiredTime) && (c.HasAlart == true));
+            IEnumerable<ICountDownItem> expiredItems = this.AlertItems.Where(
+                c => (c.Time < expiredTime) && (c.HasAlert == true));
 
             foreach (ICountDownItem item in expiredItems)
             {
-                this.alartItems.Remove(item);
+                this.AlertItems.Remove(item);
             }
         }
 
-        public void CheckAlartItems()
+        public void CheckAlertItems()
         {
-            IEnumerable<ICountDownItem> newAlartItems = this.CountDownItems.Where(
-                i => i.AlartTime < DateTime.Now);
+            IEnumerable<ICountDownItem> newAlertItems = this.CountDownItems.Where(
+                i => i.AlertTime < DateTime.Now);
 
-            foreach(ICountDownItem item in newAlartItems)
+            foreach(ICountDownItem item in newAlertItems)
             {
                 this.countDownItems.Remove(item);
-                this.alartItems.Add(item);
+                this.AlertItems.Add(item);
             }
         }
         #endregion
@@ -148,11 +148,11 @@ namespace CountDown.Application.Services
             RaisePropertyChanged("NewCountDownModel");
         }
 
-        private void AlartItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void AlertItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                RaisePropertyChanged("AlartItems");
+                RaisePropertyChanged("AlertItems");
             }
         }
         #endregion

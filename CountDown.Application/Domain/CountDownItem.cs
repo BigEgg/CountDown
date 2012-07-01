@@ -19,9 +19,9 @@ namespace CountDown.Application.Domain
 
         #region Private Memebers
         private DateTime time;
-        private DateTime alartTime;
+        private DateTime AlertTime;
         private string notice;
-        private bool hasAlart = false;
+        private bool hasAlert = false;
         #endregion
 
         public CountDownItem()
@@ -31,16 +31,16 @@ namespace CountDown.Application.Domain
 
 
         #region Properties
-        [Required(ErrorMessageResourceName = "AlartTimeMandatory", ErrorMessageResourceType = typeof(Resources))]
-        public DateTime AlartTime 
+        [Required(ErrorMessageResourceName = "AlertTimeMandatory", ErrorMessageResourceType = typeof(Resources))]
+        public DateTime AlertTime 
         {
-            get { return this.alartTime; }
+            get { return this.AlertTime; }
             set
             {
-                if (this.alartTime != value)
+                if (this.AlertTime != value)
                 {
-                    this.alartTime = value;
-                    RaisePropertyChanged("AlartTime");
+                    this.AlertTime = value;
+                    RaisePropertyChanged("AlertTime");
                 }
             }
         }
@@ -73,15 +73,15 @@ namespace CountDown.Application.Domain
             }
         }
 
-        public bool HasAlart
+        public bool HasAlert
         {
-            get { return this.hasAlart; }
+            get { return this.hasAlert; }
             set
             {
-                if (this.hasAlart != value)
+                if (this.hasAlert != value)
                 {
-                    this.hasAlart = value;
-                    RaisePropertyChanged("HasAlart");
+                    this.hasAlert = value;
+                    RaisePropertyChanged("HasAlert");
                 }
             }
         }

@@ -9,6 +9,6 @@
         string NoticeBranch { get; set; }
         string Notice { get; set; }
 
-        int BeforeAlartMinutes { get; set; }
+        int BeforeAlertMinutes { get; set; }
     }
 }

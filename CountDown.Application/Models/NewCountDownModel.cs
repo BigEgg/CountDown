@@ -25,7 +25,7 @@ namespace CountDown.Application.Models
         private string noticeBranch;
         private string notice;
 
-        private int beforeAlartMinutes;
+        private int beforeAlertMinutes;
         #endregion
 
         public NewCountDownModel()
@@ -37,7 +37,7 @@ namespace CountDown.Application.Models
             this.Minutes = 0;
             this.NoticeBranch = string.Empty;
             this.Notice = string.Empty;
-            this.BeforeAlartMinutes = Settings.Default.DefautBeforeAlartMinutes;
+            this.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
         }
 
         #region Properties
@@ -110,17 +110,17 @@ namespace CountDown.Application.Models
             }
         }
 
-        [Required(ErrorMessageResourceName = "BeforeAlartMinutesMandatory", ErrorMessageResourceType = typeof(Resources))]
-        [Range(0, 65535, ErrorMessageResourceName = "BeforeAlartMinutesRange", ErrorMessageResourceType = typeof(Resources))]
-        public int BeforeAlartMinutes
+        [Required(ErrorMessageResourceName = "BeforeAlertMinutesMandatory", ErrorMessageResourceType = typeof(Resources))]
+        [Range(0, 65535, ErrorMessageResourceName = "BeforeAlertMinutesRange", ErrorMessageResourceType = typeof(Resources))]
+        public int BeforeAlertMinutes
         {
-            get { return this.beforeAlartMinutes; }
+            get { return this.beforeAlertMinutes; }
             set
             {
-                if (this.beforeAlartMinutes != value)
+                if (this.beforeAlertMinutes != value)
                 {
-                    this.beforeAlartMinutes = value;
-                    RaisePropertyChanged("BeforeAlartMinutes");
+                    this.beforeAlertMinutes = value;
+                    RaisePropertyChanged("BeforeAlertMinutes");
                 }
             }
         }

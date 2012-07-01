@@ -10,19 +10,19 @@ using System.Collections.ObjectModel;
 namespace CountDown.Application.ViewModels.Dialog
 {
     [Export]
-    public class AlartDialogViewModel : DialogViewModel<IAlartDialogView>
+    public class AlertDialogViewModel : DialogViewModel<IAlertDialogView>
     {
         private readonly DelegateCommand okCommand;
         private readonly ObservableCollection<ICountDownItem> items;
 
 
         [ImportingConstructor]
-        public AlartDialogViewModel(IAlartDialogView view, ObservableCollection<ICountDownItem> items)
+        public AlertDialogViewModel(IAlertDialogView view, ObservableCollection<ICountDownItem> items)
             : base(view)
         {
             this.okCommand = new DelegateCommand(CloseCommand);
             this.items = items;
-            this.AlartTime = DateTime.Now;
+            this.AlertTime = DateTime.Now;
         }
 
 
@@ -30,14 +30,14 @@ namespace CountDown.Application.ViewModels.Dialog
 
         public ObservableCollection<ICountDownItem> Items { get { return this.items; } }
 
-        public DateTime AlartTime { get; private set; }
+        public DateTime AlertTime { get; private set; }
 
 
         private void CloseCommand()
         {
             foreach (ICountDownItem item in this.items)
             {
-                item.HasAlart = true;
+                item.HasAlert = true;
             }
             Close(true);
         }

@@ -70,34 +70,34 @@ namespace CountDown.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AlartTime is mandatory.
+        ///   Looks up a localized string similar to AlertTime is mandatory.
         /// </summary>
-        public static string AlartTimeMandatory {
+        public static string AlertTimeMandatory {
             get {
-                return ResourceManager.GetString("AlartTimeMandatory", resourceCulture);
+                return ResourceManager.GetString("AlertTimeMandatory", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The minutes before alart is mandatory..
+        ///   Looks up a localized string similar to The minutes before Alert is mandatory..
         /// </summary>
-        public static string BeforeAlartMinutesMandatory {
+        public static string BeforeAlertMinutesMandatory {
             get {
-                return ResourceManager.GetString("BeforeAlartMinutesMandatory", resourceCulture);
+                return ResourceManager.GetString("BeforeAlertMinutesMandatory", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The minutes before alart must be between {1} and {2}..
+        ///   Looks up a localized string similar to The minutes before Alert must be between {1} and {2}..
         /// </summary>
-        public static string BeforeAlartMinutesRange {
+        public static string BeforeAlertMinutesRange {
             get {
-                return ResourceManager.GetString("BeforeAlartMinutesRange", resourceCulture);
+                return ResourceManager.GetString("BeforeAlertMinutesRange", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The alart days is mandatory..
+        ///   Looks up a localized string similar to The Alert days is mandatory..
         /// </summary>
         public static string DaysMandatory {
             get {
@@ -115,7 +115,7 @@ namespace CountDown.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The alart hours is mandatory..
+        ///   Looks up a localized string similar to The Alert hours is mandatory..
         /// </summary>
         public static string HoursMandatory {
             get {
@@ -133,7 +133,7 @@ namespace CountDown.Application.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The alart minutes is mandatory..
+        ///   Looks up a localized string similar to The Alert minutes is mandatory..
         /// </summary>
         public static string MinutesMandatory {
             get {

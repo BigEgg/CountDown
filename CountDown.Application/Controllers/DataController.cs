@@ -36,7 +36,7 @@ namespace CountDown.Application.Controllers
 
         private Timer cleanExpiredTimer = null;
 
-        private AlartDialogViewModel alartDialogViewModel;
+        private AlertDialogViewModel AlertDialogViewModel;
         private MediaPlayer player = null;
         #endregion
 
@@ -106,7 +106,7 @@ namespace CountDown.Application.Controllers
 
             newItem.Time.Add(new TimeSpan(newModel.Days, newModel.Hours, newModel.Minutes, 0));
             newItem.Notice = string.Format(Resources.NoticeFormat, newModel.NoticeBranch, newModel.Notice);
-            newItem.AlartTime = newItem.Time.AddMinutes(0 - Settings.Default.DefautBeforeAlartMinutes);
+            newItem.AlertTime = newItem.Time.AddMinutes(0 - Settings.Default.DefautBeforeAlertMinutes);
 
             this.dataService.CountDownItems.Add(newItem);
 
@@ -122,7 +122,7 @@ namespace CountDown.Application.Controllers
                 newModel.Minutes = 0;
                 newModel.NoticeBranch = string.Empty;
                 newModel.Notice = string.Empty;
-                newModel.BeforeAlartMinutes = Settings.Default.DefautBeforeAlartMinutes;
+                newModel.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
             }
         }
 
@@ -149,7 +149,7 @@ namespace CountDown.Application.Controllers
                 sw.WriteLine(string.Format(
                     "{0}|{1}|{2}",
                     item.Time.ToString(),
-                    item.AlartTime.ToBinary(),
+                    item.AlertTime.ToBinary(),
                     item.Notice)
                 );
             }
@@ -178,7 +178,7 @@ namespace CountDown.Application.Controllers
                 ICountDownItem item = new CountDownItem
                 {
                     Time = DateTime.Parse(line[0]),
-                    AlartTime = DateTime.Parse(line[1]),
+                    AlertTime = DateTime.Parse(line[1]),
                     Notice = line[2]
                 };
                 this.dataService.CountDownItems.Add(item);
@@ -199,7 +199,7 @@ namespace CountDown.Application.Controllers
             {
                 UpdateCommands();
             }
-            else if (e.PropertyName == "AlartItems")
+            else if (e.PropertyName == "AlertItems")
             {
                 
             }
@@ -216,30 +216,30 @@ namespace CountDown.Application.Controllers
         private void TimerCallbackMethods(Object obj)
         {
             this.dataService.CleanExpiredItems();
-            this.dataService.CheckAlartItems();
+            this.dataService.CheckAlertItems();
         }
 
-        private void ShowAlart()
+        private void ShowAlert()
         {
-            // Show the alart dialg view to the user
-            IAlartDialogView alartDialog = container.GetExportedValue<IAlartDialogView>();
+            // Show the Alert dialg view to the user
+            IAlertDialogView AlertDialog = container.GetExportedValue<IAlertDialogView>();
 
-            if ((this.alartDialogViewModel != null) && (this.alartDialogViewModel.HasShow))
+            if ((this.AlertDialogViewModel != null) && (this.AlertDialogViewModel.HasShow))
             {
-                DateTime lastTime = this.alartDialogViewModel.Items.Max(c => c.AlartTime);
-                List<ICountDownItem> newAlartItem = this.dataService.AlartItems.Where(
-                    c => c.AlartTime > lastTime).ToList();
+                DateTime lastTime = this.AlertDialogViewModel.Items.Max(c => c.AlertTime);
+                List<ICountDownItem> newAlertItem = this.dataService.AlertItems.Where(
+                    c => c.AlertTime > lastTime).ToList();
 
-                foreach (ICountDownItem item in newAlartItem)
-                    this.alartDialogViewModel.Items.Add(item);
+                foreach (ICountDownItem item in newAlertItem)
+                    this.AlertDialogViewModel.Items.Add(item);
             }
             else
             {
-                this.alartDialogViewModel = new AlartDialogViewModel(alartDialog, this.dataService.AlartItems);
-                this.alartDialogViewModel.ShowDialog(shellService.ShellView);
+                this.AlertDialogViewModel = new AlertDialogViewModel(AlertDialog, this.dataService.AlertItems);
+                this.AlertDialogViewModel.ShowDialog(shellService.ShellView);
             }
 
-            if (Settings.Default.HasAlartSound)
+            if (Settings.Default.HasAlertSound)
             {
                 if (File.Exists(Settings.Default.SoundPath))
                 {

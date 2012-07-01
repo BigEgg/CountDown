@@ -120,13 +120,13 @@
   <data name="AboutMessage" xml:space="preserve">
     <value>做给我妈用来偷菜的。。。\nO(∩_∩)O~</value>
   </data>
-  <data name="AlartTimeMandatory" xml:space="preserve">
+  <data name="AlertTimeMandatory" xml:space="preserve">
     <value>预报时间是必须的。</value>
   </data>
-  <data name="BeforeAlartMinutesMandatory" xml:space="preserve">
+  <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>提前报时时间是必须的。</value>
   </data>
-  <data name="BeforeAlartMinutesRange" xml:space="preserve">
+  <data name="BeforeAlertMinutesRange" xml:space="preserve">
     <value>预报提前分钟数只能在{1}到{2}分钟以内。</value>
   </data>
   <data name="DaysMandatory" xml:space="preserve">

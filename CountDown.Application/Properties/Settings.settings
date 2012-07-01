@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CountDown.Application.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DefautBeforeAlartMinutes" Type="System.Int32" Scope="User">
+    <Setting Name="DefautBeforeAlertMinutes" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="DefaultExpiredMinutes" Type="System.Int32" Scope="User">
@@ -32,7 +32,7 @@
     <Setting Name="UICulture" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="HasAlartSound" Type="System.Boolean" Scope="User">
+    <Setting Name="HasAlertSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SoundPath" Type="System.String" Scope="User">
