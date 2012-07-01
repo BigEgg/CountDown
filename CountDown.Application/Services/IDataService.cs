@@ -11,6 +11,8 @@ namespace CountDown.Application.Services
     {
         ObservableCollection<ICountDownItem> CountDownItems { get; }
 
+        ObservableCollection<ICountDownItem> AlartItems { get; }
+
         ObservableCollection<ICountDownItem> SelectItems { get; }
 
         ObservableCollection<string> Branches { get; }
@@ -22,5 +24,7 @@ namespace CountDown.Application.Services
         ICommand DeleteCountDownItem { get; }
 
         void CleanExpiredItems();
+
+        void CheckAlartItems();
     }
 }

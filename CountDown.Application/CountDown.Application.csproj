@@ -77,9 +77,9 @@
     <Compile Include="ViewModels\Dialog\DialogViewModel.cs" />
     <Compile Include="ViewModels\MainModelView.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="Views\Dialog\IAboutDialog.cs" />
-    <Compile Include="Views\Dialog\IAlartDialog.cs" />
-    <Compile Include="Views\Dialog\IDialog.cs" />
+    <Compile Include="Views\Dialog\IAboutDialogView.cs" />
+    <Compile Include="Views\Dialog\IAlartDialogView.cs" />
+    <Compile Include="Views\Dialog\IDialogView.cs" />
     <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\IShellView.cs" />
   </ItemGroup>

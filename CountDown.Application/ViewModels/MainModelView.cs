@@ -13,7 +13,7 @@ namespace CountDown.Application.ViewModels
     [Export]
     public class MainViewModel : ViewModel<IMainView>
     {
-        private readonly IAboutDialog aboutDialog;
+        private readonly IAboutDialogView aboutDialog;
 
         private readonly IMessageService messageService;
         private readonly IShellService shellService;
@@ -26,7 +26,7 @@ namespace CountDown.Application.ViewModels
 
 
         [ImportingConstructor]
-        public MainViewModel(IMainView view, IAboutDialog aboutDialog, IMessageService messageService, IShellService shellService, IDataService dataService)
+        public MainViewModel(IMainView view, IAboutDialogView aboutDialog, IMessageService messageService, IShellService shellService, IDataService dataService)
             : base(view)
         {
             this.aboutDialog = aboutDialog;

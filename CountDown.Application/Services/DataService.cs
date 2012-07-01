@@ -18,6 +18,7 @@ namespace CountDown.Application.Services
     {
         #region Members
         private readonly ObservableCollection<ICountDownItem> countDownItems;
+        private readonly ObservableCollection<ICountDownItem> alartItems;
         private readonly ObservableCollection<string> branches;
         private readonly ObservableCollection<ICountDownItem> selectItems;
         private readonly NewCountDownModel newCountDownModel;
@@ -29,6 +30,7 @@ namespace CountDown.Application.Services
         public DataService()
         {
             this.countDownItems = new ObservableCollection<ICountDownItem>();
+            this.alartItems = new ObservableCollection<ICountDownItem>();
             this.branches = new ObservableCollection<string>();
             this.selectItems = new ObservableCollection<ICountDownItem>();
             this.newCountDownModel = new NewCountDownModel
@@ -42,7 +44,8 @@ namespace CountDown.Application.Services
             };
 
             AddWeakEventListener(this.selectItems, SelectItemsChanged);
-            AddWeakEventListener(this.newCountDownModel, NewCountDownModelPropertyChange);
+            AddWeakEventListener(this.newCountDownModel, NewCountDownModelPropertyChanged);
+            AddWeakEventListener(this.alartItems, AlartItemsChanged);
         }
 
 
@@ -55,6 +58,16 @@ namespace CountDown.Application.Services
                 this.countDownItems.ToArray();
                 return this.countDownItems; 
             } 
+        }
+
+        public ObservableCollection<ICountDownItem> AlartItems
+        {
+            get
+            {
+                this.alartItems.OrderBy(i => i.Time);
+                this.alartItems.ToArray();
+                return this.alartItems;
+            }
         }
 
         public ObservableCollection<ICountDownItem> SelectItems { get { return this.selectItems; } }
@@ -90,18 +103,34 @@ namespace CountDown.Application.Services
         }
         #endregion
 
+
+        #region Public Methods
         public void CleanExpiredItems()
         {
             DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
-            IEnumerable<ICountDownItem> expiredItems = this.CountDownItems.Where(
+            IEnumerable<ICountDownItem> expiredItems = this.alartItems.Where(
                 c => (c.Time < expiredTime) && (c.HasAlart == true));
 
             foreach (ICountDownItem item in expiredItems)
             {
-                this.countDownItems.Remove(item);
+                this.alartItems.Remove(item);
             }
         }
 
+        public void CheckAlartItems()
+        {
+            IEnumerable<ICountDownItem> newAlartItems = this.CountDownItems.Where(
+                i => i.AlartTime < DateTime.Now);
+
+            foreach(ICountDownItem item in newAlartItems)
+            {
+                this.countDownItems.Remove(item);
+                this.alartItems.Add(item);
+            }
+        }
+        #endregion
+
+        #region Private Methods
         private void SelectItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
@@ -114,9 +143,18 @@ namespace CountDown.Application.Services
             RaisePropertyChanged("SelectItems");
         }
 
-        private void NewCountDownModelPropertyChange(object sender, PropertyChangedEventArgs e)
+        private void NewCountDownModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             RaisePropertyChanged("NewCountDownModel");
         }
+
+        private void AlartItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                RaisePropertyChanged("AlartItems");
+            }
+        }
+        #endregion
     }
 }

@@ -11,13 +11,13 @@ using System.Threading;
 using System.Windows.Media;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
+using BigEgg.Framework.Foundation;
 using CountDown.Application.Domain;
 using CountDown.Application.Models;
 using CountDown.Application.Properties;
 using CountDown.Application.Services;
 using CountDown.Application.ViewModels.Dialog;
 using CountDown.Application.Views.Dialog;
-using BigEgg.Framework.Foundation;
 
 namespace CountDown.Application.Controllers
 {
@@ -35,8 +35,8 @@ namespace CountDown.Application.Controllers
         private readonly DelegateCommand deleteCountDownItemCommand;
 
         private Timer cleanExpiredTimer = null;
-        private DateTime startTime;
 
+        private AlartDialogViewModel alartDialogViewModel;
         private MediaPlayer player = null;
         #endregion
 
@@ -63,10 +63,14 @@ namespace CountDown.Application.Controllers
         {
             LoadData();
 
+            int dueTime;
+            DateTime startTime = DateTime.Now;
+            dueTime = 60000 - startTime.Second * 1000 - startTime.Millisecond + 10;
+
             // Create an inferred delegate that invokes methods for the timer.
             TimerCallback tcb = TimerCallbackMethods;
-            startTime = DateTime.Now;
-            cleanExpiredTimer = new Timer(tcb, null, 1000, 1000);
+
+            cleanExpiredTimer = new Timer(tcb, null, dueTime, 60000);
         }
 
         public void Shutdown()
@@ -195,6 +199,11 @@ namespace CountDown.Application.Controllers
             {
                 UpdateCommands();
             }
+            else if (e.PropertyName == "AlartItems")
+            {
+                
+            }
+
         }
 
         private void UpdateCommands()
@@ -206,22 +215,29 @@ namespace CountDown.Application.Controllers
         // This method is called by the timer delegate.
         private void TimerCallbackMethods(Object obj)
         {
-            if (DateTime.Now.Minute != startTime.Minute)
-            {
-                cleanExpiredTimer.Change(0, 60000);
-            }
             this.dataService.CleanExpiredItems();
+            this.dataService.CheckAlartItems();
         }
 
         private void ShowAlart()
         {
-            List<ICountDownItem> alartItems = this.dataService.CountDownItems.Where(
-                i => (i.AlartTime < DateTime.Now) && (i.HasAlart == false)).ToList();
-
             // Show the alart dialg view to the user
-            IAlartDialog alartDialog = container.GetExportedValue<IAlartDialog>();
-            AlartDialogViewModel alartDialogViewModel = new AlartDialogViewModel(alartDialog, alartItems);
-            alartDialogViewModel.ShowDialog(shellService.ShellView);
+            IAlartDialogView alartDialog = container.GetExportedValue<IAlartDialogView>();
+
+            if ((this.alartDialogViewModel != null) && (this.alartDialogViewModel.HasShow))
+            {
+                DateTime lastTime = this.alartDialogViewModel.Items.Max(c => c.AlartTime);
+                List<ICountDownItem> newAlartItem = this.dataService.AlartItems.Where(
+                    c => c.AlartTime > lastTime).ToList();
+
+                foreach (ICountDownItem item in newAlartItem)
+                    this.alartDialogViewModel.Items.Add(item);
+            }
+            else
+            {
+                this.alartDialogViewModel = new AlartDialogViewModel(alartDialog, this.dataService.AlartItems);
+                this.alartDialogViewModel.ShowDialog(shellService.ShellView);
+            }
 
             if (Settings.Default.HasAlartSound)
             {
