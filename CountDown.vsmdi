@@ -23,6 +23,17 @@
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <RunConfiguration id="3e1fae47-70e5-47ce-9b94-0f4fb75bb66e" name="Local" storage="local.testsettings" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </TestList>
+  <TestList name="SettingDialogViewModel.Test" id="8c4974cc-888a-410a-8b4a-adbb213fbaa8" parentListId="d8004c25-400e-4152-98a5-95181419903b">
+    <TestLinks>
+      <TestLink id="216622b0-fff8-3f60-2767-8eb55580d410" name="SettingDialogViewModelAddNewBranchCommandsTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="ca81a5f1-2108-dddb-824f-a911798a9d9d" name="SettingDialogViewModelSoundPathValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="dfaee94e-45d2-2394-7c9d-1b0e50a1b4a0" name="SettingDialogViewModelRemoveBranchCommandsTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e8a4623d-cd8e-3cf9-ee3a-d81c71e1f4eb" name="SettingDialogViewModelCloseTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="e4049c71-9f00-60ca-2f77-f3fe97518f7f" name="SettingDialogViewModelBeforeAlertMinutesValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="0aafedc2-43eb-ea6e-2bab-34e1bfcc450f" name="SettingDialogViewModelExpiredMinutesValidationTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="fc9b6cd6-5657-7fa5-4518-4212d3e93537" name="SettingDialogViewModelHasAlertSoundChangeTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="MainModelView.Test" id="94f00e99-7408-4406-b7a7-3ac98947a041" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
     <TestLinks>
       <TestLink id="b8ce06fa-db4e-2e80-3b17-c141625bd0bd" name="SelectLanguageTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -46,8 +57,12 @@
   <TestList name="ViewModels.Test" id="ca61d0db-db8c-4247-9772-24624fd8f0ca" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
   <TestList name="Dialogs.Test" id="d8004c25-400e-4152-98a5-95181419903b" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
     <TestLinks>
-      <TestLink id="3f0d2cce-8a3f-dd61-702c-4959738e86d0" name="AlertDialogViewModelCloseTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="64953eb5-2d14-ce79-968d-a3ce103ea4cc" name="DialogViewModelCloseTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="AlertDialogViewModel.Text" id="ea791b58-dd73-4f74-b94f-84cad3ed3949" parentListId="d8004c25-400e-4152-98a5-95181419903b">
+    <TestLinks>
+      <TestLink id="3f0d2cce-8a3f-dd61-702c-4959738e86d0" name="AlertDialogViewModelCloseTest" storage="bin\debug\countdown.application.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
 </TestLists>

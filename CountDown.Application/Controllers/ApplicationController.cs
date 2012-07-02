@@ -15,6 +15,7 @@ namespace CountDown.Application.Controllers
     [Export(typeof(IApplicationController))]
     internal class ApplicationController : Controller, IApplicationController
     {
+        private readonly CompositionContainer container;
         private readonly DataController dataController;
         private readonly ShellViewModel shellViewModel;
         private readonly MainViewModel mainViewModel;
@@ -29,8 +30,8 @@ namespace CountDown.Application.Controllers
             InitializeCultures();
             presentationService.InitializeCultures();
 
+            this.container = container;
             this.dataController = dataController;
-
             this.shellViewModel = container.GetExportedValue<ShellViewModel>();
             this.mainViewModel = container.GetExportedValue<MainViewModel>();
             this.settingDialog = container.GetExportedValue<SettingDialogViewModel>();
@@ -38,7 +39,7 @@ namespace CountDown.Application.Controllers
             shellService.ShellView = shellViewModel.View;
             this.shellViewModel.Closing += ShellViewModelClosing;
             this.exitCommand = new DelegateCommand(Close);
-            this.settingCommand = new DelegateCommand(SettingCommand);
+            this.settingCommand = new DelegateCommand(SettingDialogCommand);
         }
 
 
@@ -96,12 +97,25 @@ namespace CountDown.Application.Controllers
         {
         }
 
-        private void SettingCommand()
+        private void SettingDialogCommand()
         {
+            this.settingDialog.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
+            this.settingDialog.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;
+            this.settingDialog.HasAlertSound = Settings.Default.HasAlertSound;
+            this.settingDialog.SoundPath = Settings.Default.SoundPath;
+            this.settingDialog.ResetCountDownData = Settings.Default.ResetCountDownData;
+
             bool? result = settingDialog.ShowDialog(this.shellViewModel.View);
 
             if (result == true)
             {
+                Settings.Default.DefautBeforeAlertMinutes = this.settingDialog.BeforeAlertMinutes;
+                Settings.Default.DefaultExpiredMinutes = this.settingDialog.ExpiredMinutes;
+                Settings.Default.HasAlertSound = this.settingDialog.HasAlertSound;
+                Settings.Default.SoundPath = this.settingDialog.SoundPath;
+                Settings.Default.ResetCountDownData = this.settingDialog.ResetCountDownData;
+                Settings.Default.Save();
+
                 this.mainViewModel.HasAlertSound = Settings.Default.HasAlertSound;
                 this.mainViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
             }

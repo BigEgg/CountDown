@@ -21,6 +21,10 @@ namespace CountDown.Application.Test.ViewModels
             ICommand exitCommand = new DelegateCommand(() => { });
             AssertHelper.PropertyChangedEvent(mainViewModel, x => x.ExitCommand, () => mainViewModel.ExitCommand = exitCommand);
             Assert.AreEqual(exitCommand, mainViewModel.ExitCommand);
+
+            ICommand settingCommand = new DelegateCommand(() => { });
+            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.SettingCommand, () => mainViewModel.SettingCommand = settingCommand);
+            Assert.AreEqual(exitCommand, mainViewModel.ExitCommand);
         }
 
         [TestMethod]

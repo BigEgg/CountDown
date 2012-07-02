@@ -114,6 +114,11 @@ namespace CountDown.Application.Controllers
             {
                 this.dataService.Branches.Add(newModel.NoticeBranch);
             }
+            else
+            {
+                int index  = this.dataService.Branches.IndexOf(newModel.NoticeBranch);
+                this.dataService.Branches.Move(index, 0);
+            }
 
             if (Settings.Default.ResetCountDownData)
             {

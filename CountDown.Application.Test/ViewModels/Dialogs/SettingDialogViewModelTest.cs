@@ -7,6 +7,7 @@ using CountDown.Application.ViewModels.Dialog;
 using CountDown.Application.Test.Views.Dialogs;
 using CountDown.Application.Properties;
 using BigEgg.Framework.Foundation;
+using CountDown.Application.Services;
 
 namespace CountDown.Application.Test.ViewModels.Dialogs
 {
@@ -43,17 +44,28 @@ namespace CountDown.Application.Test.ViewModels.Dialogs
         {
             SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
 
+            viewModel.BeforeAlertMinutes = this.beforeAlertMinutes;
+            viewModel.ExpiredMinutes = this.expiredMinutes;
+            viewModel.HasAlertSound = this.hasAlertSound;
+            viewModel.SoundPath = this.soundPath;
+            viewModel.ResetCountDownData = this.resetCountDownData;
+
             Assert.AreEqual(this.beforeAlertMinutes, viewModel.BeforeAlertMinutes);
             Assert.AreEqual(this.expiredMinutes, viewModel.ExpiredMinutes);
             Assert.AreEqual(this.hasAlertSound, viewModel.HasAlertSound);
             Assert.AreEqual(this.soundPath, viewModel.SoundPath);
             Assert.AreEqual(this.resetCountDownData, viewModel.ResetCountDownData);
 
-            viewModel.BeforeAlertMinutes += 1;
+            viewModel.BeforeAlertMinutes = 0;
+            Assert.AreEqual(false, viewModel.SubmitCommand.CanExecute(null));
+
+            viewModel.BeforeAlertMinutes = this.beforeAlertMinutes + 1;
             viewModel.ExpiredMinutes += 1;
             viewModel.HasAlertSound = !viewModel.HasAlertSound;
             viewModel.SoundPath = "C:\\Music.mp3";
             viewModel.ResetCountDownData = !viewModel.ResetCountDownData;
+
+            Assert.AreEqual(true, viewModel.SubmitCommand.CanExecute(null));
             viewModel.SubmitCommand.Execute(null);
 
             Assert.AreEqual(this.beforeAlertMinutes + 1, viewModel.BeforeAlertMinutes);
@@ -61,12 +73,6 @@ namespace CountDown.Application.Test.ViewModels.Dialogs
             Assert.AreEqual(!this.hasAlertSound, viewModel.HasAlertSound);
             Assert.AreEqual("C:\\Music.mp3", viewModel.SoundPath);
             Assert.AreEqual(!this.resetCountDownData, viewModel.ResetCountDownData);
-
-            Assert.AreEqual(this.beforeAlertMinutes + 1, Settings.Default.DefautBeforeAlertMinutes);
-            Assert.AreEqual(this.expiredMinutes + 1, Settings.Default.DefaultExpiredMinutes);
-            Assert.AreEqual(!this.hasAlertSound, Settings.Default.HasAlertSound);
-            Assert.AreEqual("C:\\Music.mp3", Settings.Default.SoundPath);
-            Assert.AreEqual(!this.resetCountDownData, Settings.Default.ResetCountDownData);
         }
 
         [TestMethod]
@@ -179,6 +185,68 @@ namespace CountDown.Application.Test.ViewModels.Dialogs
             viewModel.SoundPath = "1@23";
             Assert.AreEqual("1@23", viewModel.SoundPath);
             Assert.AreEqual("", viewModel.Validate("SoundPath"));
+        }
+
+        [TestMethod]
+        public void SettingDialogViewModelAddNewBranchCommandsTest()
+        {
+            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
+            IDataService dataService = Container.GetExportedValue<IDataService>();
+
+            dataService.Branches.Add("Test1");
+            dataService.Branches.Add("Test2");
+            dataService.Branches.Add("Test3");
+
+            Assert.AreEqual(3, viewModel.Branches.Count);
+            Assert.AreEqual(1, viewModel.SelectedBranches.Count);
+            Assert.AreEqual("Test1", viewModel.SelectedBranches[0]);
+
+            Assert.AreEqual("", viewModel.NewBranch);
+            Assert.AreEqual(false, viewModel.AddNewCommand.CanExecute(null));
+
+            viewModel.NewBranch = "Test";
+            Assert.AreEqual(true, viewModel.AddNewCommand.CanExecute(null));
+
+            viewModel.AddNewCommand.Execute(null);
+            Assert.AreEqual("", viewModel.NewBranch);
+            Assert.AreEqual(4, viewModel.Branches.Count);
+            Assert.AreEqual(1, viewModel.SelectedBranches.Count);
+            Assert.AreEqual("Test", viewModel.SelectedBranches[0]);
+
+            Assert.AreEqual(4, dataService.Branches.Count);
+        }
+
+        [TestMethod]
+        public void SettingDialogViewModelRemoveBranchCommandsTest()
+        {
+            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
+            IDataService dataService = Container.GetExportedValue<IDataService>();
+
+            Assert.AreEqual(0, viewModel.SelectedBranches.Count);
+            Assert.AreEqual(false, viewModel.RemoveCommand.CanExecute(null));
+
+            dataService.Branches.Add("Test1");
+            dataService.Branches.Add("Test2");
+            dataService.Branches.Add("Test3");
+            dataService.Branches.Add("Test4");
+            dataService.Branches.Add("Test5");
+            dataService.Branches.Add("Test6");
+
+            Assert.AreEqual(true, viewModel.RemoveCommand.CanExecute(null));
+
+            viewModel.RemoveCommand.Execute(null);
+            Assert.AreEqual(5, viewModel.Branches.Count);
+            Assert.AreEqual(1, viewModel.SelectedBranches.Count);
+            Assert.AreEqual("Test2", viewModel.SelectedBranches[0]);
+
+            viewModel.SelectedBranches.Add(viewModel.Branches[2]);
+            viewModel.SelectedBranches.Add(viewModel.Branches[3]);
+            viewModel.RemoveCommand.Execute(null);
+            Assert.AreEqual(2, viewModel.Branches.Count);
+            Assert.AreEqual(1, viewModel.SelectedBranches.Count);
+            Assert.AreEqual("Test3", viewModel.SelectedBranches[0]);
+
+            Assert.AreEqual(2, dataService.Branches.Count);
         }
     }
 }
