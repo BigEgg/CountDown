@@ -89,15 +89,18 @@ namespace CountDown.Applications.ViewModels
 
         private void ViewClosing(object sender, CancelEventArgs e)
         {
-            this.cleanExpiredTimer.Change(0, Timeout.Infinite);
-            this.cleanExpiredTimer.Dispose();
-            this.cleanExpiredTimer = null;
-
             OnClosing(e);
         }
 
         private void ViewClosed(object sender, EventArgs e)
         {
+            if (this.cleanExpiredTimer != null)
+            {
+                this.cleanExpiredTimer.Change(0, Timeout.Infinite);
+                this.cleanExpiredTimer.Dispose();
+                this.cleanExpiredTimer = null;
+            }
+
             Settings.Default.Left = ViewCore.Left;
             Settings.Default.Top = ViewCore.Top;
             Settings.Default.Height = ViewCore.Height;

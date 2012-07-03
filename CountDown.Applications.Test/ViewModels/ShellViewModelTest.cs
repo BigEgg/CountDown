@@ -26,14 +26,7 @@ namespace CountDown.Applications.Test.ViewModels
             shellViewModel.Show();
             Assert.IsTrue(shellView.IsVisible);
 
-            // In this case it tries to get the title of the unit test framework which is ""
-            Assert.AreEqual("", shellViewModel.Title);
-
-            // Show the About Dialog
-            Assert.IsNull(messageService.Message);
-            mainViewModel.AboutCommand.Execute(null);
-            Assert.AreEqual(MessageType.Message, messageService.MessageType);
-            Assert.IsNotNull(messageService.Message);
+            Assert.AreNotEqual("", shellViewModel.Title);
 
             // Try to close the ShellView but cancel this operation through the closing event
             bool cancelClosing = true;

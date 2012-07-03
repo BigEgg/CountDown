@@ -13,15 +13,12 @@ namespace CountDown.Applications.ViewModels
     [Export]
     public class MainViewModel : ViewModel<IMainView>
     {
-        private readonly IAboutDialogView aboutDialog;
-        private readonly ISettingDialogView settingDialog;
-
         private readonly IMessageService messageService;
         private readonly IShellService shellService;
         private readonly IDataService dataService;
         private readonly DelegateCommand englishCommand;
         private readonly DelegateCommand chineseCommand;
-        private readonly DelegateCommand aboutCommand;
+        private ICommand aboutCommand;
         private ICommand settingCommand;
         private ICommand exitCommand;
         private CultureInfo newLanguage;
@@ -30,19 +27,16 @@ namespace CountDown.Applications.ViewModels
         private bool resetCountDownData;
 
         [ImportingConstructor]
-        public MainViewModel(IMainView view, IAboutDialogView aboutDialog, ISettingDialogView settingDialog,
-            IMessageService messageService, IShellService shellService, IDataService dataService)
+        public MainViewModel(IMainView view, IMessageService messageService, 
+            IShellService shellService, IDataService dataService)
             : base(view)
         {
-            this.aboutDialog = aboutDialog;
-            this.settingDialog = settingDialog;
 
             this.messageService = messageService;
             this.shellService = shellService;
             this.dataService = dataService;
             this.englishCommand = new DelegateCommand(() => SelectLanguage(new CultureInfo("en-US")));
             this.chineseCommand = new DelegateCommand(() => SelectLanguage(new CultureInfo("zh-CN")));
-            this.aboutCommand = new DelegateCommand(ShowAboutMessage);
 
             this.hasAlertSound = Settings.Default.HasAlertSound;
             this.resetCountDownData = Settings.Default.ResetCountDownData;
@@ -107,11 +101,22 @@ namespace CountDown.Applications.ViewModels
             }
         }
 
+        public ICommand AboutCommand
+        {
+            get { return this.aboutCommand; }
+            set
+            {
+                if (this.aboutCommand != value)
+                {
+                    this.aboutCommand = value;
+                    RaisePropertyChanged("AboutCommand");
+                }
+            }
+        }
+
         public ICommand EnglishCommand { get { return this.englishCommand; } }
 
         public ICommand ChineseCommand { get { return this.chineseCommand; } }
-
-        public ICommand AboutCommand { get { return this.aboutCommand; } }
         #endregion
 
         private void SelectLanguage(CultureInfo uiCulture)
@@ -122,11 +127,6 @@ namespace CountDown.Applications.ViewModels
                     Resources.ResourceManager.GetString("RestartApplication", uiCulture));
             }
             this.newLanguage = uiCulture;
-        }
-
-        private void ShowAboutMessage()
-        {
-            aboutDialog.ShowDialog(shellService.ShellView);
         }
     }
 }

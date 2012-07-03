@@ -196,9 +196,8 @@ namespace CountDown.Applications.Controllers
             }
             else if (e.PropertyName == "AlertItems")
             {
-                
+                ShowAlert();
             }
-
         }
 
         private void UpdateCommands()

@@ -3,6 +3,7 @@ using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels.Dialog;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.Test.ViewModels.Dialogs
 {
@@ -15,6 +16,8 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         private string soundPath;
         private bool resetCountDownData;
 
+        SettingDialogViewModel viewModel;
+
         protected override void OnTestInitialize()
         {
             this.beforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
@@ -22,29 +25,25 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             this.hasAlertSound = Settings.Default.HasAlertSound;
             this.soundPath = Settings.Default.SoundPath;
             this.resetCountDownData = Settings.Default.ResetCountDownData;
-        }
 
-        protected override void OnTestCleanup()
-        {
-            Settings.Default.DefautBeforeAlertMinutes = this.beforeAlertMinutes;
-            Settings.Default.DefaultExpiredMinutes = this.expiredMinutes;
-            Settings.Default.HasAlertSound = this.hasAlertSound;
-            Settings.Default.SoundPath = this.soundPath;
-            Settings.Default.ResetCountDownData = this.resetCountDownData;
-            Settings.Default.Save();
-        }
-
-        [TestMethod]
-        public void SettingDialogViewModelCloseTest()
-        {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
+            ISettingDialogView view = Container.GetExportedValue<ISettingDialogView>();
+            IDataService dataService = Container.GetExportedValue<IDataService>();
+            viewModel = new SettingDialogViewModel(view, dataService);
 
             viewModel.BeforeAlertMinutes = this.beforeAlertMinutes;
             viewModel.ExpiredMinutes = this.expiredMinutes;
             viewModel.HasAlertSound = this.hasAlertSound;
             viewModel.SoundPath = this.soundPath;
             viewModel.ResetCountDownData = this.resetCountDownData;
+        }
 
+        protected override void OnTestCleanup()
+        {
+        }
+
+        [TestMethod]
+        public void SettingDialogViewModelCloseTest()
+        {
             Assert.AreEqual(this.beforeAlertMinutes, viewModel.BeforeAlertMinutes);
             Assert.AreEqual(this.expiredMinutes, viewModel.ExpiredMinutes);
             Assert.AreEqual(this.hasAlertSound, viewModel.HasAlertSound);
@@ -73,8 +72,6 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void SettingDialogViewModelBeforeAlertMinutesValidationTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
-
             Assert.AreEqual(this.beforeAlertMinutes, viewModel.BeforeAlertMinutes);
             Assert.AreEqual("", viewModel.Validate("BeforeAlertMinutes"));
 
@@ -102,8 +99,6 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void SettingDialogViewModelExpiredMinutesValidationTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
-
             Assert.AreEqual(this.expiredMinutes, viewModel.ExpiredMinutes);
             Assert.AreEqual("", viewModel.Validate("ExpiredMinutes"));
 
@@ -131,8 +126,6 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void SettingDialogViewModelHasAlertSoundChangeTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
-
             Assert.AreEqual(this.hasAlertSound, viewModel.HasAlertSound);
 
             if (!this.hasAlertSound)
@@ -152,8 +145,6 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void SettingDialogViewModelSoundPathValidationTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
-
             Assert.AreEqual(this.soundPath, viewModel.SoundPath);
             Assert.AreEqual("", viewModel.Validate("SoundPath"));
 
@@ -179,13 +170,12 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
 
             viewModel.SoundPath = "1@23";
             Assert.AreEqual("1@23", viewModel.SoundPath);
-            Assert.AreEqual("", viewModel.Validate("SoundPath"));
+            Assert.AreNotEqual("", viewModel.Validate("SoundPath"));
         }
 
         [TestMethod]
         public void SettingDialogViewModelAddNewBranchCommandsTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
             IDataService dataService = Container.GetExportedValue<IDataService>();
 
             dataService.Branches.Add("Test1");
@@ -214,7 +204,6 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void SettingDialogViewModelRemoveBranchCommandsTest()
         {
-            SettingDialogViewModel viewModel = Container.GetExportedValue<SettingDialogViewModel>();
             IDataService dataService = Container.GetExportedValue<IDataService>();
 
             Assert.AreEqual(0, viewModel.SelectedBranches.Count);

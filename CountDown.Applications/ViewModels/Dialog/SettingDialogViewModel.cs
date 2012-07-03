@@ -11,7 +11,6 @@ using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.ViewModels.Dialog
 {
-    [Export]
     public class SettingDialogViewModel : DialogViewModel<ISettingDialogView>
     {
         #region Members
@@ -26,7 +25,7 @@ namespace CountDown.Applications.ViewModels.Dialog
         private bool hasAlertSound = false;
         #endregion
 
-        [ImportingConstructor]
+
         public SettingDialogViewModel(ISettingDialogView view, IDataService dataservice)
             : base(view)
         {

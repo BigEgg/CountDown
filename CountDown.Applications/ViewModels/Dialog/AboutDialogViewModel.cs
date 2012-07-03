@@ -5,13 +5,11 @@ using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.ViewModels.Dialog
 {
-    [Export]
     public class AboutDialogViewModel : DialogViewModel<IAboutDialogView>
     {
         private readonly DelegateCommand okCommand;
 
 
-        [ImportingConstructor]
         public AboutDialogViewModel(IAboutDialogView view)
             : base(view)
         {

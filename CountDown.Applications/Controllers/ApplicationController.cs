@@ -9,6 +9,7 @@ using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels;
 using CountDown.Applications.ViewModels.Dialog;
+using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.Controllers
 {
@@ -19,9 +20,9 @@ namespace CountDown.Applications.Controllers
         private readonly DataController dataController;
         private readonly ShellViewModel shellViewModel;
         private readonly MainViewModel mainViewModel;
-        private readonly SettingDialogViewModel settingDialog;
         private readonly DelegateCommand exitCommand;
         private readonly DelegateCommand settingCommand;
+        private readonly DelegateCommand aboutCommand;
 
         [ImportingConstructor]
         public ApplicationController(CompositionContainer container, IPresentationService presentationService, 
@@ -34,32 +35,34 @@ namespace CountDown.Applications.Controllers
             this.dataController = dataController;
             this.shellViewModel = container.GetExportedValue<ShellViewModel>();
             this.mainViewModel = container.GetExportedValue<MainViewModel>();
-            this.settingDialog = container.GetExportedValue<SettingDialogViewModel>();
 
             shellService.ShellView = shellViewModel.View;
             this.shellViewModel.Closing += ShellViewModelClosing;
             this.exitCommand = new DelegateCommand(Close);
             this.settingCommand = new DelegateCommand(SettingDialogCommand);
+            this.aboutCommand = new DelegateCommand(AboutDialogCommand);
         }
 
 
         protected override void OnInitialize()
         {
-            //this.mainViewModel.ExitCommand = this.exitCommand;
+            this.mainViewModel.ExitCommand = this.exitCommand;
+            this.mainViewModel.SettingCommand = this.settingCommand;
+            this.mainViewModel.AboutCommand = this.aboutCommand;
 
-            //this.dataController.Initialize();
+            this.dataController.Initialize();
         }
 
         public void Run()
         {
-            //this.shellViewModel.ContentView = mainViewModel.View;
+            this.shellViewModel.ContentView = mainViewModel.View;
 
             this.shellViewModel.Show();
         }
 
         public void Shutdown()
         {
-            //this.dataController.Shutdown();
+            this.dataController.Shutdown();
 
             if (this.mainViewModel.NewLanguage != null)
             {
@@ -99,26 +102,37 @@ namespace CountDown.Applications.Controllers
 
         private void SettingDialogCommand()
         {
-            this.settingDialog.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
-            this.settingDialog.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;
-            this.settingDialog.HasAlertSound = Settings.Default.HasAlertSound;
-            this.settingDialog.SoundPath = Settings.Default.SoundPath;
-            this.settingDialog.ResetCountDownData = Settings.Default.ResetCountDownData;
+            ISettingDialogView view = container.GetExportedValue<ISettingDialogView>();
+            IDataService dataService = container.GetExportedValue<IDataService>();
+            SettingDialogViewModel settingDialog = new SettingDialogViewModel(view, dataService);
+
+            settingDialog.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
+            settingDialog.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;
+            settingDialog.HasAlertSound = Settings.Default.HasAlertSound;
+            settingDialog.SoundPath = Settings.Default.SoundPath;
+            settingDialog.ResetCountDownData = Settings.Default.ResetCountDownData;
 
             bool? result = settingDialog.ShowDialog(this.shellViewModel.View);
 
             if (result == true)
             {
-                Settings.Default.DefautBeforeAlertMinutes = this.settingDialog.BeforeAlertMinutes;
-                Settings.Default.DefaultExpiredMinutes = this.settingDialog.ExpiredMinutes;
-                Settings.Default.HasAlertSound = this.settingDialog.HasAlertSound;
-                Settings.Default.SoundPath = this.settingDialog.SoundPath;
-                Settings.Default.ResetCountDownData = this.settingDialog.ResetCountDownData;
+                Settings.Default.DefautBeforeAlertMinutes = settingDialog.BeforeAlertMinutes;
+                Settings.Default.DefaultExpiredMinutes = settingDialog.ExpiredMinutes;
+                Settings.Default.HasAlertSound = settingDialog.HasAlertSound;
+                Settings.Default.SoundPath = settingDialog.SoundPath;
+                Settings.Default.ResetCountDownData = settingDialog.ResetCountDownData;
                 Settings.Default.Save();
 
                 this.mainViewModel.HasAlertSound = Settings.Default.HasAlertSound;
                 this.mainViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
             }
+        }
+
+        private void AboutDialogCommand()
+        {
+            IAboutDialogView view = container.GetExportedValue<IAboutDialogView>();
+            AboutDialogViewModel aboutDialog = new AboutDialogViewModel(view);
+            aboutDialog.ShowDialog(this.shellViewModel.View);
         }
     }
 }

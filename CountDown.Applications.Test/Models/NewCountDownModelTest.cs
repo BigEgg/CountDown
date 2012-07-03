@@ -159,7 +159,7 @@ namespace CountDown.Applications.Test.Models
 
             item.BeforeAlertMinutes = -0;
             Assert.AreEqual(-0, item.BeforeAlertMinutes);
-            Assert.AreEqual("", item.Validate("BeforeAlertMinutes"));
+            Assert.AreNotEqual("", item.Validate("BeforeAlertMinutes"));
 
             item.BeforeAlertMinutes = -1;
             Assert.AreEqual(-1, item.BeforeAlertMinutes);

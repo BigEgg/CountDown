@@ -8,14 +8,12 @@ using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.ViewModels.Dialog
 {
-    [Export]
     public class AlertDialogViewModel : DialogViewModel<IAlertDialogView>
     {
         private readonly DelegateCommand okCommand;
         private readonly ObservableCollection<ICountDownItem> items;
 
 
-        [ImportingConstructor]
         public AlertDialogViewModel(IAlertDialogView view, ObservableCollection<ICountDownItem> items)
             : base(view)
         {
