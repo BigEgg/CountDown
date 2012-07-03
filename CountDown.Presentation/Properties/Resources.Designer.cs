@@ -61,11 +61,227 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Add.
+        /// </summary>
+        public static string AddCountDownData {
+            get {
+                return ResourceManager.GetString("AddCountDownData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alart Items:.
+        /// </summary>
+        public static string AlartItems {
+            get {
+                return ResourceManager.GetString("AlartItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Chinese.
+        /// </summary>
+        public static string ChineseMenu {
+            get {
+                return ResourceManager.GetString("ChineseMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to :.
+        /// </summary>
+        public static string Colon {
+            get {
+                return ResourceManager.GetString("Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count Down Alert.
+        /// </summary>
+        public static string CountDownTab {
+            get {
+                return ResourceManager.GetString("CountDownTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count Down In.
+        /// </summary>
+        public static string CountDownTimeTitle {
+            get {
+                return ResourceManager.GetString("CountDownTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _English.
+        /// </summary>
+        public static string EnglishMenu {
+            get {
+                return ResourceManager.GetString("EnglishMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E_xit.
+        /// </summary>
+        public static string ExitMenu {
+            get {
+                return ResourceManager.GetString("ExitMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _File.
+        /// </summary>
+        public static string FileMenu {
+            get {
+                return ResourceManager.GetString("FileMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Help.
+        /// </summary>
+        public static string HelpMenu {
+            get {
+                return ResourceManager.GetString("HelpMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items Queue:.
+        /// </summary>
+        public static string ItemsQueue {
+            get {
+                return ResourceManager.GetString("ItemsQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Language.
+        /// </summary>
+        public static string LanguageMenu {
+            get {
+                return ResourceManager.GetString("LanguageMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before Alert.
+        /// </summary>
+        public static string NewCountDownBeforeMinutes {
+            get {
+                return ResourceManager.GetString("NewCountDownBeforeMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        public static string NewCountDownBranch {
+            get {
+                return ResourceManager.GetString("NewCountDownBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        public static string NewCountDownDays {
+            get {
+                return ResourceManager.GetString("NewCountDownDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours.
+        /// </summary>
+        public static string NewCountDownHours {
+            get {
+                return ResourceManager.GetString("NewCountDownHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minutes.
+        /// </summary>
+        public static string NewCountDownMinutes {
+            get {
+                return ResourceManager.GetString("NewCountDownMinutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notice.
+        /// </summary>
+        public static string NewCountDownNotice {
+            get {
+                return ResourceManager.GetString("NewCountDownNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         public static string Ready {
             get {
                 return ResourceManager.GetString("Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Above Data After Add It..
+        /// </summary>
+        public static string ResetCountDownData {
+            get {
+                return ResourceManager.GetString("ResetCountDownData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alert At Time.
+        /// </summary>
+        public static string SetAlermTab {
+            get {
+                return ResourceManager.GetString("SetAlermTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _About.
+        /// </summary>
+        public static string ShowAboutDialogMenu {
+            get {
+                return ResourceManager.GetString("ShowAboutDialogMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting....
+        /// </summary>
+        public static string ShowSettingDialogMenu {
+            get {
+                return ResourceManager.GetString("ShowSettingDialogMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silence.
+        /// </summary>
+        public static string Silence {
+            get {
+                return ResourceManager.GetString("Silence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Tools.
+        /// </summary>
+        public static string ToolsMenu {
+            get {
+                return ResourceManager.GetString("ToolsMenu", resourceCulture);
             }
         }
         

@@ -117,8 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCountDownData" xml:space="preserve">
+    <value>_Add</value>
+  </data>
+  <data name="AlartItems" xml:space="preserve">
+    <value>Alart Items:</value>
+  </data>
+  <data name="ChineseMenu" xml:space="preserve">
+    <value>_Chinese</value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="CountDownTab" xml:space="preserve">
+    <value>Count Down Alert</value>
+  </data>
+  <data name="CountDownTimeTitle" xml:space="preserve">
+    <value>Count Down In</value>
+  </data>
+  <data name="EnglishMenu" xml:space="preserve">
+    <value>_English</value>
+  </data>
+  <data name="ExitMenu" xml:space="preserve">
+    <value>E_xit</value>
+  </data>
+  <data name="FileMenu" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="HelpMenu" xml:space="preserve">
+    <value>_Help</value>
+  </data>
+  <data name="ItemsQueue" xml:space="preserve">
+    <value>Items Queue:</value>
+  </data>
+  <data name="LanguageMenu" xml:space="preserve">
+    <value>_Language</value>
+  </data>
+  <data name="NewCountDownBeforeMinutes" xml:space="preserve">
+    <value>Before Alert</value>
+  </data>
+  <data name="NewCountDownBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="NewCountDownDays" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="NewCountDownHours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="NewCountDownMinutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="NewCountDownNotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready.</value>
+  </data>
+  <data name="ResetCountDownData" xml:space="preserve">
+    <value>Reset Above Data After Add It.</value>
+  </data>
+  <data name="SetAlermTab" xml:space="preserve">
+    <value>Alert At Time</value>
+  </data>
+  <data name="ShowAboutDialogMenu" xml:space="preserve">
+    <value>_About</value>
+  </data>
+  <data name="ShowSettingDialogMenu" xml:space="preserve">
+    <value>Setting...</value>
+  </data>
+  <data name="Silence" xml:space="preserve">
+    <value>Silence</value>
+  </data>
+  <data name="ToolsMenu" xml:space="preserve">
+    <value>_Tools</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
     <value>Unkonw error happend...%&gt;_&lt;%

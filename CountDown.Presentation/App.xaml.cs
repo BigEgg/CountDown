@@ -19,7 +19,6 @@ namespace CountDown.Presentation
     /// </summary>
     public partial class App : Application
     {
-        private static readonly bool isInDesignMode = DesignerProperties.GetIsInDesignMode(new DependencyObject());
         private CompositionContainer container;
         private IApplicationController applicationController;
 
@@ -30,9 +29,6 @@ namespace CountDown.Presentation
             BEConfiguration.Debug = true;
 #endif
         }
-
-
-        public static bool IsInDesignMode { get { return isInDesignMode; } }
 
 
         protected override void OnStartup(StartupEventArgs e)

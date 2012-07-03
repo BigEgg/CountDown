@@ -3,9 +3,102 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             xmlns:p="clr-namespace:CountDown.Presentation.Properties"
+             mc:Ignorable="d"
+             d:DesignHeight="370" d:DesignWidth="549">
+    <DockPanel x:Name="rootContainer">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{x:Static p:Resources.FileMenu}">
+                <MenuItem Command="{Binding ExitCommand}" Header="{x:Static p:Resources.ExitMenu}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.ToolsMenu}">
+                <MenuItem Header="{x:Static p:Resources.LanguageMenu}">
+                    <MenuItem Command="{Binding ChineseCommand}" Header="{x:Static p:Resources.ChineseMenu}"/>
+                    <MenuItem Command="{Binding EnglishCommand}" Header="{x:Static p:Resources.EnglishMenu}"/>
+                </MenuItem>
+                <MenuItem Command="{Binding SettingCommand}" Header="{x:Static p:Resources.ShowSettingDialogMenu}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.HelpMenu}">
+                <MenuItem Command="{Binding AboutCommand}" Header="{x:Static p:Resources.ShowAboutDialogMenu}"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" MinWidth="250"/>
+                <ColumnDefinition Width="60*" MinWidth="350"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="5">
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="*" MinHeight="300"/>
+            		<RowDefinition Height="30"/>
+            	</Grid.RowDefinitions>
+            	<CheckBox Content="{x:Static p:Resources.Silence}" Margin="10,0" Grid.Row="1" VerticalAlignment="Center"/>
+            	<TabControl Margin="0">
+            		<TabItem Header="{x:Static p:Resources.CountDownTab}">
+            			<Grid Background="#FFE5E5E5" Margin="5,0,0,0">
+            				<Grid.ColumnDefinitions>
+            					<ColumnDefinition Width="0.4*"/>
+            					<ColumnDefinition Width="10"/>
+            					<ColumnDefinition Width="0.6*"/>
+            				</Grid.ColumnDefinitions>
+            				<Grid.RowDefinitions>
+            					<RowDefinition Height="40*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            					<RowDefinition Height="30*"/>
+            				</Grid.RowDefinitions>
+                            <TextBlock Margin="0" Grid.ColumnSpan="3" Text="{x:Static p:Resources.CountDownTimeTitle}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Margin="5,0,0,0" Grid.Row="1" Text="{x:Static p:Resources.NewCountDownDays}" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Grid.Row="2" Text="{x:Static p:Resources.NewCountDownHours}" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Grid.Row="3" Text="{x:Static p:Resources.NewCountDownMinutes}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="1" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="2" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="3" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+            				<TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="1" Text="{Binding DataService.NewCountDownModel.Days, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            				<TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="2" Text="{Binding DataService.NewCountDownModel.Hours, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            				<TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="3" Text="{Binding DataService.NewCountDownModel.Minutes, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+                            
+							<TextBlock Margin="5,0,0,0" Grid.Row="4" Text="{x:Static p:Resources.NewCountDownBranch}" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Grid.Row="5" Text="{x:Static p:Resources.NewCountDownNotice}" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5,0,0,0" Grid.Row="6" Text="{x:Static p:Resources.NewCountDownBeforeMinutes}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="4" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="5" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+            				<TextBlock Margin="0" Grid.Column="1" Grid.Row="6" Text="{x:Static p:Resources.Colon}" VerticalAlignment="Center"/>
+             				<ComboBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="4" Text="{Binding DataService.NewCountDownModel.NoticeBranch, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" 
+									  DataContext="{Binding DataService}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" ItemsSource="{Binding Branches}" IsEditable="True"/>
+            				<TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="5" Text="{Binding DataService.NewCountDownModel.Notice, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+            				<TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="6" Text="{Binding DataService.NewCountDownModel.BeforeAlertMinutes, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
+							
+							<CheckBox Grid.Column="0" Margin="5,0"  Grid.Row="7" Content="{x:Static p:Resources.ResetCountDownData}" Grid.ColumnSpan="3" VerticalAlignment="Center" IsChecked="{Binding ResetCountDownData}"/>
+							<Button Content="{x:Static p:Resources.AddCountDownData}" Grid.Column="2" Margin="5" Grid.Row="8" Command="{Binding DataService.NewCountDownItem}"/>
+           			</Grid>
+            		</TabItem>
+            		<TabItem Header="{x:Static p:Resources.SetAlermTab}" IsEnabled="False">
+            			<Grid Background="#FFE5E5E5"/>
+            		</TabItem>
+            	</TabControl>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5">
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="25"/>
+            		<RowDefinition Height="0.4*" MinHeight="150"/>
+            		<RowDefinition Height="25"/>
+            		<RowDefinition Height="0.6*" MinHeight="150"/>
+				</Grid.RowDefinitions>
+				<TextBlock Text="{x:Static p:Resources.AlartItems}" VerticalAlignment="Bottom" Margin="0,0,0,5" />
+				<ListBox Grid.Row="1">
+				</ListBox>
+				<TextBlock Grid.Row="2" Text="{x:Static p:Resources.ItemsQueue}" VerticalAlignment="Bottom" Margin="0,0,0,5" />
+				<ListBox Grid.Row="3">
+				</ListBox>
+            	<GridSplitter Grid.Row="2" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Top"></GridSplitter>
+			</Grid>
+            <GridSplitter Width="5"></GridSplitter>
+        </Grid>
+    </DockPanel>
 </UserControl>

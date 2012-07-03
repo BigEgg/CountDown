@@ -4,8 +4,8 @@
         xmlns:p="clr-namespace:CountDown.Presentation.Properties"
         xmlns:vm="clr-namespace:CountDown.Applications.ViewModels;assembly=CountDown.Applications"
         Height="600" Width="900"
-        Title="123">
-
+        Title="{Binding Title}" Icon="{StaticResource CountDownImageSource}">
+    
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="{x:Static p:Resources.Ready}" Margin="3,0,0,0"/>

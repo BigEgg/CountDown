@@ -97,6 +97,7 @@ namespace CountDown.Applications.Models
                 }
             }
         }
+
         public string Notice
         {
             get { return this.notice; }
