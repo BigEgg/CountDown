@@ -82,6 +82,7 @@ namespace CountDown.Applications.Test.ViewModels
         [TestMethod]
         public void RestoreWindowLocationAndSizeSpecial()
         {
+            MockDataService dataService = new MockDataService();
             MockPresentationService presentationService = (MockPresentationService)Container.GetExportedValue<IPresentationService>();
             presentationService.VirtualScreenWidth = 1000;
             presentationService.VirtualScreenHeight = 700;
@@ -91,27 +92,27 @@ namespace CountDown.Applications.Test.ViewModels
             shellView.SetNAForLocationAndSize();
 
             SetSettingsValues();
-            new ShellViewModel(shellView, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Height is 0 => don't apply the Settings values
             SetSettingsValues(0, 0, 1, 0);
-            new ShellViewModel(shellView, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Left = 100 + Width = 901 > VirtualScreenWidth = 1000 => don't apply the Settings values
             SetSettingsValues(100, 100, 901, 100);
-            new ShellViewModel(shellView, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Top = 100 + Height = 601 > VirtualScreenWidth = 600 => don't apply the Settings values
             SetSettingsValues(100, 100, 100, 601);
-            new ShellViewModel(shellView, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Use the limit values => apply the Settings values
             SetSettingsValues(0, 0, 1000, 700);
-            new ShellViewModel(shellView, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
             AssertSettingsValues(0, 0, 1000, 700, false);
         }
 

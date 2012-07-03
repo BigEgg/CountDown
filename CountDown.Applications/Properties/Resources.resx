@@ -123,6 +123,9 @@
   <data name="AlertTimeMandatory" xml:space="preserve">
     <value>AlertTime is mandatory</value>
   </data>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>Count Down</value>
+  </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>The minutes before Alert is mandatory.</value>
   </data>

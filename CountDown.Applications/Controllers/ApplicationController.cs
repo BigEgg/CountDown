@@ -45,21 +45,21 @@ namespace CountDown.Applications.Controllers
 
         protected override void OnInitialize()
         {
-            this.mainViewModel.ExitCommand = this.exitCommand;
+            //this.mainViewModel.ExitCommand = this.exitCommand;
 
-            this.dataController.Initialize();
+            //this.dataController.Initialize();
         }
 
         public void Run()
         {
-            this.shellViewModel.ContentView = mainViewModel.View;
+            //this.shellViewModel.ContentView = mainViewModel.View;
 
             this.shellViewModel.Show();
         }
 
         public void Shutdown()
         {
-            this.dataController.Shutdown();
+            //this.dataController.Shutdown();
 
             if (this.mainViewModel.NewLanguage != null)
             {

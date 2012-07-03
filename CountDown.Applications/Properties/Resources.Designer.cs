@@ -79,6 +79,15 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count Down.
+        /// </summary>
+        public static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The minutes before Alert is mandatory..
         /// </summary>
         public static string BeforeAlertMinutesMandatory {

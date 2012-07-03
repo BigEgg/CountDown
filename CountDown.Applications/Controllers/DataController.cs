@@ -7,7 +7,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Media;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
@@ -33,8 +32,6 @@ namespace CountDown.Applications.Controllers
         private readonly DataService dataService;
         private readonly DelegateCommand newCountDownItemCommand;
         private readonly DelegateCommand deleteCountDownItemCommand;
-
-        private Timer cleanExpiredTimer = null;
 
         private AlertDialogViewModel AlertDialogViewModel;
         private MediaPlayer player = null;
@@ -62,15 +59,6 @@ namespace CountDown.Applications.Controllers
         protected override void OnInitialize()
         {
             LoadData();
-
-            int dueTime;
-            DateTime startTime = DateTime.Now;
-            dueTime = 60000 - startTime.Second * 1000 - startTime.Millisecond + 10;
-
-            // Create an inferred delegate that invokes methods for the timer.
-            TimerCallback tcb = TimerCallbackMethods;
-
-            cleanExpiredTimer = new Timer(tcb, null, dueTime, 60000);
         }
 
         public void Shutdown()
@@ -78,8 +66,6 @@ namespace CountDown.Applications.Controllers
             try
             {
                 SaveData();
-
-                cleanExpiredTimer.Dispose();
             }
             catch (Exception ex)
             {
@@ -145,18 +131,20 @@ namespace CountDown.Applications.Controllers
         #region Private Mehtods
         private void SaveData()
         {
-            StreamWriter sw = new StreamWriter(DataFileName, false);
-            sw.WriteLine("CountDown Application (V 1.0)");
-            sw.WriteLine("Build for my mom. O(∩_∩)O~");
-
-            foreach (ICountDownItem item in this.dataService.CountDownItems)
+            using (StreamWriter sw = new StreamWriter(DataFileName, false))
             {
-                sw.WriteLine(string.Format(
-                    "{0}|{1}|{2}",
-                    item.Time.ToString(),
-                    item.AlertTime.ToBinary(),
-                    item.Notice)
-                );
+                sw.WriteLine("CountDown Application (V 1.0)");
+                sw.WriteLine("Build for my mom. O(∩_∩)O~");
+
+                foreach (ICountDownItem item in this.dataService.CountDownItems)
+                {
+                    sw.WriteLine(string.Format(
+                        "{0}|{1}|{2}",
+                        item.Time.ToString(),
+                        item.AlertTime.ToBinary(),
+                        item.Notice)
+                    );
+                }
             }
 
             StringCollection branches = new StringCollection();
@@ -172,21 +160,23 @@ namespace CountDown.Applications.Controllers
             }
 
             string [] line;
-            StreamReader sr = new StreamReader(DataFileName);
-            sr.ReadLine();
-            sr.ReadLine();
-
-            this.dataService.CountDownItems.Clear();
-            while (!sr.EndOfStream)
+            using (StreamReader sr = new StreamReader(DataFileName))
             {
-                line = sr.ReadLine().Split('|');
-                ICountDownItem item = new CountDownItem
+                sr.ReadLine();
+                sr.ReadLine();
+
+                this.dataService.CountDownItems.Clear();
+                while (!sr.EndOfStream)
                 {
-                    Time = DateTime.Parse(line[0]),
-                    AlertTime = DateTime.Parse(line[1]),
-                    Notice = line[2]
-                };
-                this.dataService.CountDownItems.Add(item);
+                    line = sr.ReadLine().Split('|');
+                    ICountDownItem item = new CountDownItem
+                    {
+                        Time = DateTime.Parse(line[0]),
+                        AlertTime = DateTime.Parse(line[1]),
+                        Notice = line[2]
+                    };
+                    this.dataService.CountDownItems.Add(item);
+                }
             }
 
             if (Settings.Default.Branches != null)
@@ -215,13 +205,6 @@ namespace CountDown.Applications.Controllers
         {
             this.newCountDownItemCommand.RaiseCanExecuteChanged();
             this.deleteCountDownItemCommand.RaiseCanExecuteChanged();
-        }
-
-        // This method is called by the timer delegate.
-        private void TimerCallbackMethods(Object obj)
-        {
-            this.dataService.CleanExpiredItems();
-            this.dataService.CheckAlertItems();
         }
 
         private void ShowAlert()

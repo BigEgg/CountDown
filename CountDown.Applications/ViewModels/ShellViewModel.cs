@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Threading;
 using BigEgg.Framework.Applications;
 using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
@@ -12,14 +13,18 @@ namespace CountDown.Applications.ViewModels
     public class ShellViewModel : ViewModel<IShellView>
     {
         private readonly IShellService shellService;
+        private readonly IDataService dataService;
         private object contentView;
 
+        private Timer cleanExpiredTimer = null;
 
         [ImportingConstructor]
-        public ShellViewModel(IShellView view, IPresentationService presentationService, IShellService shellService)
+        public ShellViewModel(IShellView view, IDataService dataService,
+            IPresentationService presentationService, IShellService shellService)
             : base(view)
         {
             this.shellService = shellService;
+            this.dataService = dataService;
             view.Closing += ViewClosing;
             view.Closed += ViewClosed;
 
@@ -37,7 +42,7 @@ namespace CountDown.Applications.ViewModels
         }
 
 
-        public string Title { get { return ApplicationInfo.ProductName; } }
+        public string Title { get { return Resources.ApplicationName; } }
 
         public IShellService ShellService { get { return this.shellService; } }
 
@@ -61,6 +66,15 @@ namespace CountDown.Applications.ViewModels
         public void Show()
         {
             ViewCore.Show();
+
+            int dueTime;
+            DateTime startTime = DateTime.Now;
+            dueTime = 60000 - startTime.Second * 1000 - startTime.Millisecond + 10;
+
+            // Create an inferred delegate that invokes methods for the timer.
+            TimerCallback tcb = TimerCallbackMethods;
+
+            this.cleanExpiredTimer = new Timer(tcb, null, dueTime, 60000);
         }
 
         public void Close()
@@ -75,6 +89,10 @@ namespace CountDown.Applications.ViewModels
 
         private void ViewClosing(object sender, CancelEventArgs e)
         {
+            this.cleanExpiredTimer.Change(0, Timeout.Infinite);
+            this.cleanExpiredTimer.Dispose();
+            this.cleanExpiredTimer = null;
+
             OnClosing(e);
         }
 
@@ -86,5 +104,13 @@ namespace CountDown.Applications.ViewModels
             Settings.Default.Width = ViewCore.Width;
             Settings.Default.IsMaximized = ViewCore.IsMaximized;
         }
+
+        // This method is called by the timer delegate.
+        private void TimerCallbackMethods(Object obj)
+        {
+            this.dataService.CleanExpiredItems();
+            this.dataService.CheckAlertItems();
+        }
+
     }
 }
