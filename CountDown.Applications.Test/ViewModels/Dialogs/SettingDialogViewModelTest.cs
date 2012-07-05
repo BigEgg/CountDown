@@ -187,12 +187,12 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             Assert.AreEqual("Test1", viewModel.SelectedBranches[0]);
 
             Assert.AreEqual("", viewModel.NewBranch);
-            Assert.AreEqual(false, viewModel.AddNewCommand.CanExecute(null));
+            Assert.AreEqual(false, viewModel.AddNewBranchCommand.CanExecute(null));
 
             viewModel.NewBranch = "Test";
-            Assert.AreEqual(true, viewModel.AddNewCommand.CanExecute(null));
+            Assert.AreEqual(true, viewModel.AddNewBranchCommand.CanExecute(null));
 
-            viewModel.AddNewCommand.Execute(null);
+            viewModel.AddNewBranchCommand.Execute(null);
             Assert.AreEqual("", viewModel.NewBranch);
             Assert.AreEqual(4, viewModel.Branches.Count);
             Assert.AreEqual(1, viewModel.SelectedBranches.Count);
@@ -207,7 +207,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             IDataService dataService = Container.GetExportedValue<IDataService>();
 
             Assert.AreEqual(0, viewModel.SelectedBranches.Count);
-            Assert.AreEqual(false, viewModel.RemoveCommand.CanExecute(null));
+            Assert.AreEqual(false, viewModel.RemoveBranchCommand.CanExecute(null));
 
             dataService.Branches.Add("Test1");
             dataService.Branches.Add("Test2");
@@ -216,16 +216,16 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             dataService.Branches.Add("Test5");
             dataService.Branches.Add("Test6");
 
-            Assert.AreEqual(true, viewModel.RemoveCommand.CanExecute(null));
+            Assert.AreEqual(true, viewModel.RemoveBranchCommand.CanExecute(null));
 
-            viewModel.RemoveCommand.Execute(null);
+            viewModel.RemoveBranchCommand.Execute(null);
             Assert.AreEqual(5, viewModel.Branches.Count);
             Assert.AreEqual(1, viewModel.SelectedBranches.Count);
             Assert.AreEqual("Test2", viewModel.SelectedBranches[0]);
 
             viewModel.SelectedBranches.Add(viewModel.Branches[2]);
             viewModel.SelectedBranches.Add(viewModel.Branches[3]);
-            viewModel.RemoveCommand.Execute(null);
+            viewModel.RemoveBranchCommand.Execute(null);
             Assert.AreEqual(2, viewModel.Branches.Count);
             Assert.AreEqual(1, viewModel.SelectedBranches.Count);
             Assert.AreEqual("Test3", viewModel.SelectedBranches[0]);

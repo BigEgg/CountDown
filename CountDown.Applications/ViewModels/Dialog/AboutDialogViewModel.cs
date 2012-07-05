@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using BigEgg.Framework.Applications;
+using CountDown.Applications.Properties;
 using CountDown.Applications.Views.Dialog;
 
 namespace CountDown.Applications.ViewModels.Dialog
@@ -17,7 +17,7 @@ namespace CountDown.Applications.ViewModels.Dialog
         }
 
 
-        public string ProductName { get { return ApplicationInfo.ProductName; } }
+        public string ProductName { get { return Resources.ApplicationName; } }
 
         public string Version { get { return ApplicationInfo.Version; } }
 

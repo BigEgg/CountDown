@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
@@ -19,8 +18,8 @@ namespace CountDown.Applications.ViewModels.Dialog
 
         private readonly ObservableCollection<string> branches;
         private readonly ObservableCollection<string> selectedBranches;
-        private readonly DelegateCommand addNewCommand;
-        private readonly DelegateCommand removeCommand;
+        private readonly DelegateCommand addNewBranchCommand;
+        private readonly DelegateCommand removeBranchCommand;
         private string newBranch = string.Empty;
         private bool hasAlertSound = false;
         #endregion
@@ -35,8 +34,8 @@ namespace CountDown.Applications.ViewModels.Dialog
             this.branches = dataservice.Branches;
             this.selectedBranches = new ObservableCollection<string>();
 
-            this.addNewCommand = new DelegateCommand(AddNewBranch, CanAddNewBranch);
-            this.removeCommand = new DelegateCommand(RemoveBranch, CanRemoveBranch);
+            this.addNewBranchCommand = new DelegateCommand(AddNewBranch, CanAddNewBranch);
+            this.removeBranchCommand = new DelegateCommand(RemoveBranch, CanRemoveBranch);
         }
 
         #region Properties
@@ -44,9 +43,9 @@ namespace CountDown.Applications.ViewModels.Dialog
 
         public ICommand CancelCommand { get { return this.cancelCommand; } }
 
-        public ICommand AddNewCommand { get { return this.addNewCommand; } }
+        public ICommand AddNewBranchCommand { get { return this.addNewBranchCommand; } }
 
-        public ICommand RemoveCommand { get { return this.removeCommand; } }
+        public ICommand RemoveBranchCommand { get { return this.removeBranchCommand; } }
 
         [Required(ErrorMessageResourceName = "BeforeAlertMinutesMandatory", ErrorMessageResourceType = typeof(Resources))]
         [Range(1, 65535, ErrorMessageResourceName = "BeforeAlertMinutesRange", ErrorMessageResourceType = typeof(Resources))]
