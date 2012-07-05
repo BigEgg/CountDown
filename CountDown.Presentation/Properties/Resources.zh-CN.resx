@@ -118,50 +118,50 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutMessage" xml:space="preserve">
-    <value>This applictaion is build for my mom. O(∩_∩)O~
-If anyone find any bugs in this program or any awesome ideas, please contanct me.</value>
+    <value>这个程序是做来给我妈偷菜的。 O(∩_∩)O~
+如果你发现了任何故障或者有任何牛逼的想法，请联系我哦。</value>
   </data>
   <data name="AboutOK" xml:space="preserve">
-    <value>_OK</value>
+    <value>好了(_O)</value>
   </data>
   <data name="AddCountDownData" xml:space="preserve">
-    <value>_Add</value>
+    <value>添加(_A)</value>
   </data>
   <data name="AddNewBranch" xml:space="preserve">
-    <value>_Add Branch</value>
+    <value>添加类型(_A)</value>
   </data>
   <data name="AlartItems" xml:space="preserve">
-    <value>Alart Items:</value>
+    <value>已经预报的列表：</value>
   </data>
   <data name="AlertList" xml:space="preserve">
-    <value>The following items is alert:</value>
+    <value>下面是预报的列表：</value>
   </data>
   <data name="ApplicationSettings" xml:space="preserve">
-    <value>Application Settings</value>
+    <value>程序设置</value>
   </data>
   <data name="Branch" xml:space="preserve">
-    <value>Branch</value>
+    <value>类型</value>
   </data>
   <data name="BranchSettings" xml:space="preserve">
-    <value>Branch Settings</value>
+    <value>类型设置</value>
   </data>
   <data name="Browse" xml:space="preserve">
-    <value>_Browse...</value>
+    <value>浏览(_B)...</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>_Cancel</value>
+    <value>取消(_C)</value>
   </data>
   <data name="ChineseMenu" xml:space="preserve">
     <value>中文(_C)</value>
   </data>
   <data name="CountDownTab" xml:space="preserve">
-    <value>Count Down Alert</value>
+    <value>倒计时闹钟</value>
   </data>
   <data name="CountDownTimeTitle" xml:space="preserve">
-    <value>Count Down In</value>
+    <value>倒计时于</value>
   </data>
   <data name="CreateBy" xml:space="preserve">
-    <value>Create by: BigEgg</value>
+    <value>作者： BigEgg</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail: </value>
@@ -173,82 +173,82 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
     <value>_English</value>
   </data>
   <data name="ExitMenu" xml:space="preserve">
-    <value>E_xit</value>
+    <value>退出(_X)</value>
   </data>
   <data name="FileMenu" xml:space="preserve">
-    <value>_File</value>
+    <value>文件(_F)</value>
   </data>
   <data name="HelpMenu" xml:space="preserve">
-    <value>_Help</value>
+    <value>帮助(_H)</value>
   </data>
   <data name="IKnowIt" xml:space="preserve">
-    <value>Got It</value>
+    <value>知道啦</value>
   </data>
   <data name="ItemsQueue" xml:space="preserve">
-    <value>Items Queue:</value>
+    <value>闹铃列表:</value>
   </data>
   <data name="LanguageMenu" xml:space="preserve">
-    <value>_Language</value>
+    <value>语言(_L)</value>
   </data>
   <data name="NewCountDownBeforeMinutes" xml:space="preserve">
-    <value>Before Alert (min.)</value>
+    <value>提前预报 (分钟)</value>
   </data>
   <data name="NewCountDownBranch" xml:space="preserve">
-    <value>Branch</value>
+    <value>类型</value>
   </data>
   <data name="NewCountDownDays" xml:space="preserve">
-    <value>Days</value>
+    <value>天</value>
   </data>
   <data name="NewCountDownHours" xml:space="preserve">
-    <value>Hours</value>
+    <value>小时</value>
   </data>
   <data name="NewCountDownMinutes" xml:space="preserve">
-    <value>Minutes</value>
+    <value>分钟</value>
   </data>
   <data name="NewCountDownNotice" xml:space="preserve">
-    <value>Notice</value>
+    <value>消息</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Ready.</value>
+    <value>准备就绪</value>
   </data>
   <data name="RemoveBranch" xml:space="preserve">
-    <value>_Remove</value>
+    <value>删除(_R)</value>
   </data>
   <data name="ResetCountDownData" xml:space="preserve">
-    <value>Reset data after added</value>
+    <value>添加后重置内容</value>
   </data>
   <data name="SetAlermTab" xml:space="preserve">
-    <value>Alert At Time</value>
+    <value>定点报时</value>
   </data>
   <data name="SettingBeforeAlertMinutes" xml:space="preserve">
-    <value>Before Alart</value>
+    <value>提前预报 (分钟)</value>
   </data>
   <data name="SettingExpiredMinutes" xml:space="preserve">
-    <value>Expired Minutes</value>
+    <value>过期时间 (分钟)</value>
   </data>
   <data name="SettingHasAlertSound" xml:space="preserve">
-    <value>Has alert sound</value>
+    <value>闹钟声音</value>
   </data>
   <data name="ShowAboutDialogMenu" xml:space="preserve">
-    <value>_About</value>
+    <value>关于(_A)</value>
   </data>
   <data name="ShowSettingDialogMenu" xml:space="preserve">
-    <value>_Setting...</value>
+    <value>设置(_S)...</value>
   </data>
   <data name="Silence" xml:space="preserve">
-    <value>Silence</value>
+    <value>静默</value>
   </data>
   <data name="SoundPath" xml:space="preserve">
-    <value>Sound path</value>
+    <value>声音文件地址</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>_Submit</value>
+    <value>确认(_S)</value>
   </data>
   <data name="ToolsMenu" xml:space="preserve">
-    <value>_Tools</value>
+    <value>工具(_T)</value>
   </data>
   <data name="UnknownError" xml:space="preserve">
-    <value>Unkonw error happend...%&gt;_&lt;%
+    <value>悲剧发生了。。。%&gt;_&lt;%
 
 {0}</value>
   </data>
