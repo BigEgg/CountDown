@@ -90,6 +90,9 @@ namespace CountDown.Applications.Models
             get { return this.noticeBranch; }
             set
             {
+                if (value == null)
+                    return;
+
                 if (this.noticeBranch != value)
                 {
                     this.noticeBranch = value;

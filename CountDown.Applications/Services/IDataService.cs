@@ -8,9 +8,9 @@ namespace CountDown.Applications.Services
 {
     public interface IDataService : INotifyPropertyChanged
     {
-        ObservableCollection<ICountDownItem> CountDownItems { get; }
+        ObservableCollectionEx<ICountDownItem> CountDownItems { get; }
 
-        ObservableCollection<ICountDownItem> AlertItems { get; }
+        ObservableCollectionEx<ICountDownItem> AlertItems { get; }
 
         ObservableCollection<ICountDownItem> SelectItems { get; }
 
@@ -21,9 +21,5 @@ namespace CountDown.Applications.Services
         ICommand NewCountDownItem { get; }
 
         ICommand DeleteCountDownItem { get; }
-
-        void CleanExpiredItems();
-
-        void CheckAlertItems();
     }
 }

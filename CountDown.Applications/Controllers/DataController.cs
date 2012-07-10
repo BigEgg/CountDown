@@ -7,7 +7,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Windows.Media;
+using System.Threading;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Applications.Services;
 using BigEgg.Framework.Foundation;
@@ -34,7 +34,8 @@ namespace CountDown.Applications.Controllers
         private readonly DelegateCommand deleteCountDownItemCommand;
 
         private AlertDialogViewModel AlertDialogViewModel;
-        private MediaPlayer player = null;
+
+        private Timer cleanExpiredTimer = null;
         #endregion
 
         [ImportingConstructor]
@@ -59,6 +60,15 @@ namespace CountDown.Applications.Controllers
         protected override void OnInitialize()
         {
             LoadData();
+
+            int dueTime;
+            DateTime startTime = DateTime.Now;
+            dueTime = 60000 - startTime.Second * 1000 - startTime.Millisecond + 10;
+
+            // Create an inferred delegate that invokes methods for the timer.
+            TimerCallback tcb = TimerCallbackMethods;
+
+            this.cleanExpiredTimer = new Timer(tcb, null, dueTime, 60000);
         }
 
         public void Shutdown()
@@ -66,6 +76,13 @@ namespace CountDown.Applications.Controllers
             try
             {
                 SaveData();
+
+                if (this.cleanExpiredTimer != null)
+                {
+                    this.cleanExpiredTimer.Change(0, Timeout.Infinite);
+                    this.cleanExpiredTimer.Dispose();
+                    this.cleanExpiredTimer = null;
+                }
             }
             catch (Exception ex)
             {
@@ -77,8 +94,7 @@ namespace CountDown.Applications.Controllers
         #region Command Methods
         private bool CanNewCountDownItemCommand()
         {
-            NewCountDownModel newModel = this.dataService.NewCountDownModel;
-            if (string.IsNullOrEmpty(newModel.Validate()))
+            if (string.IsNullOrEmpty(this.dataService.NewCountDownModel.Validate()))
                 return true;
             else
                 return false;
@@ -90,8 +106,12 @@ namespace CountDown.Applications.Controllers
             ICountDownItem newItem = new CountDownItem();
             newItem.Time = DateTime.Now;
 
-            newItem.Time.Add(new TimeSpan(newModel.Days, newModel.Hours, newModel.Minutes, 0));
-            newItem.Notice = string.Format(Resources.NoticeFormat, newModel.NoticeBranch, newModel.Notice);
+            newItem.Time = newItem.Time.Add(new TimeSpan(newModel.Days, newModel.Hours, newModel.Minutes, 0));
+
+            if (string.IsNullOrWhiteSpace(newModel.Notice))
+                newItem.Notice = string.Format(Resources.OnlyNoticeBranch, newModel.NoticeBranch, newModel.Notice);
+            else
+                newItem.Notice = string.Format(Resources.NoticeFormat, newModel.NoticeBranch, newModel.Notice);
             newItem.AlertTime = newItem.Time.AddMinutes(0 - Settings.Default.DefautBeforeAlertMinutes);
 
             this.dataService.CountDownItems.Add(newItem);
@@ -102,8 +122,10 @@ namespace CountDown.Applications.Controllers
             }
             else
             {
-                int index  = this.dataService.Branches.IndexOf(newModel.NoticeBranch);
-                this.dataService.Branches.Move(index, 0);
+                int index = this.dataService.Branches.IndexOf(newModel.NoticeBranch);
+
+                if (index != 0)     // Move to top
+                    this.dataService.Branches.Move(index, 0);
             }
 
             if (Settings.Default.ResetCountDownData)
@@ -141,7 +163,7 @@ namespace CountDown.Applications.Controllers
                     sw.WriteLine(string.Format(
                         "{0}|{1}|{2}",
                         item.Time.ToString(),
-                        item.AlertTime.ToBinary(),
+                        item.AlertTime.ToString(),
                         item.Notice)
                     );
                 }
@@ -190,7 +212,7 @@ namespace CountDown.Applications.Controllers
 
         private void DataServicePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if ((e.PropertyName == "SelectItems") && (e.PropertyName == "NewCountDownModel"))
+            if ((e.PropertyName == "SelectItems") || (e.PropertyName == "NewCountDownModel"))
             {
                 UpdateCommands();
             }
@@ -211,11 +233,11 @@ namespace CountDown.Applications.Controllers
             // Show the Alert dialg view to the user
             IAlertDialogView AlertDialog = container.GetExportedValue<IAlertDialogView>();
 
-            if ((this.AlertDialogViewModel != null) && (this.AlertDialogViewModel.HasShow))
+            if ((this.AlertDialogViewModel != null))
             {
                 DateTime lastTime = this.AlertDialogViewModel.Items.Max(c => c.AlertTime);
                 List<ICountDownItem> newAlertItem = this.dataService.AlertItems.Where(
-                    c => c.AlertTime > lastTime).ToList();
+                    c => (c.AlertTime > lastTime) && (!c.HasAlert)).ToList();
 
                 foreach (ICountDownItem item in newAlertItem)
                     this.AlertDialogViewModel.Items.Add(item);
@@ -223,18 +245,45 @@ namespace CountDown.Applications.Controllers
             else
             {
                 this.AlertDialogViewModel = new AlertDialogViewModel(AlertDialog, this.dataService.AlertItems);
-                this.AlertDialogViewModel.ShowDialog(shellService.ShellView);
             }
+            this.AlertDialogViewModel.ShowDialog(this.shellService.ShellView);
+        }
 
-            if (Settings.Default.HasAlertSound)
+        // This method is called by the timer delegate.
+        private void TimerCallbackMethods(Object obj)
+        {
+            try
             {
-                if (File.Exists(Settings.Default.SoundPath))
-                {
-                    if (this.player == null) { this.player = new MediaPlayer(); }
-                    player.Stop();
-                    player.Open(new Uri(Settings.Default.SoundPath, UriKind.Relative));
-                    player.Play();
-                }
+                CleanExpiredItems();
+                CheckAlertItems();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        private void CleanExpiredItems()
+        {
+            DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
+            List<ICountDownItem> expiredItems = this.dataService.AlertItems.Where(
+                c => (c.Time < expiredTime) && (c.HasAlert == true)).ToList();
+
+            foreach (ICountDownItem item in expiredItems)
+            {
+                this.dataService.AlertItems.Remove(item);
+            }
+        }
+
+        private void CheckAlertItems()
+        {
+            List<ICountDownItem> newAlertItems = this.dataService.CountDownItems.Where(
+                i => i.AlertTime < DateTime.Now).ToList();
+
+            foreach (ICountDownItem item in newAlertItems)
+            {
+                this.dataService.CountDownItems.Remove(item);
+                this.dataService.AlertItems.Add(item);
             }
         }
         #endregion

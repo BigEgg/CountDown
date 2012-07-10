@@ -17,8 +17,9 @@ namespace CountDown.Applications.Services
     internal class DataService : DataModel, IDataService
     {
         #region Members
-        private readonly ObservableCollection<ICountDownItem> countDownItems;
-        private readonly ObservableCollection<ICountDownItem> alertItems;
+        private readonly ObservableCollectionEx<ICountDownItem> countDownItems;
+        private readonly ObservableCollectionEx<ICountDownItem> alertItems;
+
         private readonly ObservableCollection<string> branches;
         private readonly ObservableCollection<ICountDownItem> selectItems;
         private readonly NewCountDownModel newCountDownModel;
@@ -29,15 +30,16 @@ namespace CountDown.Applications.Services
         [ImportingConstructor]
         public DataService()
         {
-            this.countDownItems = new ObservableCollection<ICountDownItem>();
-            this.alertItems = new ObservableCollection<ICountDownItem>();
+            this.countDownItems = new ObservableCollectionEx<ICountDownItem>();
+            this.alertItems = new ObservableCollectionEx<ICountDownItem>();
+
             this.branches = new ObservableCollection<string>();
             this.selectItems = new ObservableCollection<ICountDownItem>();
             this.newCountDownModel = new NewCountDownModel
             {
                 Days = 0,
                 Hours = 0,
-                Minutes = 0,
+                Minutes = 1,
                 NoticeBranch = string.Empty,
                 Notice = string.Empty,
                 BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes
@@ -50,22 +52,28 @@ namespace CountDown.Applications.Services
 
 
         #region Properties
-        public ObservableCollection<ICountDownItem> CountDownItems 
+        public ObservableCollectionEx<ICountDownItem> CountDownItems 
         { 
             get 
             {
-                this.countDownItems.OrderBy(i => i.Time);
-                this.countDownItems.ToArray();
+                if (this.countDownItems.Any())
+                {
+                    this.countDownItems.OrderBy(i => i.Time);
+                    this.countDownItems.ToArray();
+                }
                 return this.countDownItems; 
             } 
         }
 
-        public ObservableCollection<ICountDownItem> AlertItems
+        public ObservableCollectionEx<ICountDownItem> AlertItems
         {
             get
             {
-                this.alertItems.OrderBy(i => i.Time);
-                this.alertItems.ToArray();
+                if (this.alertItems.Any())
+                {
+                    this.alertItems.OrderBy(i => i.Time);
+                    this.alertItems.ToArray();
+                }
                 return this.alertItems;
             }
         }
@@ -103,32 +111,6 @@ namespace CountDown.Applications.Services
         }
         #endregion
 
-
-        #region Public Methods
-        public void CleanExpiredItems()
-        {
-            DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
-            IEnumerable<ICountDownItem> expiredItems = this.alertItems.Where(
-                c => (c.Time < expiredTime) && (c.HasAlert == true));
-
-            foreach (ICountDownItem item in expiredItems)
-            {
-                this.alertItems.Remove(item);
-            }
-        }
-
-        public void CheckAlertItems()
-        {
-            IEnumerable<ICountDownItem> newAlertItems = this.CountDownItems.Where(
-                i => i.AlertTime < DateTime.Now);
-
-            foreach(ICountDownItem item in newAlertItems)
-            {
-                this.countDownItems.Remove(item);
-                this.alertItems.Add(item);
-            }
-        }
-        #endregion
 
         #region Private Methods
         private void SelectItemsChanged(object sender, NotifyCollectionChangedEventArgs e)

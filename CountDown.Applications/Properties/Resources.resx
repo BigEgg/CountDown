@@ -124,7 +124,7 @@
     <value>AlertTime is mandatory</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>Count Down</value>
+    <value>Count Down (Demo)</value>
   </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>The minutes before Alert is mandatory.</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="NoticeMandatory" xml:space="preserve">
     <value>Notice is madatory.</value>
+  </data>
+  <data name="OnlyNoticeBranch" xml:space="preserve">
+    <value>{0}</value>
   </data>
   <data name="RestartApplication" xml:space="preserve">
     <value>Please restart the application so that the configuration changes take effect.</value>

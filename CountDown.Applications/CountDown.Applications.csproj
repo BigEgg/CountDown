@@ -72,6 +72,7 @@
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IPresentationService.cs" />
     <Compile Include="Services\IShellService.cs" />
+    <Compile Include="Services\ObservableCollectionEx.cs" />
     <Compile Include="Services\ShellService.cs" />
     <Compile Include="ViewModels\Dialog\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialog\AlertDialogViewModel.cs" />

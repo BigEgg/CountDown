@@ -57,6 +57,7 @@ namespace CountDown.Applications.ViewModels
                     this.hasAlertSound = value;
                     Settings.Default.HasAlertSound = this.hasAlertSound;
                     Settings.Default.Save();
+                    RaisePropertyChanged("HasAlertSound");
                 }
             }
         }
@@ -71,6 +72,7 @@ namespace CountDown.Applications.ViewModels
                     this.resetCountDownData = value;
                     Settings.Default.ResetCountDownData = this.resetCountDownData;
                     Settings.Default.Save();
+                    RaisePropertyChanged("ResetCountDownData");
                 }
             }
         }

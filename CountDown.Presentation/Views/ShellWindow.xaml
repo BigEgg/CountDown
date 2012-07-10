@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:CountDown.Presentation.Properties"
         xmlns:vm="clr-namespace:CountDown.Applications.ViewModels;assembly=CountDown.Applications"
-        Height="600" Width="900"
+        Height="600" Width="900" MinHeight="400" MinWidth="630"
         Title="{Binding Title}" Icon="{StaticResource CountDownImageSource}">
     
     <DockPanel>

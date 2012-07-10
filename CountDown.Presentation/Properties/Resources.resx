@@ -136,6 +136,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="AlertList" xml:space="preserve">
     <value>The following items is alert:</value>
   </data>
+  <data name="AlertTimeHeader" xml:space="preserve">
+    <value>Alert Time</value>
+  </data>
   <data name="ApplicationSettings" xml:space="preserve">
     <value>Application Settings</value>
   </data>
@@ -163,6 +166,12 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="CreateBy" xml:space="preserve">
     <value>Create by: BigEgg</value>
   </data>
+  <data name="DateString" xml:space="preserve">
+    <value>HH:mm</value>
+  </data>
+  <data name="DateStringWithDays" xml:space="preserve">
+    <value>HH:mm (MM-dd)</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail: </value>
   </data>
@@ -177,6 +186,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   </data>
   <data name="FileMenu" xml:space="preserve">
     <value>_File</value>
+  </data>
+  <data name="HasAlertSound" xml:space="preserve">
+    <value>Play alert sound</value>
   </data>
   <data name="HelpMenu" xml:space="preserve">
     <value>_Help</value>
@@ -208,6 +220,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="NewCountDownNotice" xml:space="preserve">
     <value>Notice</value>
   </data>
+  <data name="NoticeHeader" xml:space="preserve">
+    <value>Notice</value>
+  </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready.</value>
   </data>
@@ -235,14 +250,14 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="ShowSettingDialogMenu" xml:space="preserve">
     <value>_Setting...</value>
   </data>
-  <data name="Silence" xml:space="preserve">
-    <value>Silence</value>
-  </data>
   <data name="SoundPath" xml:space="preserve">
     <value>Sound path</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>_Submit</value>
+  </data>
+  <data name="TimeHeader" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="ToolsMenu" xml:space="preserve">
     <value>_Tools</value>

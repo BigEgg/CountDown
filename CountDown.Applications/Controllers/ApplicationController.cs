@@ -5,6 +5,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.Threading;
 using BigEgg.Framework.Applications;
+using BigEgg.Framework.Applications.Services;
 using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels;
@@ -104,7 +105,8 @@ namespace CountDown.Applications.Controllers
         {
             ISettingDialogView view = container.GetExportedValue<ISettingDialogView>();
             IDataService dataService = container.GetExportedValue<IDataService>();
-            SettingDialogViewModel settingDialog = new SettingDialogViewModel(view, dataService);
+            IFileDialogService fileDialogService = container.GetExportedValue<IFileDialogService>();
+            SettingDialogViewModel settingDialog = new SettingDialogViewModel(view, dataService, fileDialogService);
 
             settingDialog.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
             settingDialog.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;

@@ -136,6 +136,9 @@
   <data name="AlertList" xml:space="preserve">
     <value>下面是预报的列表：</value>
   </data>
+  <data name="AlertTimeHeader" xml:space="preserve">
+    <value>预报时间</value>
+  </data>
   <data name="ApplicationSettings" xml:space="preserve">
     <value>程序设置</value>
   </data>
@@ -163,6 +166,12 @@
   <data name="CreateBy" xml:space="preserve">
     <value>作者： BigEgg</value>
   </data>
+  <data name="DateString" xml:space="preserve">
+    <value>HH:mm</value>
+  </data>
+  <data name="DateStringWithDays" xml:space="preserve">
+    <value>HH:mm (MM-dd)</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail: </value>
   </data>
@@ -177,6 +186,9 @@
   </data>
   <data name="FileMenu" xml:space="preserve">
     <value>文件(_F)</value>
+  </data>
+  <data name="HasAlertSound" xml:space="preserve">
+    <value>播放闹钟声音</value>
   </data>
   <data name="HelpMenu" xml:space="preserve">
     <value>帮助(_H)</value>
@@ -208,6 +220,9 @@
   <data name="NewCountDownNotice" xml:space="preserve">
     <value>消息</value>
   </data>
+  <data name="NoticeHeader" xml:space="preserve">
+    <value>消息</value>
+  </data>
   <data name="Ready" xml:space="preserve">
     <value>准备就绪</value>
   </data>
@@ -235,14 +250,14 @@
   <data name="ShowSettingDialogMenu" xml:space="preserve">
     <value>设置(_S)...</value>
   </data>
-  <data name="Silence" xml:space="preserve">
-    <value>静默</value>
-  </data>
   <data name="SoundPath" xml:space="preserve">
     <value>声音文件地址</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>确认(_S)</value>
+  </data>
+  <data name="TimeHeader" xml:space="preserve">
+    <value>闹钟时间</value>
   </data>
   <data name="ToolsMenu" xml:space="preserve">
     <value>工具(_T)</value>

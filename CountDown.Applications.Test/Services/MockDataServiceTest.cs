@@ -13,14 +13,14 @@ namespace CountDown.Applications.Test.Services
         private ICommand deleteCountDownItem;
 
         #region Properties
-        public ObservableCollection<ICountDownItem> CountDownItems
+        public ObservableCollectionEx<ICountDownItem> CountDownItems
         {
-            get { return new ObservableCollection<ICountDownItem>(); }
+            get { return new ObservableCollectionEx<ICountDownItem>(); }
         }
 
-        public ObservableCollection<ICountDownItem> AlertItems
+        public ObservableCollectionEx<ICountDownItem> AlertItems
         {
-            get { return new ObservableCollection<ICountDownItem>(); }
+            get { return new ObservableCollectionEx<ICountDownItem>(); }
         }
 
         public ObservableCollection<ICountDownItem> SelectItems

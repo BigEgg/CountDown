@@ -2,13 +2,13 @@
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Foundation;
 using CountDown.Applications.Views.Dialog;
+using CountDown.Applications.Properties;
 
 namespace CountDown.Applications.ViewModels.Dialog
 {
     public abstract class DialogViewModel<TView> : ViewModel<TView>, IDataErrorInfo where TView : IDialogView
     {
         protected bool? dialogResult;
-        protected bool hasShow;
         protected readonly DataErrorInfoSupport dataErrorInfoSupport;
 
 
@@ -16,28 +16,20 @@ namespace CountDown.Applications.ViewModels.Dialog
             : base(view)
         {
             dataErrorInfoSupport = new DataErrorInfoSupport(this);
-
-            hasShow = false;
         }
 
 
-        public static string Title { get { return ApplicationInfo.ProductName; } }
-
-        public bool HasShow { get { return this.hasShow; } }
+        public static string Title { get { return Resources.ApplicationName; } }
 
 
-        public bool? ShowDialog(object owner)
+        public virtual bool? ShowDialog(object owner)
         {
-            this.hasShow = true;
-
             ViewCore.ShowDialog(owner);
             return this.dialogResult;
         }
 
-        protected void Close(bool? dialogResult)
+        protected virtual void Close(bool? dialogResult)
         {
-            this.hasShow = false;
-
             this.dialogResult = dialogResult;
             ViewCore.Close();
         }

@@ -124,7 +124,7 @@
     <value>预报时间是必须的。</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>小闹钟</value>
+    <value>小闹钟（测试预览版）</value>
   </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>提前报时时间是必须的。</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="NoticeMandatory" xml:space="preserve">
     <value>预报内容是必须的。</value>
+  </data>
+  <data name="OnlyNoticeBranch" xml:space="preserve">
+    <value>{0}</value>
   </data>
   <data name="RestartApplication" xml:space="preserve">
     <value>要试新的配置生效，需要重新程序。</value>

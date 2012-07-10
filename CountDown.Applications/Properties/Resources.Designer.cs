@@ -79,7 +79,7 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Count Down.
+        ///   Looks up a localized string similar to Count Down (Demo).
         /// </summary>
         public static string ApplicationName {
             get {
@@ -201,6 +201,15 @@ namespace CountDown.Applications.Properties {
         public static string NoticeMandatory {
             get {
                 return ResourceManager.GetString("NoticeMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string OnlyNoticeBranch {
+            get {
+                return ResourceManager.GetString("OnlyNoticeBranch", resourceCulture);
             }
         }
         

@@ -116,6 +116,15 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alert Time.
+        /// </summary>
+        public static string AlertTimeHeader {
+            get {
+                return ResourceManager.GetString("AlertTimeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Settings.
         /// </summary>
         public static string ApplicationSettings {
@@ -197,6 +206,24 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HH:mm.
+        /// </summary>
+        public static string DateString {
+            get {
+                return ResourceManager.GetString("DateString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HH:mm (MM-dd).
+        /// </summary>
+        public static string DateStringWithDays {
+            get {
+                return ResourceManager.GetString("DateStringWithDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail: .
         /// </summary>
         public static string Email {
@@ -238,6 +265,15 @@ namespace CountDown.Presentation.Properties {
         public static string FileMenu {
             get {
                 return ResourceManager.GetString("FileMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play alert sound.
+        /// </summary>
+        public static string HasAlertSound {
+            get {
+                return ResourceManager.GetString("HasAlertSound", resourceCulture);
             }
         }
         
@@ -332,6 +368,15 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notice.
+        /// </summary>
+        public static string NoticeHeader {
+            get {
+                return ResourceManager.GetString("NoticeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready..
         /// </summary>
         public static string Ready {
@@ -413,15 +458,6 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Silence.
-        /// </summary>
-        public static string Silence {
-            get {
-                return ResourceManager.GetString("Silence", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sound path.
         /// </summary>
         public static string SoundPath {
@@ -436,6 +472,15 @@ namespace CountDown.Presentation.Properties {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string TimeHeader {
+            get {
+                return ResourceManager.GetString("TimeHeader", resourceCulture);
             }
         }
         

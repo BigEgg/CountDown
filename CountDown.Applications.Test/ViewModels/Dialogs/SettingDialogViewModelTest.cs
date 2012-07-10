@@ -4,6 +4,7 @@ using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels.Dialog;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CountDown.Applications.Views.Dialog;
+using BigEgg.Framework.Applications.Services;
 
 namespace CountDown.Applications.Test.ViewModels.Dialogs
 {
@@ -28,7 +29,8 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
 
             ISettingDialogView view = Container.GetExportedValue<ISettingDialogView>();
             IDataService dataService = Container.GetExportedValue<IDataService>();
-            viewModel = new SettingDialogViewModel(view, dataService);
+            IFileDialogService fileDialogService = Container.GetExportedValue<IFileDialogService>();
+            viewModel = new SettingDialogViewModel(view, dataService, fileDialogService);
 
             viewModel.BeforeAlertMinutes = this.beforeAlertMinutes;
             viewModel.ExpiredMinutes = this.expiredMinutes;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CountDown.Applications.Domain;
+using CountDown.Applications.Services;
 using CountDown.Applications.Test.Views.Dialogs;
 using CountDown.Applications.ViewModels.Dialog;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +15,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void AlertDialogViewModelCloseTest()
         {
-            ObservableCollection<ICountDownItem> items = new ObservableCollection<ICountDownItem>(); 
+            ObservableCollectionEx<ICountDownItem> items = new ObservableCollectionEx<ICountDownItem>();
             items.Add(new CountDownItem
                 {
                     Time = DateTime.Now,
