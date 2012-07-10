@@ -21,7 +21,7 @@
     		<RowDefinition Height="*"/>
     		<RowDefinition Height="30"/>
     	</Grid.RowDefinitions>
-        <ListView Margin="0" Grid.Row="1" ItemsSource="{Binding ItemsCVS}">
+        <ListView Margin="0" Grid.Row="1" ItemsSource="{Binding Source={StaticResource ItemsCVS}}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="{x:Static p:Resources.TimeHeader}" DisplayMemberBinding="{Binding Time, Converter={x:Static c:DateTimeToStringConverter.Default}}"/>

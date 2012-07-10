@@ -168,7 +168,7 @@ namespace CountDown.Applications.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool ResetCountDownData {
             get {
                 return ((bool)(this["ResetCountDownData"]));

@@ -34,7 +34,7 @@ namespace CountDown.Applications.Models
 
             this.Days = 0;
             this.Hours = 0;
-            this.Minutes = 0;
+            this.Minutes = 1;
             this.NoticeBranch = string.Empty;
             this.Notice = string.Empty;
             this.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
