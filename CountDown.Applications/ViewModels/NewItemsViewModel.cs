@@ -18,6 +18,9 @@ namespace CountDown.Applications.ViewModels
         private readonly ObservableCollection<object> newItemViews;
         private ICommand addItemCommand;
         private object activeNewItemView;
+
+        private bool resetCountDownData;
+        private int alertBeforeMinutes;
         #endregion
 
         [ImportingConstructor]
@@ -61,11 +64,12 @@ namespace CountDown.Applications.ViewModels
 
         public bool ResetCountDownData
         {
-            get { return Settings.Default.ResetCountDownData; }
+            get { return this.resetCountDownData; }
             set
             {
-                if (Settings.Default.ResetCountDownData != value)
+                if (this.resetCountDownData != value)
                 {
+                    this.resetCountDownData = value;
                     Settings.Default.ResetCountDownData = value;
                     RaisePropertyChanged("ResetCountDownData");
                 }
@@ -74,11 +78,12 @@ namespace CountDown.Applications.ViewModels
 
         public int AlertBeforeMinutes
         {
-            get { return Settings.Default.DefaultAlertBeforeMinutes; }
+            get { return this.alertBeforeMinutes; }
             set
             {
-                if (Settings.Default.DefaultAlertBeforeMinutes != value)
+                if (this.alertBeforeMinutes != value)
                 {
+                    this.alertBeforeMinutes = value;
                     Settings.Default.DefaultAlertBeforeMinutes = value;
                     RaisePropertyChanged("AlertBeforeMinutes");
                 }

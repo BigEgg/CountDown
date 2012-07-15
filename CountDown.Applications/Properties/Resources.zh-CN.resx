@@ -138,6 +138,9 @@
   <data name="CountDownAlertName" xml:space="preserve">
     <value>倒计时闹钟</value>
   </data>
+  <data name="DateMandatory" xml:space="preserve">
+    <value>日期是必须的。</value>
+  </data>
   <data name="DaysMandatory" xml:space="preserve">
     <value>倒计时天数是必须的。</value>
   </data>

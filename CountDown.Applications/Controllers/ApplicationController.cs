@@ -61,6 +61,9 @@ namespace CountDown.Applications.Controllers
 
             this.dataController.Initialize();
             this.newItemsController.Initialize();
+
+            this.newItemsViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
+            this.newItemsViewModel.AlertBeforeMinutes = Settings.Default.DefaultAlertBeforeMinutes;
         }
 
         public void Run()
@@ -134,6 +137,7 @@ namespace CountDown.Applications.Controllers
                 Settings.Default.Save();
 
                 this.newItemsViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
+                this.newItemsViewModel.AlertBeforeMinutes = Settings.Default.DefaultAlertBeforeMinutes;
             }
         }
 

@@ -124,6 +124,15 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date is mandatory..
+        /// </summary>
+        public static string DateMandatory {
+            get {
+                return ResourceManager.GetString("DateMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Alert days is mandatory..
         /// </summary>
         public static string DaysMandatory {
