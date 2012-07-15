@@ -1,7 +1,7 @@
 ﻿using System;
 using BigEgg.Framework.Applications;
 using CountDown.Applications.Test.Views.Dialogs;
-using CountDown.Applications.ViewModels.Dialog;
+using CountDown.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CountDown.Applications.Test.ViewModels.Dialogs
@@ -15,8 +15,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             MockDialogView view = new MockDialogView();
             MockDialogViewModel viewModel = new MockDialogViewModel(view);
 
-            // In this case it tries to get the title of the unit test framework which is ""
-            Assert.AreEqual("", MockDialogViewModel.Title);
+            Assert.AreNotEqual(string.Empty, MockDialogViewModel.Title);
 
             object owner = new object();
             Assert.IsFalse(view.IsVisible);

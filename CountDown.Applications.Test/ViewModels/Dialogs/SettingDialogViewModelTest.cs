@@ -1,10 +1,10 @@
-﻿using BigEgg.Framework.Foundation;
+﻿using BigEgg.Framework.Applications.Services;
+using BigEgg.Framework.Foundation;
 using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
-using CountDown.Applications.ViewModels.Dialog;
+using CountDown.Applications.ViewModels.Dialogs;
+using CountDown.Applications.Views.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CountDown.Applications.Views.Dialog;
-using BigEgg.Framework.Applications.Services;
 
 namespace CountDown.Applications.Test.ViewModels.Dialogs
 {
@@ -21,7 +21,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
 
         protected override void OnTestInitialize()
         {
-            this.beforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
+            this.beforeAlertMinutes = Settings.Default.DefaultAlertBeforeMinutes;
             this.expiredMinutes = Settings.Default.DefaultExpiredMinutes;
             this.hasAlertSound = Settings.Default.HasAlertSound;
             this.soundPath = Settings.Default.SoundPath;
@@ -142,6 +142,10 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             viewModel.HasAlertSound = false;
             Assert.AreEqual(false, viewModel.HasAlertSound);
             Assert.AreEqual(string.Empty, viewModel.SoundPath);
+
+            viewModel.HasAlertSound = true;
+            Assert.AreEqual(true, viewModel.HasAlertSound);
+            Assert.AreEqual("C:\\Music.mp3", viewModel.SoundPath);
         }
 
         [TestMethod]
@@ -189,7 +193,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             Assert.AreEqual("Test1", viewModel.SelectedBranches[0]);
 
             Assert.AreEqual("", viewModel.NewBranch);
-            Assert.AreEqual(false, viewModel.AddNewBranchCommand.CanExecute(null));
+            Assert.AreEqual(true, viewModel.AddNewBranchCommand.CanExecute(null));
 
             viewModel.NewBranch = "Test";
             Assert.AreEqual(true, viewModel.AddNewBranchCommand.CanExecute(null));

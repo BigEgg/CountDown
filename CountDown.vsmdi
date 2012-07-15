@@ -2,24 +2,44 @@
 <TestLists xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <TestList name="ShellViewModel.Test" id="0943a41e-6dda-46d3-a882-c78da854be3a" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
     <TestLinks>
-      <TestLink id="71ef906b-d35d-6d12-6b5f-f8daa85f504b" name="RestoreWindowLocationAndSizeSpecial" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="4e9dba6a-b70a-c0a0-e2c0-3dc19ef794ab" name="RestoreWindowLocationAndSize" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="e467811a-c2b6-c673-0fba-c4eea906b772" name="ShowAndClose" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="4e9dba6a-b70a-c0a0-e2c0-3dc19ef794ab" name="RestoreWindowLocationAndSize" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="71ef906b-d35d-6d12-6b5f-f8daa85f504b" name="RestoreWindowLocationAndSizeSpecial" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="63049542-cea6-71c9-4a32-f6b3bc85cd54" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="d1bf8690-51a3-f57d-3ff7-fbad3e3311d4" name="SelectLanguageTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
-  <TestList name="NewCountDownModel.Test" id="11517c4f-febf-4e32-929f-f38126590f10" parentListId="1b02127f-39c9-4565-83b1-b95e38846516">
+  <TestList name="NewItemModelBase.Test" id="11517c4f-febf-4e32-929f-f38126590f10" parentListId="ee670eb3-0f9b-45f9-925f-908aa575d04d">
     <TestLinks>
-      <TestLink id="4bf5da90-acd9-1123-86e9-79e1b7d4638c" name="NewCountDownModelBeforeAlertMinutesValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="92fb0eea-7b9a-a3ba-56a6-c46bbc158185" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="b8b40eb1-75fc-8289-ab83-b127a94a8e1a" name="NewCountDownModelMinutesValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="89a53939-abe6-4da3-fc9d-511767b8fbf8" name="NewCountDownModelNoticeBranchValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="7e06424a-5da8-e11d-b35f-9b89c91a52a8" name="GeneralNewCountDownModelTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="236aa07e-c307-06ac-3126-0636b49fcd59" name="NewCountDownModelHoursValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="62fe3ecd-a1cd-f2b0-1dd5-193dddd4c36e" name="NewCountDownModelDaysValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="f5f595fb-ec3c-af5a-0ed6-953d4d0e5cf9" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="b2e18b2b-656e-e3a3-b3b6-ad8bcf7d3485" name="GeneralNewItemModelTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="125e2e41-03fa-989f-18cb-849de7a6632b" name="NewItemModelNoticeBranchValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="fc43b6e5-f179-3c3e-54c6-daf984466c00" name="NewItemModelTimeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="Application" id="1b02127f-39c9-4565-83b1-b95e38846516" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6" />
+  <TestList name="CountDownAlertModel.Test" id="26fbebbe-651f-465c-944e-686503922eea" parentListId="ee670eb3-0f9b-45f9-925f-908aa575d04d">
+    <TestLinks>
+      <TestLink id="3aa328a6-09f4-74cc-ff7d-cc0decb8e8e8" name="NewCountDownModelMinutesValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="ff0d7553-90c6-7bca-93c9-cef9bec222d8" name="NewCountDownModelNoticeBranchValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="4815a5f7-8fed-8f9a-d83b-9a7c85eebece" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="0f7ada07-4e67-5bba-581e-c572de22f870" name="NewCountDownModelDaysValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="9a7da0f5-0dd1-30e3-84fa-429665be582b" name="NewCountDownModelHoursValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="20abd9f5-57b3-a1c7-a5a1-1b63bf3a960f" name="GeneralNewCountDownModelTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="ItemListViewModel.Test" id="4cf422e3-cb54-4c55-b9ce-1df88f34d199" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
+    <TestLinks>
+      <TestLink id="43067fe7-5057-f132-fba9-5395004a0f40" name="CanDeleteCommandChangeTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="Controller.Test" id="4edebedb-c6c6-4acf-a554-2db355b62e96" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
+  <TestList name="DataService.Test" id="626b73ed-adae-4d30-80f6-80e1d7fabea6" parentListId="835f7f54-13b7-46a3-80e8-dfc172bbe26d">
+    <TestLinks>
+      <TestLink id="fc253f64-2999-a975-0f82-c7379e9d0615" name="GeneralDataServiceTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="daca3538-6df1-8d9d-3455-e56b7737751e" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="Services.Test" id="835f7f54-13b7-46a3-80e8-dfc172bbe26d" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <RunConfiguration id="3e1fae47-70e5-47ce-9b94-0f4fb75bb66e" name="Local" storage="local.testsettings" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -35,10 +55,9 @@
       <TestLink id="b5b0cb63-2978-2581-5461-4432b77599db" name="SettingDialogViewModelExpiredMinutesValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
-  <TestList name="MainModelView.Test" id="94f00e99-7408-4406-b7a7-3ac98947a041" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
+  <TestList name="NewItemsViewModel.Test" id="94f00e99-7408-4406-b7a7-3ac98947a041" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
     <TestLinks>
-      <TestLink id="4d9f49e4-b76e-8cd8-b8ac-85a91fd65227" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="277fc999-ab75-ee2f-c6de-1ed04831c2bf" name="SelectLanguageTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="62f39619-4c1c-7acf-b994-036874e0278e" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="ApplictaionController.Test" id="99fa6cc4-a4cf-4c45-8bfb-6da31727cc33" parentListId="4edebedb-c6c6-4acf-a554-2db355b62e96">
@@ -51,16 +70,22 @@
       <TestLink id="a6d54573-5a51-8859-4207-f54b19c94f31" name="SetViewTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
-  <TestList name="CountDownItem.Test" id="bc9ade45-2fc2-4a01-b34e-2ce224bdf662" parentListId="1b02127f-39c9-4565-83b1-b95e38846516">
+  <TestList name="AlertItem.Test" id="bc9ade45-2fc2-4a01-b34e-2ce224bdf662" parentListId="1b02127f-39c9-4565-83b1-b95e38846516">
     <TestLinks>
-      <TestLink id="864edd6e-1cce-a154-70ed-bd9a86cb5d14" name="CountDownItemTimeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="4c46747c-ab4c-1b32-d4e6-f2f04d5ab8d3" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="5f621aa3-a891-5ae0-16d9-f7ca00a69081" name="CountDownItemNoticeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="8c70041e-492f-cb71-3cc7-3c1126b89bdc" name="CountDownItemAlertTimeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-      <TestLink id="0b4f8b11-e677-bb8e-ee07-cca67b3afee5" name="GeneralCountDownItemTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="bb2e67b6-30e7-254c-9af4-4f7b67934e8a" name="AlertItemAlertTimeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="682417bf-2ecf-359b-fbf2-cebb1788978b" name="AlertItemTimeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="88e88a7d-04b3-95f6-e821-ee706d48393b" name="AlertItemNoticeValidationTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="8c91574d-9100-5bd0-d458-254dca4764fd" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="9197db1b-3677-f3e0-252a-3ae163d7eb53" name="GeneralAlertItemTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="ViewModels.Test" id="ca61d0db-db8c-4247-9772-24624fd8f0ca" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
+  <TestList name="NewItemViewModels.Test" id="ca76178f-8fcd-4601-ba32-78ed4b10fbfd" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
+    <TestLinks>
+      <TestLink id="ea37cdb0-3598-f19d-0d63-8fdca373f193" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="47b524c7-aaae-d54f-0990-8e1ae81499fd" name="GeneralNewItemViewModelBaseTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="Dialogs.Test" id="d8004c25-400e-4152-98a5-95181419903b" parentListId="ca61d0db-db8c-4247-9772-24624fd8f0ca">
     <TestLinks>
       <TestLink id="0f95fd6c-36e4-bb16-ebc5-80319c616200" name="DialogViewModelCloseTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -68,7 +93,9 @@
   </TestList>
   <TestList name="AlertDialogViewModel.Text" id="ea791b58-dd73-4f74-b94f-84cad3ed3949" parentListId="d8004c25-400e-4152-98a5-95181419903b">
     <TestLinks>
+      <TestLink id="03804400-2629-08d7-4ae8-6f4b419681bc" name="PropertiesWithNotification" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="a454e173-a67f-a352-e3bc-70a42f414be3" name="AlertDialogViewModelCloseTest" storage="bin\debug\countdown.applications.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
+  <TestList name="Models.Test" id="ee670eb3-0f9b-45f9-925f-908aa575d04d" parentListId="1b02127f-39c9-4565-83b1-b95e38846516" />
 </TestLists>

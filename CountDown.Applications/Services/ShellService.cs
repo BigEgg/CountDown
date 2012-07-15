@@ -7,21 +7,44 @@ namespace CountDown.Applications.Services
     internal class ShellService : DataModel, IShellService
     {
         private object shellView;
-
-        [ImportingConstructor]
-        public ShellService()
-        {
-        }
+        private object itemListView;
+        private object newItemsView;
 
         public object ShellView
         {
-            get { return shellView; }
+            get { return this.shellView; }
             set
             {
-                if (shellView != value)
+                if (this.shellView != value)
                 {
-                    shellView = value;
+                    this.shellView = value;
                     RaisePropertyChanged("ShellView");
+                }
+            }
+        }
+
+        public object ItemListView
+        {
+            get { return this.itemListView; }
+            set
+            {
+                if (this.itemListView != value)
+                {
+                    this.itemListView = value;
+                    RaisePropertyChanged("ItemListView");
+                }
+            }
+        }
+
+        public object NewItemsView
+        {
+            get { return this.newItemsView; }
+            set
+            {
+                if (this.newItemsView != value)
+                {
+                    this.newItemsView = value;
+                    RaisePropertyChanged("NewItemsView");
                 }
             }
         }

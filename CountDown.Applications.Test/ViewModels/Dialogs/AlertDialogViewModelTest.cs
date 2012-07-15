@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+using BigEgg.Framework.UnitTesting;
 using CountDown.Applications.Domain;
 using CountDown.Applications.Services;
 using CountDown.Applications.Test.Views.Dialogs;
-using CountDown.Applications.ViewModels.Dialog;
+using CountDown.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CountDown.Applications.Test.ViewModels.Dialogs
@@ -15,22 +14,22 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
         [TestMethod]
         public void AlertDialogViewModelCloseTest()
         {
-            ObservableCollectionEx<ICountDownItem> items = new ObservableCollectionEx<ICountDownItem>();
-            items.Add(new CountDownItem
+            MultiThreadingObservableCollection<IAlertItem> items = new MultiThreadingObservableCollection<IAlertItem>();
+            items.Add(new AlertItem
                 {
                     Time = DateTime.Now,
                     AlertTime = DateTime.Now,
                     Notice = "Test 1"
                 }
             );
-            items.Add(new CountDownItem
+            items.Add(new AlertItem
                 {
                     Time = DateTime.Now,
                     AlertTime = DateTime.Now,
                     Notice = "Test 2"
                 }
             );
-            items.Add(new CountDownItem
+            items.Add(new AlertItem
                 {
                     Time = DateTime.Now,
                     AlertTime = DateTime.Now,
@@ -59,5 +58,35 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             Assert.AreEqual(true, items[1].HasAlert);
             Assert.AreEqual(true, items[2].HasAlert);
         }
+
+        [TestMethod]
+        public void PropertiesWithNotification()
+        {
+            MultiThreadingObservableCollection<IAlertItem> items = new MultiThreadingObservableCollection<IAlertItem>();
+            MockAlertDialogView view = new MockAlertDialogView();
+            AlertDialogViewModel viewModel = new AlertDialogViewModel(view, items);
+
+            Assert.AreEqual(items, viewModel.Items);
+            Assert.AreEqual(0, viewModel.Items.Count);
+
+            bool hasAlertSound = viewModel.HasAlertSound;
+
+            AssertHelper.PropertyChangedEvent(viewModel, x => x.HasAlertSound, () => viewModel.HasAlertSound = !hasAlertSound);
+            Assert.AreEqual(!hasAlertSound, viewModel.HasAlertSound);
+
+            MultiThreadingObservableCollection<IAlertItem> newItems = new MultiThreadingObservableCollection<IAlertItem>();
+            newItems.Add(
+                new AlertItem
+                {
+                    Time = DateTime.Now,
+                    AlertTime = DateTime.Now,
+                    Notice = "Test 1"
+                }
+            );
+
+            AssertHelper.PropertyChangedEvent(viewModel, x => x.Items, () => viewModel.AddItems(newItems));
+            Assert.AreEqual(1, viewModel.Items.Count);
+        }
+
     }
 }

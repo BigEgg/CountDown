@@ -7,6 +7,8 @@ using CountDown.Applications.Test.Views;
 using CountDown.Applications.ViewModels;
 using CountDown.Applications.Views;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BigEgg.Framework.Applications.Services;
+using System.Windows.Input;
 
 namespace CountDown.Applications.Test.ViewModels
 {
@@ -14,12 +16,42 @@ namespace CountDown.Applications.Test.ViewModels
     public class ShellViewModelTest : TestClassBase
     {
         [TestMethod]
+        public void PropertiesWithNotification()
+        {
+            ShellViewModel shellViewModel = Container.GetExportedValue<ShellViewModel>();
+
+            ICommand exitCommand = new DelegateCommand(() => { });
+            AssertHelper.PropertyChangedEvent(shellViewModel, x => x.ExitCommand, () => shellViewModel.ExitCommand = exitCommand);
+            Assert.AreEqual(exitCommand, shellViewModel.ExitCommand);
+
+            ICommand settingCommand = new DelegateCommand(() => { });
+            AssertHelper.PropertyChangedEvent(shellViewModel, x => x.SettingCommand, () => shellViewModel.SettingCommand = settingCommand);
+            Assert.AreEqual(settingCommand, shellViewModel.SettingCommand);
+
+            ICommand aboutCommand = new DelegateCommand(() => { });
+            AssertHelper.PropertyChangedEvent(shellViewModel, x => x.AboutCommand, () => shellViewModel.AboutCommand = aboutCommand);
+            Assert.AreEqual(aboutCommand, shellViewModel.AboutCommand);
+        }
+
+        [TestMethod]
+        public void SelectLanguageTest()
+        {
+            ShellViewModel shellViewModel = Container.GetExportedValue<ShellViewModel>();
+            Assert.IsNull(shellViewModel.NewLanguage);
+
+            shellViewModel.ChineseCommand.Execute(null);
+            Assert.AreEqual("zh-CN", shellViewModel.NewLanguage.Name);
+
+            shellViewModel.EnglishCommand.Execute(null);
+            Assert.AreEqual("en-US", shellViewModel.NewLanguage.Name);
+        }
+
+        [TestMethod]
         public void ShowAndClose()
         {
             MockMessageService messageService = Container.GetExportedValue<MockMessageService>();
             MockShellView shellView = (MockShellView)Container.GetExportedValue<IShellView>();
             ShellViewModel shellViewModel = Container.GetExportedValue<ShellViewModel>();
-            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
 
             // Show the ShellView
             Assert.IsFalse(shellView.IsVisible);
@@ -39,9 +71,9 @@ namespace CountDown.Applications.Test.ViewModels
 
             // Close the ShellView via the ExitCommand
             cancelClosing = false;
-            AssertHelper.PropertyChangedEvent(mainViewModel, x => x.ExitCommand, () =>
-                mainViewModel.ExitCommand = new DelegateCommand(() => shellViewModel.Close()));
-            mainViewModel.ExitCommand.Execute(null);
+            AssertHelper.PropertyChangedEvent(shellViewModel, x => x.ExitCommand, () =>
+                shellViewModel.ExitCommand = new DelegateCommand(() => shellViewModel.Close()));
+            shellViewModel.ExitCommand.Execute(null);
             Assert.IsFalse(shellView.IsVisible);
         }
 
@@ -75,37 +107,38 @@ namespace CountDown.Applications.Test.ViewModels
         [TestMethod]
         public void RestoreWindowLocationAndSizeSpecial()
         {
-            MockDataService dataService = new MockDataService();
+            DataService dataService = new DataService();
             MockPresentationService presentationService = (MockPresentationService)Container.GetExportedValue<IPresentationService>();
             presentationService.VirtualScreenWidth = 1000;
             presentationService.VirtualScreenHeight = 700;
 
             MockShellView shellView = (MockShellView)Container.GetExportedValue<IShellView>();
             IShellService shellService = Container.GetExportedValue<IShellService>();
+            IMessageService messageService = Container.GetExportedValue<IMessageService>();
             shellView.SetNAForLocationAndSize();
 
             SetSettingsValues();
-            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService, messageService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Height is 0 => don't apply the Settings values
             SetSettingsValues(0, 0, 1, 0);
-            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService, messageService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Left = 100 + Width = 901 > VirtualScreenWidth = 1000 => don't apply the Settings values
             SetSettingsValues(100, 100, 901, 100);
-            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService, messageService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Top = 100 + Height = 601 > VirtualScreenWidth = 600 => don't apply the Settings values
             SetSettingsValues(100, 100, 100, 601);
-            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService, messageService).Close();
             AssertSettingsValues(double.NaN, double.NaN, double.NaN, double.NaN, false);
 
             // Use the limit values => apply the Settings values
             SetSettingsValues(0, 0, 1000, 700);
-            new ShellViewModel(shellView, dataService, presentationService, shellService).Close();
+            new ShellViewModel(shellView, dataService, presentationService, shellService, messageService).Close();
             AssertSettingsValues(0, 0, 1000, 700, false);
         }
 

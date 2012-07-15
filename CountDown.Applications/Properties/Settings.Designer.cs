@@ -26,12 +26,12 @@ namespace CountDown.Applications.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int DefautBeforeAlertMinutes {
+        public int DefaultAlertBeforeMinutes {
             get {
-                return ((int)(this["DefautBeforeAlertMinutes"]));
+                return ((int)(this["DefaultAlertBeforeMinutes"]));
             }
             set {
-                this["DefautBeforeAlertMinutes"] = value;
+                this["DefaultAlertBeforeMinutes"] = value;
             }
         }
         
@@ -175,6 +175,18 @@ namespace CountDown.Applications.Properties {
             }
             set {
                 this["ResetCountDownData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SelectNewItem {
+            get {
+                return ((string)(this["SelectNewItem"]));
+            }
+            set {
+                this["SelectNewItem"] = value;
             }
         }
     }

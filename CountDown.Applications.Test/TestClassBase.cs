@@ -5,8 +5,9 @@ using CountDown.Applications.Services;
 using CountDown.Applications.Test.Services;
 using CountDown.Applications.Test.Views;
 using CountDown.Applications.Test.Views.Dialogs;
+using CountDown.Applications.Test.Views.NewItemViews;
 using CountDown.Applications.ViewModels;
-using CountDown.Applications.ViewModels.Dialog;
+using CountDown.Applications.ViewModels.Dialogs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CountDown.Applications.Test
@@ -21,15 +22,16 @@ namespace CountDown.Applications.Test
         {
             AggregateCatalog catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new TypeCatalog(
-                typeof(ApplicationController), typeof(DataController),
+                typeof(ApplicationController), typeof(DataController), typeof(NewItemsController),
                 typeof(ShellService), typeof(DataService),
-                typeof(MainViewModel), typeof(ShellViewModel), 
+                typeof(ItemListViewModel), typeof(NewItemsViewModel), typeof(ShellViewModel), 
                 typeof(AlertDialogViewModel), typeof(AboutDialogViewModel), typeof(SettingDialogViewModel)
             ));
             catalog.Catalogs.Add(new TypeCatalog(
                 typeof(MockPresentationService),
                 typeof(MockMessageService), typeof(MockFileDialogService),
-                typeof(MockShellView), typeof(MockMainView),
+                typeof(MockShellView), typeof(MockItemListViewModel), typeof(MockNewItemsView),
+                typeof(MockAlertAtTimeView), typeof(MockCountDownAlertView),
                 typeof(MockAboutDialogView), typeof(MockAlertDialogView), typeof(MockSettingDialogView)
             ));
             container = new CompositionContainer(catalog);

@@ -70,6 +70,15 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alert At Time.
+        /// </summary>
+        public static string AlertAtTimeName {
+            get {
+                return ResourceManager.GetString("AlertAtTimeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AlertTime is mandatory.
         /// </summary>
         public static string AlertTimeMandatory {
@@ -79,7 +88,7 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Count Down (Demo).
+        ///   Looks up a localized string similar to Count Down (Beta).
         /// </summary>
         public static string ApplicationName {
             get {
@@ -102,6 +111,15 @@ namespace CountDown.Applications.Properties {
         public static string BeforeAlertMinutesRange {
             get {
                 return ResourceManager.GetString("BeforeAlertMinutesRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count Down Alert.
+        /// </summary>
+        public static string CountDownAlertName {
+            get {
+                return ResourceManager.GetString("CountDownAlertName", resourceCulture);
             }
         }
         

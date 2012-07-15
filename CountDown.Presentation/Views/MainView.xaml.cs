@@ -10,17 +10,17 @@ namespace CountDown.Presentation.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
-    [Export(typeof(IMainView))]
-    public partial class MainView : UserControl, IMainView
+    [Export(typeof(IItemListView))]
+    public partial class MainView : UserControl, IItemListView
     {
-        private readonly Lazy<MainViewModel> viewModel;
-        private MainViewModel ViewModel { get { return viewModel.Value; } }
+        private readonly Lazy<ItemListViewModel> viewModel;
+        private ItemListViewModel ViewModel { get { return viewModel.Value; } }
 
         public MainView()
         {
             InitializeComponent();
 
-            viewModel = new Lazy<MainViewModel>(() => ViewHelper.GetViewModel<MainViewModel>(this));
+            viewModel = new Lazy<ItemListViewModel>(() => ViewHelper.GetViewModel<ItemListViewModel>(this));
         }
 
     }

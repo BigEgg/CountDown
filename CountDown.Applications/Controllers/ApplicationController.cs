@@ -9,8 +9,8 @@ using BigEgg.Framework.Applications.Services;
 using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels;
-using CountDown.Applications.ViewModels.Dialog;
-using CountDown.Applications.Views.Dialog;
+using CountDown.Applications.ViewModels.Dialogs;
+using CountDown.Applications.Views.Dialogs;
 
 namespace CountDown.Applications.Controllers
 {
@@ -19,25 +19,33 @@ namespace CountDown.Applications.Controllers
     {
         private readonly CompositionContainer container;
         private readonly DataController dataController;
+        private readonly NewItemsController newItemsController;
+        private readonly ShellService shellService;
+
         private readonly ShellViewModel shellViewModel;
-        private readonly MainViewModel mainViewModel;
+        private readonly ItemListViewModel itemListViewModel;
+        private readonly NewItemsViewModel newItemsViewModel;
         private readonly DelegateCommand exitCommand;
         private readonly DelegateCommand settingCommand;
         private readonly DelegateCommand aboutCommand;
 
         [ImportingConstructor]
-        public ApplicationController(CompositionContainer container, IPresentationService presentationService, 
-            ShellService shellService, DataController dataController)
+        public ApplicationController(CompositionContainer container, IPresentationService presentationService,
+            ShellService shellService, DataController dataController, NewItemsController newItemsController)
         {
             InitializeCultures();
             presentationService.InitializeCultures();
 
             this.container = container;
             this.dataController = dataController;
+            this.newItemsController = newItemsController;
             this.shellViewModel = container.GetExportedValue<ShellViewModel>();
-            this.mainViewModel = container.GetExportedValue<MainViewModel>();
+            this.itemListViewModel = container.GetExportedValue<ItemListViewModel>();
+            this.newItemsViewModel = container.GetExportedValue<NewItemsViewModel>();
 
             shellService.ShellView = shellViewModel.View;
+            shellService.ItemListView = itemListViewModel.View;
+            shellService.NewItemsView = newItemsViewModel.View;
             this.shellViewModel.Closing += ShellViewModelClosing;
             this.exitCommand = new DelegateCommand(Close);
             this.settingCommand = new DelegateCommand(SettingDialogCommand);
@@ -47,27 +55,27 @@ namespace CountDown.Applications.Controllers
 
         protected override void OnInitialize()
         {
-            this.mainViewModel.ExitCommand = this.exitCommand;
-            this.mainViewModel.SettingCommand = this.settingCommand;
-            this.mainViewModel.AboutCommand = this.aboutCommand;
+            this.shellViewModel.ExitCommand = this.exitCommand;
+            this.shellViewModel.SettingCommand = this.settingCommand;
+            this.shellViewModel.AboutCommand = this.aboutCommand;
 
             this.dataController.Initialize();
+            this.newItemsController.Initialize();
         }
 
         public void Run()
         {
-            this.shellViewModel.ContentView = mainViewModel.View;
-
             this.shellViewModel.Show();
         }
 
         public void Shutdown()
         {
             this.dataController.Shutdown();
+            this.newItemsController.Shutdown();
 
-            if (this.mainViewModel.NewLanguage != null)
+            if (this.shellViewModel.NewLanguage != null)
             {
-                Settings.Default.UICulture = this.mainViewModel.NewLanguage.Name;
+                Settings.Default.UICulture = this.shellViewModel.NewLanguage.Name;
             }
             try
             {
@@ -108,7 +116,7 @@ namespace CountDown.Applications.Controllers
             IFileDialogService fileDialogService = container.GetExportedValue<IFileDialogService>();
             SettingDialogViewModel settingDialog = new SettingDialogViewModel(view, dataService, fileDialogService);
 
-            settingDialog.BeforeAlertMinutes = Settings.Default.DefautBeforeAlertMinutes;
+            settingDialog.BeforeAlertMinutes = Settings.Default.DefaultAlertBeforeMinutes;
             settingDialog.ExpiredMinutes = Settings.Default.DefaultExpiredMinutes;
             settingDialog.HasAlertSound = Settings.Default.HasAlertSound;
             settingDialog.SoundPath = Settings.Default.SoundPath;
@@ -118,15 +126,14 @@ namespace CountDown.Applications.Controllers
 
             if (result == true)
             {
-                Settings.Default.DefautBeforeAlertMinutes = settingDialog.BeforeAlertMinutes;
+                Settings.Default.DefaultAlertBeforeMinutes = settingDialog.BeforeAlertMinutes;
                 Settings.Default.DefaultExpiredMinutes = settingDialog.ExpiredMinutes;
                 Settings.Default.HasAlertSound = settingDialog.HasAlertSound;
                 Settings.Default.SoundPath = settingDialog.SoundPath;
                 Settings.Default.ResetCountDownData = settingDialog.ResetCountDownData;
                 Settings.Default.Save();
 
-                this.mainViewModel.HasAlertSound = Settings.Default.HasAlertSound;
-                this.mainViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
+                this.newItemsViewModel.ResetCountDownData = Settings.Default.ResetCountDownData;
             }
         }
 

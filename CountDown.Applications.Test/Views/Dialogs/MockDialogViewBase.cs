@@ -1,4 +1,4 @@
-﻿using CountDown.Applications.Views.Dialog;
+﻿using CountDown.Applications.Views.Dialogs;
 
 namespace CountDown.Applications.Test.Views.Dialogs
 {

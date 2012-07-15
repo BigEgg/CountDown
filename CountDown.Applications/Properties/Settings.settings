@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CountDown.Applications.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DefautBeforeAlertMinutes" Type="System.Int32" Scope="User">
+    <Setting Name="DefaultAlertBeforeMinutes" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="DefaultExpiredMinutes" Type="System.Int32" Scope="User">
@@ -40,6 +40,9 @@
     </Setting>
     <Setting Name="ResetCountDownData" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SelectNewItem" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -16,6 +16,14 @@ namespace CountDown.Applications.Test.Services
             AssertHelper.PropertyChangedEvent(shellService, x => x.ShellView, () =>
                 shellService.ShellView = mockView);
             Assert.AreEqual(mockView, shellService.ShellView);
+
+            AssertHelper.PropertyChangedEvent(shellService, x => x.ItemListView, () =>
+                shellService.ItemListView = mockView);
+            Assert.AreEqual(mockView, shellService.ItemListView);
+
+            AssertHelper.PropertyChangedEvent(shellService, x => x.NewItemsView, () =>
+                shellService.NewItemsView = mockView);
+            Assert.AreEqual(mockView, shellService.NewItemsView);
         }
 
     }

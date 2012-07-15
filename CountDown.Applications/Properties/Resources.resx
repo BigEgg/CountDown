@@ -120,17 +120,23 @@
   <data name="AboutMessage" xml:space="preserve">
     <value>This applictaion is create for my mom. O(∩_∩)O~</value>
   </data>
+  <data name="AlertAtTimeName" xml:space="preserve">
+    <value>Alert At Time</value>
+  </data>
   <data name="AlertTimeMandatory" xml:space="preserve">
     <value>AlertTime is mandatory</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>Count Down (Demo)</value>
+    <value>Count Down (Beta)</value>
   </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>The minutes before Alert is mandatory.</value>
   </data>
   <data name="BeforeAlertMinutesRange" xml:space="preserve">
     <value>The minutes before Alert must be between {1} and {2}.</value>
+  </data>
+  <data name="CountDownAlertName" xml:space="preserve">
+    <value>Count Down Alert</value>
   </data>
   <data name="DaysMandatory" xml:space="preserve">
     <value>The Alert days is mandatory.</value>

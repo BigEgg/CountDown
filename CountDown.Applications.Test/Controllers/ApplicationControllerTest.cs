@@ -20,18 +20,16 @@ namespace CountDown.Applications.Test.Controllers
             IApplicationController applicationController = Container.GetExportedValue<IApplicationController>();
 
             applicationController.Initialize();
-            MainViewModel mainViewModel = Container.GetExportedValue<MainViewModel>();
-            Assert.IsNotNull(mainViewModel.AboutCommand);
-            Assert.IsNotNull(mainViewModel.SettingCommand);
-            Assert.IsNotNull(mainViewModel.ExitCommand);
+            ShellViewModel shellViewModel = Container.GetExportedValue<ShellViewModel>();
+            Assert.IsNotNull(shellViewModel.AboutCommand);
+            Assert.IsNotNull(shellViewModel.SettingCommand);
+            Assert.IsNotNull(shellViewModel.ExitCommand);
 
             applicationController.Run();
             MockShellView shellView = (MockShellView)Container.GetExportedValue<IShellView>();
             Assert.IsTrue(shellView.IsVisible);
-            ShellViewModel shellViewModel = ViewHelper.GetViewModel<ShellViewModel>(shellView);
-            Assert.AreEqual(mainViewModel.View, shellViewModel.ContentView);
 
-            mainViewModel.ExitCommand.Execute(null);
+            shellViewModel.ExitCommand.Execute(null);
             Assert.IsFalse(shellView.IsVisible);
 
             applicationController.Shutdown();

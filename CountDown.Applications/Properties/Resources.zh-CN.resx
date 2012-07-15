@@ -120,17 +120,23 @@
   <data name="AboutMessage" xml:space="preserve">
     <value>做给我妈用来偷菜的。。。\nO(∩_∩)O~</value>
   </data>
+  <data name="AlertAtTimeName" xml:space="preserve">
+    <value>定点闹钟</value>
+  </data>
   <data name="AlertTimeMandatory" xml:space="preserve">
     <value>预报时间是必须的。</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>小闹钟（测试预览版）</value>
+    <value>小闹钟（Beta）</value>
   </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>提前报时时间是必须的。</value>
   </data>
   <data name="BeforeAlertMinutesRange" xml:space="preserve">
     <value>预报提前分钟数只能在{1}到{2}分钟以内。</value>
+  </data>
+  <data name="CountDownAlertName" xml:space="preserve">
+    <value>倒计时闹钟</value>
   </data>
   <data name="DaysMandatory" xml:space="preserve">
     <value>倒计时天数是必须的。</value>
