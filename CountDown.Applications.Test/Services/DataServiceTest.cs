@@ -16,7 +16,7 @@ namespace CountDown.Applications.Test.Services
             IDataService dataService = Container.GetExportedValue<IDataService>();
 
             Assert.AreEqual(0, dataService.Items.Count);
-            Assert.AreEqual(0, dataService.SelectItems.Count);
+            Assert.AreEqual(0, dataService.SelectedItems.Count);
             Assert.AreEqual(0, dataService.AlertedItems.Count);
 
             dataService.Items.Add(
@@ -29,7 +29,7 @@ namespace CountDown.Applications.Test.Services
             );
 
             Assert.AreEqual(1, dataService.Items.Count);
-            Assert.AreEqual(1, dataService.SelectItems.Count);
+            Assert.AreEqual(1, dataService.SelectedItems.Count);
             Assert.AreEqual(0, dataService.AlertedItems.Count);
 
             dataService.Items.Add(new AlertItem
@@ -41,8 +41,8 @@ namespace CountDown.Applications.Test.Services
             );
 
             Assert.AreEqual(2, dataService.Items.Count);
-            Assert.AreEqual(1, dataService.SelectItems.Count);
-            Assert.AreEqual("Test 1", dataService.SelectItems.First().Notice);
+            Assert.AreEqual(1, dataService.SelectedItems.Count);
+            Assert.AreEqual("Test 1", dataService.SelectedItems.First().Notice);
             Assert.AreEqual(0, dataService.AlertedItems.Count);
 
             dataService.AlertedItems.Add(
@@ -55,8 +55,8 @@ namespace CountDown.Applications.Test.Services
             );
 
             Assert.AreEqual(2, dataService.Items.Count);
-            Assert.AreEqual(1, dataService.SelectItems.Count);
-            Assert.AreEqual("Test 1", dataService.SelectItems.First().Notice);
+            Assert.AreEqual(1, dataService.SelectedItems.Count);
+            Assert.AreEqual("Test 1", dataService.SelectedItems.First().Notice);
             Assert.AreEqual(1, dataService.AlertedItems.Count);
         }
 
@@ -78,7 +78,7 @@ namespace CountDown.Applications.Test.Services
             Assert.AreEqual(1, dataService.AlertedItems.Count);
             Assert.AreEqual("Test 3", dataService.AlertedItems.First().Notice);
 
-            AssertHelper.PropertyChangedEvent(dataService, x => x.SelectItems, () =>
+            AssertHelper.PropertyChangedEvent(dataService, x => x.SelectedItems, () =>
                 dataService.Items.Add(
                     new AlertItem
                     {
@@ -89,7 +89,7 @@ namespace CountDown.Applications.Test.Services
                 )
             );
 
-            AssertHelper.PropertyChangedEvent(dataService, x => x.SelectItems, () => dataService.SelectItems.Clear());
+            AssertHelper.PropertyChangedEvent(dataService, x => x.SelectedItems, () => dataService.SelectedItems.Clear());
         }
     }
 }

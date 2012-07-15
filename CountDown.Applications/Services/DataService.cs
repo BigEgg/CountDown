@@ -13,11 +13,10 @@ namespace CountDown.Applications.Services
     {
         #region Members
         private readonly MultiThreadingObservableCollection<IAlertItem> items;
-        private readonly ObservableCollection<IAlertItem> selectItems;
-
         private readonly MultiThreadingObservableCollection<IAlertItem> alertedItems;
-
         private readonly ObservableCollection<string> branches;
+        private IAlertItem selectedItem;
+        private ObservableCollection<IAlertItem> selectedItems;
         #endregion
 
         [ImportingConstructor]
@@ -25,13 +24,13 @@ namespace CountDown.Applications.Services
         {
             this.items = new MultiThreadingObservableCollection<IAlertItem>();
             this.alertedItems = new MultiThreadingObservableCollection<IAlertItem>();
-            this.selectItems = new ObservableCollection<IAlertItem>();
+            this.selectedItems = new ObservableCollection<IAlertItem>();
 
             this.branches = new ObservableCollection<string>();
 
             AddWeakEventListener(this.items, ItemsChanged);
-            AddWeakEventListener(this.selectItems, SelectItemsChanged);
-            AddWeakEventListener(this.alertedItems, AlertItemsChanged);
+            AddWeakEventListener(this.selectedItems, SelectedItemsChanged);
+            AddWeakEventListener(this.alertedItems, AlertedItemsChanged);
         }
 
 
@@ -62,7 +61,21 @@ namespace CountDown.Applications.Services
             }
         }
 
-        public ObservableCollection<IAlertItem> SelectItems { get { return this.selectItems; } }
+        public ObservableCollection<IAlertItem> SelectedItems { get { return this.selectedItems; } }
+
+        public IAlertItem SelectedItem
+        {
+            get { return this.selectedItem; }
+            set
+            {
+                if (this.selectedItem != value)
+                {
+                    this.selectedItem = value;
+                    RaisePropertyChanged("SelectedItem");
+                }
+            }
+
+        }
 
         public ObservableCollection<string> Branches { get { return this.branches; } }
         #endregion
@@ -71,16 +84,16 @@ namespace CountDown.Applications.Services
         #region Private Methods
         private void ItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if ((e.Action == NotifyCollectionChangedAction.Add) && (!this.selectItems.Any()))
+            if ((e.Action == NotifyCollectionChangedAction.Add) && (!this.selectedItems.Any()))
             {
                 foreach (IAlertItem item in e.NewItems)
                 {
-                    SelectItems.Add(item);
+                    SelectedItems.Add(item);
                 }
             }
         }
 
-        private void SelectItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void SelectedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
@@ -89,10 +102,10 @@ namespace CountDown.Applications.Services
                     if (!this.Items.Contains(item)) { throw new Exception("Select item must contain in the items list."); }
                 }
             }
-            RaisePropertyChanged("SelectItems");
+            RaisePropertyChanged("SelectedItems");
         }
 
-        private void AlertItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void AlertedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {

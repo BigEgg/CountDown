@@ -5,6 +5,7 @@ using CountDown.Applications.Properties;
 
 namespace CountDown.Applications.Models
 {
+    [MetadataType(typeof(NewItemModelBase))]
     public class CountDownAlertModel : NewItemModelBase, ICountDownAlertModel
     {
         #region Private Members

@@ -143,7 +143,7 @@ namespace CountDown.Applications.Controllers
 
         private void DataServicePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "AlertItems")
+            if (e.PropertyName == "AlertedItems")
             {
                 ShowAlert();
             }

@@ -38,7 +38,7 @@ namespace CountDown.Applications.Test.Controllers
         }
 
         [TestMethod]
-        public void SettingsTest()
+        public void LanguageSettingsTest()
         {
             Settings.Default.Culture = "en-US";
             Settings.Default.UICulture = "en-US";

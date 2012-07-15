@@ -15,7 +15,7 @@ namespace CountDown.Applications.Test.ViewModels
             ItemListViewModel viewModel = Container.GetExportedValue<ItemListViewModel>();
             IDataService dataService = Container.GetExportedValue<IDataService>();
 
-            Assert.AreEqual(0, dataService.SelectItems.Count);
+            Assert.AreEqual(0, dataService.SelectedItems.Count);
             Assert.AreEqual(false, viewModel.DeleteItems.CanExecute(null));
 
             dataService.Items.Add(
@@ -27,11 +27,11 @@ namespace CountDown.Applications.Test.ViewModels
                 }
             );
 
-            Assert.AreEqual(1, dataService.SelectItems.Count);
+            Assert.AreEqual(1, dataService.SelectedItems.Count);
             Assert.AreEqual(true, viewModel.DeleteItems.CanExecute(null));
 
             viewModel.DeleteItems.Execute(null);
-            Assert.AreEqual(0, dataService.SelectItems.Count);
+            Assert.AreEqual(0, dataService.SelectedItems.Count);
             Assert.AreEqual(false, viewModel.DeleteItems.CanExecute(null));
         }
     }

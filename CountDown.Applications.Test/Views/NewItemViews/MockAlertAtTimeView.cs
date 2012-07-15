@@ -6,5 +6,6 @@ namespace CountDown.Applications.Test.Views.NewItemViews
     [Export(typeof(IAlertAtTimeView))]
     public class MockAlertAtTimeView : MockView, IAlertAtTimeView
     {
+        public string Name { get; set; }
     }
 }

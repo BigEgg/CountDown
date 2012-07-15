@@ -10,7 +10,7 @@ using CountDown.Applications.Views;
 namespace CountDown.Applications.ViewModels
 {
     [Export]
-    public class NewItemsViewModel : ViewModel<IItemListView>
+    public class NewItemsViewModel : ViewModel<INewItemsView>
     {
         #region Members
         private readonly IMessageService messageService;
@@ -21,7 +21,7 @@ namespace CountDown.Applications.ViewModels
         #endregion
 
         [ImportingConstructor]
-        public NewItemsViewModel(IItemListView view, IMessageService messageService, 
+        public NewItemsViewModel(INewItemsView view, IMessageService messageService, 
             IShellService shellService)
             : base(view)
         {

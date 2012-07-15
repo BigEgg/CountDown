@@ -4,6 +4,7 @@ using CountDown.Applications.Test.Views;
 using CountDown.Applications.ViewModels.NewItemViewModels;
 using CountDown.Applications.Views.NewItemViews;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CountDown.Applications.Services;
 
 namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
 {
@@ -14,7 +15,8 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
         public void GeneralNewItemViewModelBaseTest()
         {
             MockNewItemView view = new MockNewItemView();
-            MockNewItemViewModel viewModel = new MockNewItemViewModel(view);
+            DataService dataService = new DataService();
+            MockNewItemViewModel viewModel = new MockNewItemViewModel(view, dataService);
 
             Assert.AreEqual("MockNewItemViewModel", viewModel.Name);
 
@@ -25,7 +27,8 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
         public void PropertiesWithNotification()
         {
             MockNewItemView view = new MockNewItemView();
-            MockNewItemViewModel viewModel = new MockNewItemViewModel(view);
+            DataService dataService = new DataService();
+            MockNewItemViewModel viewModel = new MockNewItemViewModel(view, dataService);
 
             string branch = "Test Branch";
             AssertHelper.PropertyChangedEvent(viewModel, x => x.NewItem, () => viewModel.NewItem.NoticeBranch = branch);
@@ -35,8 +38,8 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
 
         private class MockNewItemViewModel : NewItemViewModelBase<MockNewItemModel, MockNewItemView>
         {
-            public MockNewItemViewModel(MockNewItemView view)
-                : base(view, "MockNewItemViewModel", new MockNewItemModel())
+            public MockNewItemViewModel(MockNewItemView view, IDataService dataService)
+                : base(view, "MockNewItemViewModel", new MockNewItemModel(), dataService)
             {
             }
         }
@@ -47,6 +50,7 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
 
         private class MockNewItemView : MockView, INewItemView
         {
+            public string Name { get; set; }
         }
     }
 }

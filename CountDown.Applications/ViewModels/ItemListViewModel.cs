@@ -7,6 +7,7 @@ using BigEgg.Framework.Applications.Services;
 using CountDown.Applications.Domain;
 using CountDown.Applications.Services;
 using CountDown.Applications.Views;
+using System.Collections.Generic;
 
 namespace CountDown.Applications.ViewModels
 {
@@ -41,16 +42,21 @@ namespace CountDown.Applications.ViewModels
         #endregion
 
         #region Command Methods
-        private bool CanDeleteItemsCommand() { return (this.dataService.SelectItems.Any()); }
+        private bool CanDeleteItemsCommand() { return (this.dataService.SelectedItems.Any()); }
 
         private void DeleteItemsCommand()
         {
-            foreach (IAlertItem item in this.dataService.SelectItems)
+            // Use the BookCollectionView, which represents the sorted/filtered state of the books, to determine the next book to select.
+            IEnumerable<IAlertItem> itemsToExclude = this.dataService.SelectedItems.Except(new[] { this.dataService.SelectedItem });
+            IAlertItem nextBook = CollectionHelper.GetNextElementOrDefault(this.dataService.Items.Except(itemsToExclude),
+                this.dataService.SelectedItem);
+
+            foreach (IAlertItem item in this.dataService.SelectedItems.ToArray())
             {
                 this.dataService.Items.Remove(item);
             }
 
-            this.dataService.SelectItems.Clear();
+            this.dataService.SelectedItem = nextBook ?? this.dataService.Items.LastOrDefault();
         }
         #endregion
 

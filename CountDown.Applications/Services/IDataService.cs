@@ -10,7 +10,9 @@ namespace CountDown.Applications.Services
 
         MultiThreadingObservableCollection<IAlertItem> AlertedItems { get; }
 
-        ObservableCollection<IAlertItem> SelectItems { get; }
+        IAlertItem SelectedItem { get; set; }
+
+        ObservableCollection<IAlertItem> SelectedItems { get; }
 
         ObservableCollection<string> Branches { get; }
     }

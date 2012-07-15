@@ -24,7 +24,7 @@ namespace CountDown.Applications.Controllers
         private readonly DelegateCommand addItemCommand;
 
         private readonly Dictionary<INewItemView, NewItemModelBase> viewDictionary;
-        private NewItemModelBase activeNewItemModel;
+        private INewItemModel activeNewItemModel;
 
         [ImportingConstructor]
         public NewItemsController(CompositionContainer container, IDataService dataService)
@@ -44,13 +44,15 @@ namespace CountDown.Applications.Controllers
         protected override void OnInitialize()
         {
             IAlertAtTimeView alertAtTimeView = this.container.GetExportedValue<IAlertAtTimeView>();
-            AlertAtTimeViewModel alertAtTimeViewModel = new AlertAtTimeViewModel(alertAtTimeView);
+            AlertAtTimeViewModel alertAtTimeViewModel = new AlertAtTimeViewModel(alertAtTimeView, this.dataService);
+            alertAtTimeView.Name = alertAtTimeViewModel.Name;
 
             this.newItemsViewModel.NewItemViews.Add(alertAtTimeView);
             this.viewDictionary.Add(alertAtTimeView, alertAtTimeViewModel.NewItem);
 
             ICountDownAlertView countDownAlertView = this.container.GetExportedValue<ICountDownAlertView>();
-            CountDownAlertViewModel countDownAlertViewModel = new CountDownAlertViewModel(countDownAlertView);
+            CountDownAlertViewModel countDownAlertViewModel = new CountDownAlertViewModel(countDownAlertView, this.dataService);
+            countDownAlertView.Name = countDownAlertViewModel.Name;
 
             this.newItemsViewModel.NewItemViews.Add(countDownAlertView);
             this.viewDictionary.Add(countDownAlertView, countDownAlertViewModel.NewItem);
@@ -105,6 +107,16 @@ namespace CountDown.Applications.Controllers
             AlertItem item = model.ToAlertItem(Settings.Default.DefaultAlertBeforeMinutes);
             this.dataService.Items.Add(item);
 
+            int index = this.dataService.Branches.IndexOf(model.NoticeBranch);
+            if (index > 0)
+            {
+                this.dataService.Branches.Move(index, 0);
+            }
+            else if (index < 0)
+            {
+                this.dataService.Branches.Add(model.NoticeBranch);
+            }
+
             if (Settings.Default.ResetCountDownData) { model.Clean(); }
         }
         #endregion
@@ -114,12 +126,12 @@ namespace CountDown.Applications.Controllers
         {
             if (e.PropertyName == "ActiveNewItemView")
             {
-                if (this.activeNewItemModel != null) { RemoveWeakEventListener(this.activeNewItemModel, ActiveNewItemModelPropertyChanged); }
+                if (this.activeNewItemModel != null) { RemoveWeakEventListener(this.activeNewItemModel as INotifyPropertyChanged, ActiveNewItemModelPropertyChanged); }
 
                 INewItemView view = this.newItemsViewModel.ActiveNewItemView as INewItemView;
                 this.activeNewItemModel = this.viewDictionary[view];
 
-                if (this.activeNewItemModel != null) { AddWeakEventListener(this.activeNewItemModel, ActiveNewItemModelPropertyChanged); }
+                if (this.activeNewItemModel != null) { AddWeakEventListener(this.activeNewItemModel as INotifyPropertyChanged, ActiveNewItemModelPropertyChanged); }
 
                 UpdateCommand();
             }
