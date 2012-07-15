@@ -8,6 +8,8 @@ using CountDown.Applications.ViewModels;
 using CountDown.Applications.Test.Views;
 using CountDown.Applications.Views;
 using BigEgg.Framework.Applications;
+using CountDown.Applications.Properties;
+using System.Globalization;
 
 namespace CountDown.Applications.Test.Controllers
 {
@@ -33,6 +35,35 @@ namespace CountDown.Applications.Test.Controllers
             Assert.IsFalse(shellView.IsVisible);
 
             applicationController.Shutdown();
+        }
+
+        [TestMethod]
+        public void SettingsTest()
+        {
+            Settings.Default.Culture = "en-US";
+            Settings.Default.UICulture = "en-US";
+
+            IApplicationController applicationController = Container.GetExportedValue<IApplicationController>();
+
+            Assert.AreEqual(new CultureInfo("en-US"), CultureInfo.CurrentCulture);
+            Assert.AreEqual(new CultureInfo("en-US"), CultureInfo.CurrentUICulture);
+
+            applicationController.Initialize();
+            applicationController.Run();
+
+            ShellViewModel shellViewModel = Container.GetExportedValue<ShellViewModel>();
+            shellViewModel.ChineseCommand.Execute(null);
+            Assert.AreEqual(new CultureInfo("zh-CN"), shellViewModel.NewLanguage);
+
+            bool settingsSaved = false;
+            Settings.Default.SettingsSaving += (sender, e) =>
+            {
+                settingsSaved = true;
+            };
+
+            applicationController.Shutdown();
+            Assert.AreEqual("zh-CN", Settings.Default.UICulture);
+            Assert.IsTrue(settingsSaved);
         }
     }
 }
