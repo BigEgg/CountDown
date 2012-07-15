@@ -72,17 +72,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\Dialog\AboutDialogView.xaml.cs">
+    <Compile Include="Views\Dialogs\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialog\AlertDialogView.xaml.cs">
+    <Compile Include="Views\Dialogs\AlertDialogView.xaml.cs">
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialog\SettingDialogView.xaml.cs">
+    <Compile Include="Views\Dialogs\SettingDialogView.xaml.cs">
       <DependentUpon>SettingDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="Views\ItemListView.xaml.cs">
+      <DependentUpon>ItemListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItemsView.xaml.cs">
+      <DependentUpon>NewItemsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\NewItemViews\AlertAtTimeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewItemViews\CountDownAlertView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Views\NewItemViews\AlertAtTimeView.xaml.cs">
+      <DependentUpon>AlertAtTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewItemViews\CountDownAlertView.xaml.cs">
+      <DependentUpon>CountDownAlertView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
@@ -128,19 +145,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dialog\AboutDialogView.xaml">
+    <Page Include="Views\Dialogs\AboutDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dialog\AlertDialogView.xaml">
+    <Page Include="Views\Dialogs\AlertDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Dialog\SettingDialogView.xaml">
+    <Page Include="Views\Dialogs\SettingDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\ItemListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

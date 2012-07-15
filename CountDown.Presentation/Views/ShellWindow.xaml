@@ -7,10 +7,33 @@
         Title="{Binding Title}" Icon="{StaticResource CountDownImageSource}">
     
     <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{x:Static p:Resources.FileMenu}">
+                <MenuItem Command="{Binding ExitCommand}" Header="{x:Static p:Resources.ExitMenu}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.ToolsMenu}">
+                <MenuItem Header="{x:Static p:Resources.LanguageMenu}">
+                    <MenuItem Command="{Binding ChineseCommand}" Header="{x:Static p:Resources.ChineseMenu}"/>
+                    <MenuItem Command="{Binding EnglishCommand}" Header="{x:Static p:Resources.EnglishMenu}"/>
+                </MenuItem>
+                <MenuItem Command="{Binding SettingCommand}" Header="{x:Static p:Resources.ShowSettingDialogMenu}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.HelpMenu}">
+                <MenuItem Command="{Binding AboutCommand}" Header="{x:Static p:Resources.ShowAboutDialogMenu}"/>
+            </MenuItem>
+        </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem Content="{x:Static p:Resources.Ready}" Margin="3,0,0,0"/>
+        	<StatusBarItem Content="{x:Static p:Resources.Ready}" Margin="3,0,0,0"/>
         </StatusBar>
 
-        <ContentPresenter Content="{Binding ContentView}"/>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" MinWidth="250"/>
+                <ColumnDefinition Width="60*" MinWidth="400"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Content="{Binding ShellService.NewItemsView}"/>
+            <ContentPresenter Content="{Binding ShellService.ItemListView}" Grid.Column="1"/>
+            <GridSplitter Width="5"/>
+        </Grid>
     </DockPanel>
 </Window>

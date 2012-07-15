@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
-using CountDown.Applications.Views.Dialog;
+using CountDown.Applications.Views.Dialogs;
 
-namespace CountDown.Presentation.Views.Dialog
+namespace CountDown.Presentation.Views.Dialogs
 {
     /// <summary>
     /// Interaction logic for SettingDialogView.xaml
