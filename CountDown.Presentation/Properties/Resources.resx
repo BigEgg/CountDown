@@ -133,6 +133,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="AlartItems" xml:space="preserve">
     <value>Alart Items:</value>
   </data>
+  <data name="AlertAtTimeTitle" xml:space="preserve">
+    <value>Alert at</value>
+  </data>
   <data name="AlertList" xml:space="preserve">
     <value>The following items is alert:</value>
   </data>
@@ -165,6 +168,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   </data>
   <data name="CreateBy" xml:space="preserve">
     <value>Create by: BigEgg</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Date and time</value>
   </data>
   <data name="DateString" xml:space="preserve">
     <value>HH:mm</value>

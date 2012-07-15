@@ -107,6 +107,15 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alert at.
+        /// </summary>
+        public static string AlertAtTimeTitle {
+            get {
+                return ResourceManager.GetString("AlertAtTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following items is alert:.
         /// </summary>
         public static string AlertList {
@@ -202,6 +211,15 @@ namespace CountDown.Presentation.Properties {
         public static string CreateBy {
             get {
                 return ResourceManager.GetString("CreateBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date and time.
+        /// </summary>
+        public static string DateAndTime {
+            get {
+                return ResourceManager.GetString("DateAndTime", resourceCulture);
             }
         }
         

@@ -133,6 +133,9 @@
   <data name="AlartItems" xml:space="preserve">
     <value>已经预报的列表：</value>
   </data>
+  <data name="AlertAtTimeTitle" xml:space="preserve">
+    <value>定点报时</value>
+  </data>
   <data name="AlertList" xml:space="preserve">
     <value>下面是预报的列表：</value>
   </data>
@@ -165,6 +168,9 @@
   </data>
   <data name="CreateBy" xml:space="preserve">
     <value>作者： BigEgg</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>时间/日期</value>
   </data>
   <data name="DateString" xml:space="preserve">
     <value>HH:mm</value>
