@@ -15,7 +15,7 @@ namespace CountDown.Applications.Test.ViewModels.Dialogs
             MockDialogView view = new MockDialogView();
             MockDialogViewModel viewModel = new MockDialogViewModel(view);
 
-            Assert.AreNotEqual(string.Empty, MockDialogViewModel.Title);
+            Assert.AreNotEqual(string.Empty, viewModel.Title);
 
             object owner = new object();
             Assert.IsFalse(view.IsVisible);

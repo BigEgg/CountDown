@@ -21,6 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountDown.Presentation", "CountDown.Presentation\CountDown.Presentation.csproj", "{B0801F77-9B49-4B14-9227-101676DE9499}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE} = {CE4661CE-ECC6-4A10-9E3E-CFD1E9C01DFE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

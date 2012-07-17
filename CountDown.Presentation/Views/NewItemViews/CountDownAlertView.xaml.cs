@@ -15,6 +15,6 @@ namespace CountDown.Presentation.Views.NewItemViews
             InitializeComponent();
         }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
     }
 }

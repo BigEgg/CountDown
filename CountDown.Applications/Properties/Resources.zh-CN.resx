@@ -165,6 +165,9 @@
   <data name="MinutesRange" xml:space="preserve">
     <value>倒计时分钟数只能在{1}到{2}分钟以内。</value>
   </data>
+  <data name="MP3MusicFile" xml:space="preserve">
+    <value>MP3音乐文件 (*.mp3)</value>
+  </data>
   <data name="NoticeBranchMandatory" xml:space="preserve">
     <value>预报类型是必须的。</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="SoundPathMandatory" xml:space="preserve">
     <value>声音文件路径是必须的。</value>
+  </data>
+  <data name="SoundWaveFile" xml:space="preserve">
+    <value>声音文件 (*.wav)</value>
   </data>
   <data name="TimeMandatory" xml:space="preserve">
     <value>时间是必须的。</value>

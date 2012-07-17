@@ -18,7 +18,7 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
             DataService dataService = new DataService();
             MockNewItemViewModel viewModel = new MockNewItemViewModel(view, dataService);
 
-            Assert.AreEqual("MockNewItemViewModel", viewModel.Name);
+            Assert.AreEqual("MockNewItemViewModel", viewModel.Title);
 
             Assert.AreEqual(typeof(MockNewItemModel), viewModel.NewItem.GetType());
         }
@@ -50,7 +50,7 @@ namespace CountDown.Applications.Test.ViewModels.NewItemViewModels
 
         private class MockNewItemView : MockView, INewItemView
         {
-            public string Name { get; set; }
+            public string Title { get; set; }
         }
     }
 }

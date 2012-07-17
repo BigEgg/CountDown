@@ -6,7 +6,8 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:p="clr-namespace:CountDown.Presentation.Properties"
 		WindowStartupLocation="CenterOwner"
-        Title="{Binding Title}" Height="300" Width="300" WindowStyle="ToolWindow" Closing="Window_Closing">
+        Title="{Binding Title}" Height="300" Width="300" Closing="Window_Closing"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Icon="{StaticResource CountDownImageSource}">
     <Window.Resources>
         <CollectionViewSource Source="{Binding Items}" x:Key="ItemsCVS">
             <CollectionViewSource.SortDescriptions>

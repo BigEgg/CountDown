@@ -20,7 +20,7 @@ namespace CountDown.Applications.ViewModels.Dialogs
         }
 
 
-        public static string Title { get { return Resources.ApplicationName; } }
+        public string Title { get { return Resources.ApplicationName; } }
 
 
         public virtual bool? ShowDialog(object owner)

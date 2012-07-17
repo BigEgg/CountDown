@@ -2,9 +2,9 @@
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using BigEgg.Framework.Applications;
+using CountDown.Applications.Domain;
 using CountDown.Applications.ViewModels;
 using CountDown.Applications.Views;
-using CountDown.Applications.Domain;
 
 namespace CountDown.Presentation.Views
 {

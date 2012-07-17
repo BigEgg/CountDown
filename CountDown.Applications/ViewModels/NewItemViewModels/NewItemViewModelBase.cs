@@ -13,11 +13,11 @@ namespace CountDown.Applications.ViewModels.NewItemViewModels
         private readonly IDataService dataService;
 
         
-        public NewItemViewModelBase(TView view, string name, TNewItemModel item, IDataService dataService)
+        public NewItemViewModelBase(TView view, string title, TNewItemModel item, IDataService dataService)
             : base(view)
         {
             NewItem = item;
-            Name = name;
+            Title = title;
 
             this.dataService = dataService;
 
@@ -29,7 +29,7 @@ namespace CountDown.Applications.ViewModels.NewItemViewModels
 
         public TNewItemModel NewItem { get; private set; }
 
-        public string Name { get; private set; }
+        public string Title { get; private set; }
 
 
         private void NewItemPropertyChanged(object sender, PropertyChangedEventArgs e)

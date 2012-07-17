@@ -51,6 +51,8 @@ namespace CountDown.Applications.Controllers
         {
             LoadData();
 
+            this.dataService.SelectedItem = this.dataService.Items.FirstOrDefault();
+
             int dueTime;
             DateTime startTime = DateTime.Now;
             dueTime = 60000 - startTime.Second * 1000 - startTime.Millisecond + 10;

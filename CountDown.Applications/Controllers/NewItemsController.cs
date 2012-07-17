@@ -20,11 +20,11 @@ namespace CountDown.Applications.Controllers
     {
         private readonly CompositionContainer container;
         private readonly IDataService dataService;
-        private readonly NewItemsViewModel newItemsViewModel;
         private readonly DelegateCommand addItemCommand;
 
         private readonly Dictionary<INewItemView, NewItemModelBase> viewDictionary;
         private INewItemModel activeNewItemModel;
+        private NewItemsViewModel newItemsViewModel;
 
         [ImportingConstructor]
         public NewItemsController(CompositionContainer container, IDataService dataService)
@@ -32,27 +32,27 @@ namespace CountDown.Applications.Controllers
             this.container = container;
             this.dataService = dataService;
 
-            this.newItemsViewModel = container.GetExportedValue<NewItemsViewModel>();
             this.viewDictionary = new Dictionary<INewItemView, NewItemModelBase>();
 
             this.addItemCommand = new DelegateCommand(AddItemExcute, CanAddItemExcute);
-
-            AddWeakEventListener(this.newItemsViewModel, NewItemsViewModelPropertyChanged);
         }
 
         #region Methods
         protected override void OnInitialize()
         {
+            this.newItemsViewModel = container.GetExportedValue<NewItemsViewModel>();
+            AddWeakEventListener(this.newItemsViewModel, NewItemsViewModelPropertyChanged);
+
             IAlertAtTimeView alertAtTimeView = this.container.GetExportedValue<IAlertAtTimeView>();
             AlertAtTimeViewModel alertAtTimeViewModel = new AlertAtTimeViewModel(alertAtTimeView, this.dataService);
-            alertAtTimeView.Name = alertAtTimeViewModel.Name;
+            alertAtTimeView.Title = alertAtTimeViewModel.Title;
 
             this.newItemsViewModel.NewItemViews.Add(alertAtTimeView);
             this.viewDictionary.Add(alertAtTimeView, alertAtTimeViewModel.NewItem);
 
             ICountDownAlertView countDownAlertView = this.container.GetExportedValue<ICountDownAlertView>();
             CountDownAlertViewModel countDownAlertViewModel = new CountDownAlertViewModel(countDownAlertView, this.dataService);
-            countDownAlertView.Name = countDownAlertViewModel.Name;
+            countDownAlertView.Title = countDownAlertViewModel.Title;
 
             this.newItemsViewModel.NewItemViews.Add(countDownAlertView);
             this.viewDictionary.Add(countDownAlertView, countDownAlertViewModel.NewItem);
@@ -68,7 +68,7 @@ namespace CountDown.Applications.Controllers
                 foreach (object view in this.newItemsViewModel.NewItemViews)
                 {
                     INewItemViewModel viewModel = ViewHelper.GetViewModel(view as IView) as INewItemViewModel;
-                    if (viewModel.Name == Settings.Default.SelectNewItem)
+                    if (viewModel.Title == Settings.Default.SelectNewItem)
                     {
                         this.newItemsViewModel.ActiveNewItemView = view;
                     }
@@ -82,7 +82,7 @@ namespace CountDown.Applications.Controllers
             this.viewDictionary.Clear();
 
             INewItemViewModel viewModel = ViewHelper.GetViewModel(this.newItemsViewModel.ActiveNewItemView as IView) as INewItemViewModel;
-            if (viewModel != null) { Settings.Default.SelectNewItem = viewModel.Name; }
+            if (viewModel != null) { Settings.Default.SelectNewItem = viewModel.Title; }
             else { Settings.Default.SelectNewItem = string.Empty; }
         }
 

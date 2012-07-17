@@ -20,7 +20,6 @@ namespace CountDown.Applications.Controllers
         private readonly CompositionContainer container;
         private readonly DataController dataController;
         private readonly NewItemsController newItemsController;
-        private readonly ShellService shellService;
 
         private readonly ShellViewModel shellViewModel;
         private readonly ItemListViewModel itemListViewModel;
@@ -79,6 +78,7 @@ namespace CountDown.Applications.Controllers
             if (this.shellViewModel.NewLanguage != null)
             {
                 Settings.Default.UICulture = this.shellViewModel.NewLanguage.Name;
+                Settings.Default.Culture = this.shellViewModel.NewLanguage.Name;
             }
             try
             {

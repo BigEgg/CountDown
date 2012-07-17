@@ -61,8 +61,8 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This applictaion is build for my mom. O(∩_∩)O~
-        ///If anyone find any bugs in this program or any awesome ideas, please contanct me..
+        ///   Looks up a localized string similar to This applictaion is building for my mom. O(∩_∩)O~
+        ///If anyone found any bugs in this program or any awesome ideas, please contanct me..
         /// </summary>
         public static string AboutMessage {
             get {
@@ -71,7 +71,7 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _OK.
+        ///   Looks up a localized string similar to _I know it.
         /// </summary>
         public static string AboutOK {
             get {
@@ -242,6 +242,15 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail: .
         /// </summary>
         public static string Email {
@@ -334,18 +343,9 @@ namespace CountDown.Presentation.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Before Alert (min.).
         /// </summary>
-        public static string NewCountDownBeforeMinutes {
+        public static string NewAlertBeforeMinutes {
             get {
-                return ResourceManager.GetString("NewCountDownBeforeMinutes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Branch.
-        /// </summary>
-        public static string NewCountDownBranch {
-            get {
-                return ResourceManager.GetString("NewCountDownBranch", resourceCulture);
+                return ResourceManager.GetString("NewAlertBeforeMinutes", resourceCulture);
             }
         }
         
@@ -377,11 +377,20 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        public static string NewItemBranch {
+            get {
+                return ResourceManager.GetString("NewItemBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notice.
         /// </summary>
-        public static string NewCountDownNotice {
+        public static string NewItemNotice {
             get {
-                return ResourceManager.GetString("NewCountDownNotice", resourceCulture);
+                return ResourceManager.GetString("NewItemNotice", resourceCulture);
             }
         }
         
@@ -395,7 +404,7 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ready..
+        ///   Looks up a localized string similar to Good to go..
         /// </summary>
         public static string Ready {
             get {
@@ -415,9 +424,9 @@ namespace CountDown.Presentation.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Reset data after added.
         /// </summary>
-        public static string ResetCountDownData {
+        public static string ResetData {
             get {
-                return ResourceManager.GetString("ResetCountDownData", resourceCulture);
+                return ResourceManager.GetString("ResetData", resourceCulture);
             }
         }
         
@@ -485,7 +494,7 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Submit.
+        ///   Looks up a localized string similar to That it i_s.
         /// </summary>
         public static string Submit {
             get {

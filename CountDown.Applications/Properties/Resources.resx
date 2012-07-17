@@ -165,6 +165,9 @@
   <data name="MinutesRange" xml:space="preserve">
     <value>The count down minute must be between {1} and {2}.</value>
   </data>
+  <data name="MP3MusicFile" xml:space="preserve">
+    <value>MP3 music file (*.mp3)</value>
+  </data>
   <data name="NoticeBranchMandatory" xml:space="preserve">
     <value>The notice branch is mandatory.</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="SoundPathMandatory" xml:space="preserve">
     <value>The sound path is required.</value>
+  </data>
+  <data name="SoundWaveFile" xml:space="preserve">
+    <value>Sound wave file (*.wav)</value>
   </data>
   <data name="TimeMandatory" xml:space="preserve">
     <value>Time is mandatory.</value>

@@ -7,6 +7,6 @@ namespace CountDown.Applications.ViewModels.NewItemViewModels
 {
     public interface INewItemViewModel
     {
-        string Name { get; }
+        string Title { get; }
     }
 }

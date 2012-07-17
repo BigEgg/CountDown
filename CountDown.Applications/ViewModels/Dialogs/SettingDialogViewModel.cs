@@ -10,6 +10,7 @@ using BigEgg.Framework.Foundation.Validations;
 using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.Views.Dialogs;
+using System.Globalization;
 
 namespace CountDown.Applications.ViewModels.Dialogs
 {
@@ -17,6 +18,7 @@ namespace CountDown.Applications.ViewModels.Dialogs
     {
         #region Members
         private readonly ObservableCollection<string> branches;
+        private readonly ObservableCollection<string> selectedBranches;
         private readonly DelegateCommand submitCommand;
         private readonly DelegateCommand cancelCommand;
         private readonly DelegateCommand browseSoundFile;
@@ -25,7 +27,7 @@ namespace CountDown.Applications.ViewModels.Dialogs
 
         private readonly IFileDialogService fileDialogService;
 
-        private ObservableCollection<string> selectedBranches;
+        private string selectedBranch;
         private string newBranch = string.Empty;
         private bool hasAlertSound = false;
         private int beforeAlertMinutes;
@@ -46,6 +48,7 @@ namespace CountDown.Applications.ViewModels.Dialogs
             this.browseSoundFile = new DelegateCommand(BrowseSoundFileCommand);
 
             this.branches = dataservice.Branches;
+            this.selectedBranch = this.branches.FirstOrDefault();
             this.selectedBranches = new ObservableCollection<string>();
 
             this.addNewBranchCommand = new DelegateCommand(AddNewBranch);
@@ -157,18 +160,20 @@ namespace CountDown.Applications.ViewModels.Dialogs
         public ObservableCollection<string> Branches { get { return this.branches; } }
 
         public ObservableCollection<string> SelectedBranches 
-        { 
-            get 
-            {
-                if (this.selectedBranches == null)
-                    this.selectedBranches = new ObservableCollection<string>();
-                if ((!this.selectedBranches.Any()) && (this.branches.Any()))
-                    this.selectedBranches.Add(this.branches.First());
-                return this.selectedBranches; 
-            }
+        {
+            get { return this.selectedBranches; }     
+        }
+
+        public string SelectedBranch
+        {
+            get { return this.selectedBranch; }
             set
             {
-                this.selectedBranches = value;
+                if (this.selectedBranch != value)
+                {
+                    this.selectedBranch = value;
+                    RaisePropertyChanged("SelectedBranch");
+                }
             }
         }
         #endregion
@@ -186,15 +191,20 @@ namespace CountDown.Applications.ViewModels.Dialogs
             UpdateCommands();
         }
 
-        private bool CanRemoveBranch() { return this.SelectedBranches.Any(); }
+        private bool CanRemoveBranch() { return this.SelectedBranch != null; }
 
         private void RemoveBranch()
         {
-            foreach (string item in this.selectedBranches)
+            IEnumerable<string> itemsToExclude = this.selectedBranches.Except(new[] { this.SelectedBranch });
+            string nextBranch = CollectionHelper.GetNextElementOrDefault(this.Branches.Except(itemsToExclude),
+                this.SelectedBranch);
+
+            foreach (string item in this.selectedBranches.ToArray())
             {
                 this.branches.Remove(item);
             }
-            this.selectedBranches.Clear();
+
+            this.SelectedBranch = nextBranch ?? this.Branches.LastOrDefault();
 
             UpdateCommands();
         }
@@ -219,8 +229,8 @@ namespace CountDown.Applications.ViewModels.Dialogs
         {
             List<FileType> FileTypes = new List<FileType>
             {
-                new FileType("MP3 music file", ".mp3"),
-                new FileType("Sound wave file", ".wav")
+                new FileType(string.Format(CultureInfo.CurrentCulture, Resources.MP3MusicFile), ".mp3"),
+                new FileType(string.Format(CultureInfo.CurrentCulture, Resources.SoundWaveFile), ".wav")
             };
 
             FileDialogResult result = fileDialogService.ShowOpenFileDialog(FileTypes);

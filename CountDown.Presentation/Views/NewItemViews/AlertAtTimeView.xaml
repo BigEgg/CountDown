@@ -6,6 +6,7 @@
              xmlns:p="clr-namespace:CountDown.Presentation.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -28,10 +29,10 @@
         <TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="2" Text="{Binding NewItem.Hours, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
         <TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="3" Text="{Binding NewItem.Minutes, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
 
-        <TextBlock Margin="0,0,10,0" Grid.Row="4" Text="{x:Static p:Resources.NewCountDownBranch}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <TextBlock Margin="0,0,10,0" Grid.Row="5" Text="{x:Static p:Resources.NewCountDownNotice}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <ComboBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="4" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" ItemsSource="{Binding DataService.Branches}" IsEditable="True"
+        <TextBlock Margin="0,0,10,0" Grid.Row="4" Text="{x:Static p:Resources.NewItemBranch}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Margin="0,0,10,0" Grid.Row="5" Text="{x:Static p:Resources.NewItemNotice}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <ComboBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="4" VerticalAlignment="Center" ItemsSource="{Binding DataService.Branches}" IsEditable="True"
                                       SelectedValue="{Binding NewItem.NoticeBranch, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true, Mode=TwoWay}"
-                                      Text="{Binding NewItem.NoticeBranch}" />
+                                      Text="{Binding NewItem.NoticeBranch}" Width="Auto" Height="Auto" />
         <TextBox Grid.Column="2" Margin="0,0,5,0" Grid.Row="5" Text="{Binding NewItem.Notice, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=true, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" d:LayoutOverrides="Width, Height" VerticalAlignment="Center"/>
     </Grid></UserControl>

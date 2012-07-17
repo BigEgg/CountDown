@@ -5,6 +5,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/ImageResources.xaml"/>
+                <ResourceDictionary x:Name="Skin" Source="pack://application:,,,/BigEgg.Skins.BlackSkin;component/Skin.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

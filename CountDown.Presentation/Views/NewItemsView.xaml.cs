@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Windows.Controls;
-using BigEgg.Framework.Applications;
-using CountDown.Applications.ViewModels;
 using CountDown.Applications.Views;
 
 namespace CountDown.Presentation.Views

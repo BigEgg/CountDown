@@ -8,6 +8,10 @@
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:domain="clr-namespace:CountDown.Applications.Domain;assembly=CountDown.Applications"
              mc:Ignorable="d" d:DesignHeight="370" d:DesignWidth="600">
+    <UserControl.Background>
+        <SolidColorBrush Color="{DynamicResource Application_Windows_Background}"/>
+    </UserControl.Background>
+    
     <UserControl.Resources>
         <CollectionViewSource Source="{Binding DataService.AlertedItems}" x:Key="AlertCVS">
             <CollectionViewSource.SortDescriptions>
@@ -47,14 +51,14 @@
         <Grid Grid.Row="1">
         	<Grid.ColumnDefinitions>
         		<ColumnDefinition Width="*"/>
-        		<ColumnDefinition Width="25"/>
+        		<ColumnDefinition Width="75"/>
         	</Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="{x:Static p:Resources.ItemsQueue}" VerticalAlignment="Bottom" Margin="0,0,0,5" />
-			<Button Content="X" Command="{Binding DeleteItems}" Grid.Column="1" Margin="0,0,3,3" Foreground="Red" FontWeight="Bold"/>
+            <Button Content="{x:Static p:Resources.Delete}" Command="{Binding DeleteItems}" Grid.Column="1" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             <ListView Margin="0" Grid.Row="1" ItemsSource="{Binding Source={StaticResource ItemCVS}}" Grid.ColumnSpan="2" SelectedItem="{Binding DataService.SelectedItem}" SelectionChanged="ListView_SelectionChanged">
                 <ListView.View>
                     <GridView>

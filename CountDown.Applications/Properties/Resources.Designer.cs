@@ -205,6 +205,15 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MP3 music file (*.mp3).
+        /// </summary>
+        public static string MP3MusicFile {
+            get {
+                return ResourceManager.GetString("MP3MusicFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The notice branch is mandatory..
         /// </summary>
         public static string NoticeBranchMandatory {
@@ -282,6 +291,15 @@ namespace CountDown.Applications.Properties {
         public static string SoundPathMandatory {
             get {
                 return ResourceManager.GetString("SoundPathMandatory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound wave file (*.wav).
+        /// </summary>
+        public static string SoundWaveFile {
+            get {
+                return ResourceManager.GetString("SoundWaveFile", resourceCulture);
             }
         }
         

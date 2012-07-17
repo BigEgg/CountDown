@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutMessage" xml:space="preserve">
-    <value>This applictaion is build for my mom. O(∩_∩)O~
-If anyone find any bugs in this program or any awesome ideas, please contanct me.</value>
+    <value>This applictaion is building for my mom. O(∩_∩)O~
+If anyone found any bugs in this program or any awesome ideas, please contanct me.</value>
   </data>
   <data name="AboutOK" xml:space="preserve">
-    <value>_OK</value>
+    <value>_I know it</value>
   </data>
   <data name="AddCountDownData" xml:space="preserve">
     <value>_Add</value>
@@ -178,6 +178,9 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="DateStringWithDays" xml:space="preserve">
     <value>HH:mm (MM-dd)</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail: </value>
   </data>
@@ -208,11 +211,8 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="LanguageMenu" xml:space="preserve">
     <value>_Language</value>
   </data>
-  <data name="NewCountDownBeforeMinutes" xml:space="preserve">
+  <data name="NewAlertBeforeMinutes" xml:space="preserve">
     <value>Before Alert (min.)</value>
-  </data>
-  <data name="NewCountDownBranch" xml:space="preserve">
-    <value>Branch</value>
   </data>
   <data name="NewCountDownDays" xml:space="preserve">
     <value>Days</value>
@@ -223,19 +223,22 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
   <data name="NewCountDownMinutes" xml:space="preserve">
     <value>Minutes</value>
   </data>
-  <data name="NewCountDownNotice" xml:space="preserve">
+  <data name="NewItemBranch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="NewItemNotice" xml:space="preserve">
     <value>Notice</value>
   </data>
   <data name="NoticeHeader" xml:space="preserve">
     <value>Notice</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Ready.</value>
+    <value>Good to go.</value>
   </data>
   <data name="RemoveBranch" xml:space="preserve">
     <value>_Remove</value>
   </data>
-  <data name="ResetCountDownData" xml:space="preserve">
+  <data name="ResetData" xml:space="preserve">
     <value>Reset data after added</value>
   </data>
   <data name="SetAlermTab" xml:space="preserve">
@@ -260,7 +263,7 @@ If anyone find any bugs in this program or any awesome ideas, please contanct me
     <value>Sound path</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>_Submit</value>
+    <value>That it i_s</value>
   </data>
   <data name="TimeHeader" xml:space="preserve">
     <value>Time</value>
