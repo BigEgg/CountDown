@@ -3,15 +3,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
 	<!-- Resource dictionary entries should be defined here. -->
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
         <ResourceDictionary Source="ScrollViewerStyle.xaml"/>
         <ResourceDictionary Source="ComboBoxItemStyle.xaml"/>
+        <ResourceDictionary Source="ValidationToolTipTemplate.xaml"/>
+        <ResourceDictionary Source="CheckBoxStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
+    <Style TargetType="{x:Type ComboBox}">
         <Setter Property="Foreground">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
@@ -36,34 +39,85 @@
     			<VisualStateGroup x:Name="FocusStates">
     				<VisualState x:Name="Unfocused"/>
     				<VisualState x:Name="Focused">
-    					<Storyboard>
-    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="FocusVisualElement">
-    							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-    						</ObjectAnimationUsingKeyFrames>
+    					<Storyboard AutoReverse="True" RepeatBehavior="Forever">
+    						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusVisualElement">
+    							<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+    							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.5"/>
+    						</DoubleAnimationUsingKeyFrames>
     					</Storyboard>
     				</VisualState>
-    				<VisualState x:Name="FocusedDropDown"/>
+    				<VisualState x:Name="FocusedDropDown">
+    					<Storyboard>
+    						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusVisualElement">
+    							<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+    						</DoubleAnimationUsingKeyFrames>
+    					</Storyboard>
+    				</VisualState>
     			</VisualStateGroup>
     			<VisualStateGroup x:Name="CommonStates">
+    				<VisualStateGroup.Transitions>
+    					<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.3" To="Normal"/>
+    					<VisualTransition From="Normal" GeneratedDuration="0:0:0.3" To="MouseOver"/>
+    				</VisualStateGroup.Transitions>
     				<VisualState x:Name="Normal"/>
     				<VisualState x:Name="MouseOver"/>
     				<VisualState x:Name="Disabled">
     					<Storyboard>
-    						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="PART_EditableTextBox">
+    						<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)">
     							<EasingColorKeyFrame KeyTime="0" Value="{StaticResource Application_ComboBox_Foreground_Disabled}"/>
     						</ColorAnimationUsingKeyFrames>
     					</Storyboard>
     				</VisualState>
     			</VisualStateGroup>
+    			<VisualStateGroup x:Name="ValidationStates">
+    				<VisualState x:Name="Valid">
+    					<Storyboard>
+    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ValidationErrorElement">
+    							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+    						</ObjectAnimationUsingKeyFrames>
+    					</Storyboard>
+    				</VisualState>
+    				<VisualState x:Name="InvalidFocused">
+    					<Storyboard>
+    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ValidationErrorElement">
+    							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+    						</ObjectAnimationUsingKeyFrames>
+    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(ToolTip.IsOpen)" Storyboard.TargetName="validationTooltip">
+    							<DiscreteObjectKeyFrame KeyTime="0">
+    								<DiscreteObjectKeyFrame.Value>
+    									<sys:Boolean>true</sys:Boolean>
+    								</DiscreteObjectKeyFrame.Value>
+    							</DiscreteObjectKeyFrame>
+    						</ObjectAnimationUsingKeyFrames>
+    					</Storyboard>
+    				</VisualState>
+    				<VisualState x:Name="InvalidUnfocused">
+    					<Storyboard>
+    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ValidationErrorElement">
+    							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+    						</ObjectAnimationUsingKeyFrames>
+    					</Storyboard>
+    				</VisualState>
+    			</VisualStateGroup>
+    			<VisualStateGroup x:Name="EditStates">
+    				<VisualState x:Name="Editable">
+    					<Storyboard>
+    						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PART_EditableTextBox">
+    							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+    						</ObjectAnimationUsingKeyFrames>
+    					</Storyboard>
+    				</VisualState>
+    				<VisualState x:Name="Uneditable"/>
+    			</VisualStateGroup>
     		</VisualStateManager.VisualStateGroups>
     		<ToggleButton x:Name="ToggleButton" Template="{DynamicResource {ComponentResourceKey ResourceId=ComboBoxToggleButtonTemplate, TypeInTargetAssembly={x:Type ToggleButton}}}"
-    			          Grid.Column="2" Focusable="false" ClickMode="Press" 
-    			          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+    			Grid.Column="2" Focusable="false" ClickMode="Press" 
+    			IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
     		<ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}"
-    			              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-    			              Margin="5,3,25,3" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
-    		<TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,3,25,3"
-    			     Focusable="True" Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}" IsHitTestVisible="False">
+    			ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+    			Margin="5,3,25,3" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+    		<TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,3,25,3"
+    			Focusable="True" Background="Transparent" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}" IsHitTestVisible="False">
     			<TextBox.Foreground>
     				<SolidColorBrush Color="{DynamicResource Application_ComboBox_Foreground}"/>
     			</TextBox.Foreground>
@@ -71,7 +125,7 @@
     				<ControlTemplate TargetType="{x:Type TextBox}">
     					<Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
     				</ControlTemplate>
-    			</TextBox.Template>      
+    			</TextBox.Template>
     		</TextBox>
     		<Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"
     			Focusable="False" PopupAnimation="Slide">
@@ -90,10 +144,21 @@
     				</ScrollViewer>
     			</Grid>
     		</Popup>
-    		<Border x:Name="FocusVisualElement" BorderThickness="1" Margin="0" CornerRadius="5" Visibility="Hidden" IsHitTestVisible="False">
+    		<Border x:Name="FocusVisualElement" BorderThickness="1" Margin="0" CornerRadius="2" Visibility="Visible" IsHitTestVisible="False" Opacity="0">
     			<Border.BorderBrush>
     				<SolidColorBrush Color="{DynamicResource Application_ComboBox_BorderBrush_Focus}"/>
     			</Border.BorderBrush>
+    		</Border>
+    		<Border x:Name="ValidationErrorElement" BorderThickness="1" Margin="0" CornerRadius="2" Visibility="Collapsed" IsHitTestVisible="True">
+    			<Border.BorderBrush>
+    				<SolidColorBrush Color="{DynamicResource Application_ComboBox_BorderBrush_ValidationError}"/>
+    			</Border.BorderBrush>
+    			<ToolTipService.ToolTip>
+    				<ToolTip x:Name="validationTooltip" Placement="Bottom"
+    					Template="{DynamicResource ValidationToolTipTemplate}"
+    					PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+    					DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
+    			</ToolTipService.ToolTip>
     		</Border>
     	</Grid>
         <ControlTemplate.Triggers>
@@ -165,7 +230,7 @@
 					<VisualState x:Name="Indeterminate"/>
 				</VisualStateGroup>
 			</VisualStateManager.VisualStateGroups>
-			<Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="5" BorderThickness="1">
+			<Border x:Name="Border" Grid.ColumnSpan="2" CornerRadius="2" BorderThickness="1">
 				<Border.BorderBrush>
 					<SolidColorBrush Color="{StaticResource Application_ComboBox_BorderBrush}"/>
 				</Border.BorderBrush>
@@ -173,7 +238,7 @@
 					<SolidColorBrush Color="{StaticResource Application_ComboBox_Background}"/>
 				</Border.Background>
 			</Border>
-			<Border x:Name="CheckedBorder" Grid.ColumnSpan="2" CornerRadius="5" BorderThickness="1" Opacity="0">
+			<Border x:Name="CheckedBorder" Grid.ColumnSpan="2" CornerRadius="2" BorderThickness="1" Opacity="0">
 				<Border.BorderBrush>
 					<SolidColorBrush Color="{StaticResource Application_ComboBox_BorderBrush}"/>
 				</Border.BorderBrush>

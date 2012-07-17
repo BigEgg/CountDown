@@ -5,10 +5,13 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="DialogStyle.xaml"/>
+        <ResourceDictionary Source="ViewStyle.xaml"/>
         <ResourceDictionary Source="WindowsColors.xaml"/>
         
         <ResourceDictionary Source="Controls/ButtonStyle.xaml"/>
-        
+
+        <ResourceDictionary Source="Controls/CheckBoxStyle.xaml"/>
+
         <ResourceDictionary Source="Controls/ComboBoxItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/ComboBoxStyle.xaml"/>
         
@@ -18,7 +21,8 @@
         
         <ResourceDictionary Source="Controls/ListBoxItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/ListBoxStyle.xaml"/>
-        
+
+        <ResourceDictionary Source="Controls/MenuStyle.xaml"/>
         <ResourceDictionary Source="Controls/MenuItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/MenuSeparatorStyle.xaml"/>
         
@@ -36,4 +40,5 @@
         <ResourceDictionary Source="Controls/ToolTipStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}" />
 </ResourceDictionary>

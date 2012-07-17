@@ -7,6 +7,7 @@
     <Color x:Key="Application_Windows_Background" A="255" R="68" G="68" B="68"/>
     <Color x:Key="Application_Windows_Foreground" A="255" R="255" G="255" B="255"/>
     <Color x:Key="Application_Windows_BorderBrush" A="255" R="84" G="84" B="84"/>
+    <Color x:Key="Application_Menu_Background" A="255" R="58" G="58" B="58"/>
 
     <!-- Dialog Color -->
     <Color x:Key="Application_Dialog_Background" A="255" R="102" G="102" B="102"/>
@@ -14,6 +15,10 @@
     <Color x:Key="Application_Dialog_BorderBrush" A="255" R="84" G="84" B="84"/>
     <Color x:Key="Application_Dialog_HeaderBrush" A="255" R="89" G="89" B="89"/>
     <Color x:Key="Application_Dialog_HeaderAlphaBrush" A="0" R="89" G="89" B="89"/>
+
+    <!-- StatusBar Color -->
+    <Color x:Key="Application_StatusBar_Background" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_StatusBar_Foreground" A="255" R="255" G="255" B="255"/>
 
     <!-- Views Color -->
     <Color x:Key="Application_Views_Background" A="255" R="89" G="89" B="89"/>

@@ -9,7 +9,7 @@
         <ResourceDictionary Source="Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
-    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type Button}">
         <Setter Property="Foreground">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
@@ -81,7 +81,7 @@
         </ControlTemplate.Resources>
 
         <Grid x:Name="MainGrid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-            <Border x:Name="ButtonBorder" BorderThickness="1" CornerRadius="5" Height="Auto" Width="Auto" Margin="0">
+            <Border x:Name="ButtonBorder" BorderThickness="1" CornerRadius="2" Height="Auto" Width="Auto" Margin="0">
             	<Border.BorderBrush>
             		<SolidColorBrush Color="{StaticResource Application_Control_BorderBrush}"/>
             	</Border.BorderBrush>
@@ -90,12 +90,12 @@
             	</Border.Background>
             </Border>
             <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Border x:Name="FocusBorder" BorderThickness="1" CornerRadius="5" Opacity="1" Visibility="Hidden">
+            <Border x:Name="FocusBorder" BorderThickness="1" CornerRadius="2" Opacity="1" Visibility="Hidden">
             	<Border.BorderBrush>
             		<SolidColorBrush Color="{StaticResource Application_Control_BorderBrush_Focus}"/>
             	</Border.BorderBrush>
             </Border>
-            <Border x:Name="DefalutBorder" BorderThickness="2" Margin="0" Visibility="Hidden" CornerRadius="5">
+            <Border x:Name="DefalutBorder" BorderThickness="2" Margin="0" Visibility="Hidden" CornerRadius="2">
             	<Border.BorderBrush>
             		<SolidColorBrush Color="{DynamicResource Application_Control_BorderBrush_Default}"/>
             	</Border.BorderBrush>

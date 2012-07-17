@@ -6,7 +6,7 @@
         <ResourceDictionary Source="Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+    <Style TargetType="{x:Type TabControl}">
         <Setter Property="Foreground">
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>

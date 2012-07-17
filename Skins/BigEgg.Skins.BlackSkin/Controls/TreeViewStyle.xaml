@@ -9,7 +9,7 @@
         <ResourceDictionary Source="TreeViewItemStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="TreeViewStyle" TargetType="{x:Type TreeView}">
+    <Style TargetType="{x:Type TreeView}">
         <Setter Property="Foreground">
             <Setter.Value>
                 <SolidColorBrush Color="{DynamicResource Application_TreeviewItem_Foreground}"/>
@@ -27,7 +27,7 @@
 
     <ControlTemplate x:Key="TreeViewTemplate" TargetType="{x:Type TreeView}">
         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-    		<Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="5">
+    		<Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="2">
     			<Border.Background>
                     <SolidColorBrush Color="{StaticResource Application_TreeviewItem_Background}"/>
     			</Border.Background>

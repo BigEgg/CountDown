@@ -11,10 +11,6 @@
     <Color x:Key="Application_Menu_Foreground_Move" A="255" R="0" G="0" B="0"/>
     <Color x:Key="Application_Menu_Foreground_Disabled" A="255" R="102" G="102" B="102"/>
 
-    <!-- StatusBar Color -->
-    <Color x:Key="Application_StatusBar_Background" A="255" R="51" G="51" B="51"/>
-    <Color x:Key="Application_StatusBar_Foreground" A="255" R="255" G="255" B="255"/>
-
     <!-- Control Color -->
     <Color x:Key="Application_Control_Background" A="255" R="89" G="89" B="89"/>
     <Color x:Key="Application_Control_Foreground" A="255" R="255" G="255" B="255"/>
@@ -97,6 +93,7 @@
     <!-- ComboBox Color -->
     <Color x:Key="Application_ComboBox_Background" A="255" R="66" G="66" B="66"/>
     <Color x:Key="Application_ComboBox_Background_Move" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_ComboBox_BorderBrush_ValidationError" A="255" R="255" G="0" B="0"/>
     <Color x:Key="Application_ComboBox_BorderBrush" A="255" R="51" G="51" B="51"/>
     <Color x:Key="Application_ComboBox_Foreground" A="255" R="255" G="255" B="255"/>
     <Color x:Key="Application_ComboBox_Foreground_Disabled" A="255" R="128" G="128" B="128"/>
@@ -115,4 +112,17 @@
     <Color x:Key="Application_ComboBoxItem_Background_Selection" A="128" R="100" G="149" B="237"/>
     <Color x:Key="Application_ComboBoxItem_BorderBrush_Selection" A="255" R="100" G="149" B="237"/>
     <Color x:Key="Application_ComboBoxItem_Foreground_Disabled" A="255" R="102" G="102" B="102"/>
+
+    <!-- Control Color -->
+    <Color x:Key="Application_CheckBox_Background" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_CheckBox_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_CheckBox_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_CheckBox_Background_Move" A="255" R="170" G="170" B="170"/>
+    <Color x:Key="Application_CheckBox_BorderBrush_Move" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_CheckBox_Background_Pressed" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_CheckBox_BorderBrush_Pressed" A="255" R="0" G="0" B="0"/>
+    <Color x:Key="Application_CheckBox_Background_Disabled" A="255" R="102" G="102" B="102"/>
+    <Color x:Key="Application_CheckBox_Foreground_Disabled" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_CheckBox_BorderBrush_Disabled" A="255" R="84" G="84" B="84"/>
+    <Color x:Key="Application_CheckBox_BorderBrush_Focus" A="255" R="255" G="255" B="255"/>
 </ResourceDictionary>

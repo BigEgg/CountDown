@@ -71,7 +71,7 @@
     				</VisualState>
     			</VisualStateGroup>
     		</VisualStateManager.VisualStateGroups>
-    		<Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="5" Height="Auto" Width="Auto" Margin="0" Opacity="0.1">
+    		<Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="2" Height="Auto" Width="Auto" Margin="0" Opacity="0.1">
     			<Border.Background>
     				<SolidColorBrush Color="{DynamicResource Application_TextBox_Background}"/>
     			</Border.Background>
