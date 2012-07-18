@@ -40,8 +40,8 @@
 
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*" MinWidth="250"/>
-                <ColumnDefinition Width="60*" MinWidth="400"/>
+                <ColumnDefinition Width="33*" MinWidth="300"/>
+                <ColumnDefinition Width="77*" MinWidth="400"/>
             </Grid.ColumnDefinitions>
             <ContentPresenter Content="{Binding ShellService.NewItemsView}"/>
             <ContentPresenter Content="{Binding ShellService.ItemListView}" Grid.Column="1"/>
