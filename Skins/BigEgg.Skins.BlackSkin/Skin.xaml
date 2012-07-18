@@ -10,11 +10,15 @@
         
         <ResourceDictionary Source="Controls/ButtonStyle.xaml"/>
 
+        <ResourceDictionary Source="Controls/CalendarStyle.xaml"/>
+        
         <ResourceDictionary Source="Controls/CheckBoxStyle.xaml"/>
 
         <ResourceDictionary Source="Controls/ComboBoxItemStyle.xaml"/>
         <ResourceDictionary Source="Controls/ComboBoxStyle.xaml"/>
-        
+
+        <ResourceDictionary Source="Controls/DatePickerStyle.xaml"/>
+
         <ResourceDictionary Source="Controls/ExpanderStyle.xaml"/>
         
         <ResourceDictionary Source="Controls/ImageToggleButtonStyle.xaml"/>

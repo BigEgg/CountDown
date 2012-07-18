@@ -113,11 +113,11 @@
     <Color x:Key="Application_ComboBoxItem_BorderBrush_Selection" A="255" R="100" G="149" B="237"/>
     <Color x:Key="Application_ComboBoxItem_Foreground_Disabled" A="255" R="102" G="102" B="102"/>
 
-    <!-- Control Color -->
-    <Color x:Key="Application_CheckBox_Background" A="255" R="89" G="89" B="89"/>
+    <!-- CheckBox Color -->
+    <Color x:Key="Application_CheckBox_Background" A="255" R="66" G="66" B="66"/>
     <Color x:Key="Application_CheckBox_Foreground" A="255" R="255" G="255" B="255"/>
     <Color x:Key="Application_CheckBox_BorderBrush" A="255" R="51" G="51" B="51"/>
-    <Color x:Key="Application_CheckBox_Background_Move" A="255" R="170" G="170" B="170"/>
+    <Color x:Key="Application_CheckBox_Background_Move" A="255" R="89" G="89" B="89"/>
     <Color x:Key="Application_CheckBox_BorderBrush_Move" A="255" R="66" G="66" B="66"/>
     <Color x:Key="Application_CheckBox_Background_Pressed" A="255" R="66" G="66" B="66"/>
     <Color x:Key="Application_CheckBox_BorderBrush_Pressed" A="255" R="0" G="0" B="0"/>
@@ -125,4 +125,41 @@
     <Color x:Key="Application_CheckBox_Foreground_Disabled" A="255" R="66" G="66" B="66"/>
     <Color x:Key="Application_CheckBox_BorderBrush_Disabled" A="255" R="84" G="84" B="84"/>
     <Color x:Key="Application_CheckBox_BorderBrush_Focus" A="255" R="255" G="255" B="255"/>
+
+    <!-- Calendar Color -->
+    <Color x:Key="Application_Calendar_Background" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Calendar_Background_Disabled" A="128" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Calendar_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Calendar_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_Calendar_Header_Background" A="255" R="102" G="102" B="102"/>
+    <Color x:Key="Application_Calendar_Button_Background_Selection" A="128" R="100" G="149" B="237"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush_Selection" A="255" R="100" G="149" B="237"/>
+    <Color x:Key="Application_Calendar_Button_Background" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_Calendar_Button_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_Calendar_Button_Background_Move" A="255" R="170" G="170" B="170"/>
+    <Color x:Key="Application_Calendar_Button_Foreground_Move" A="255" R="0" G="0" B="0"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush_Move" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_Calendar_Button_Background_Pressed" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_Calendar_Button_Foreground_Pressed" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush_Pressed" A="255" R="0" G="0" B="0"/>
+    <Color x:Key="Application_Calendar_Button_Background_Disabled" A="255" R="102" G="102" B="102"/>
+    <Color x:Key="Application_Calendar_Button_Foreground_Disabled" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush_Disabled" A="255" R="84" G="84" B="84"/>
+    <Color x:Key="Application_Calendar_Button_BorderBrush_Focus" A="255" R="255" G="255" B="255"/>
+
+    <!-- DataPicker Color -->
+    <Color x:Key="Application_DataPickerButton_Background" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_DataPickerButton_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_DataPickerButton_Background_Disabled" A="128" R="66" G="66" B="66"/>
+    <Color x:Key="Application_DataPickerButton_Blue_Background" A="255" R="100" G="149" B="237"/>
+    <Color x:Key="Application_DataPickerButton_Foreground" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_DataPickerButton_Foreground2" A="255" R="0" G="0" B="0"/>
+    <Color x:Key="Application_DataPicker_BorderBrush_Focus" A="255" R="255" G="255" B="255"/>
+    <Color x:Key="Application_DataPicker_Background" A="255" R="66" G="66" B="66"/>
+    <Color x:Key="Application_DataPicker_Background_Move" A="255" R="89" G="89" B="89"/>
+    <Color x:Key="Application_DataPicker_BorderBrush" A="255" R="51" G="51" B="51"/>
+    <Color x:Key="Application_DataPicker_BorderBrush_ValidationError" A="255" R="255" G="0" B="0"/>
+    <Color x:Key="Application_DataPicker_Background_Disabled" A="128" R="66" G="66" B="66"/>
+    <Color x:Key="Application_DataPicker_Foreground" A="255" R="255" G="255" B="255"/>
 </ResourceDictionary>

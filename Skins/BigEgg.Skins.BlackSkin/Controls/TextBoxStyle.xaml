@@ -19,6 +19,11 @@
                 <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="CaretBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource Application_Control_Foreground}"/>
+            </Setter.Value>
+        </Setter>
 		<Setter Property="Padding" Value="1"/>
 		<Setter Property="AllowDrop" Value="true"/>
 		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
