@@ -1,13 +1,14 @@
-﻿<Window
+﻿<BEP:DialogWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:CountDown.Presentation.Properties"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:BEP="clr-namespace:BigEgg.Presentation;assembly=BigEgg.Presentation"
         mc:Ignorable="d" x:Class="CountDown.Presentation.Views.Dialogs.SettingDialogView"
 		WindowStartupLocation="CenterOwner"
-        Title="{Binding Title}" Height="300" Width="500" WindowStyle="SingleBorderWindow" 
-        ResizeMode="NoResize" Icon="{StaticResource CountDownImageSource}">
+        Title="{Binding Title}" Height="300" Width="500"
+        Icon="{StaticResource CountDownImageSource}">
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="40" />
@@ -48,4 +49,4 @@
         <Button Content="{x:Static p:Resources.Browse}" Command="{Binding BrowseSoundFile}" Grid.Column="5" Margin="0" Grid.Row="4" Width="75" HorizontalAlignment="Right" Height="25"
                 IsEnabled="{Binding HasAlertSound}"/>
 	</Grid>
-</Window>
+</BEP:DialogWindow>

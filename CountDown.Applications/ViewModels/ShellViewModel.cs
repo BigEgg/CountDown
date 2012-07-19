@@ -25,6 +25,8 @@ namespace CountDown.Applications.ViewModels
         private ICommand settingCommand;
         private ICommand exitCommand;
         private CultureInfo newLanguage;
+
+        private int itemCount = 0;
         #endregion
 
         [ImportingConstructor]
@@ -103,6 +105,19 @@ namespace CountDown.Applications.ViewModels
         public ICommand EnglishCommand { get { return this.englishCommand; } }
 
         public ICommand ChineseCommand { get { return this.chineseCommand; } }
+
+        public int ItemCount
+        {
+            get { return this.itemCount; }
+            set
+            {
+                if (this.itemCount != value)
+                {
+                    this.itemCount = value;
+                    RaisePropertyChanged("ItemCount");
+                }
+            }
+        }
         #endregion
 
         public event CancelEventHandler Closing;

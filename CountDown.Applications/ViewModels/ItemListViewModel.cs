@@ -61,7 +61,7 @@ namespace CountDown.Applications.ViewModels
 
         private void DataServicePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SelectItems")
+            if (e.PropertyName == "SelectedItems")
             {
                 UpdateCommands();
             }

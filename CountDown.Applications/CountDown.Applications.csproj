@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BigEgg.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="BigEgg.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BigEgg.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -92,7 +96,6 @@
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\Dialogs\IAboutDialogView.cs" />
     <Compile Include="Views\Dialogs\IAlertDialogView.cs" />
-    <Compile Include="Views\Dialogs\IDialogView.cs" />
     <Compile Include="Views\Dialogs\ISettingDialogView.cs" />
     <Compile Include="Views\IItemListView.cs" />
     <Compile Include="Views\INewItemsView.cs" />
@@ -118,7 +121,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

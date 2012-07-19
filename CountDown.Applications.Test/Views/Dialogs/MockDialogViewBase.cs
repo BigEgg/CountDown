@@ -1,4 +1,4 @@
-﻿using CountDown.Applications.Views.Dialogs;
+﻿using BigEgg.Presentation;
 
 namespace CountDown.Applications.Test.Views.Dialogs
 {

@@ -39,11 +39,6 @@ namespace CountDown.Applications.Services
         { 
             get 
             {
-                if (this.items.Any())
-                {
-                    this.items.OrderBy(i => i.Time);
-                    this.items.ToArray();
-                }
                 return this.items; 
             } 
         }
@@ -52,11 +47,6 @@ namespace CountDown.Applications.Services
         {
             get
             {
-                if (this.alertedItems.Any())
-                {
-                    this.alertedItems.OrderBy(i => i.Time);
-                    this.alertedItems.ToArray();
-                }
                 return this.alertedItems;
             }
         }
@@ -86,11 +76,9 @@ namespace CountDown.Applications.Services
         {
             if ((e.Action == NotifyCollectionChangedAction.Add) && (!this.selectedItems.Any()))
             {
-                foreach (IAlertItem item in e.NewItems)
-                {
-                    SelectedItems.Add(item);
-                }
+                this.SelectedItem = e.NewItems[e.NewItems.Count - 1] as IAlertItem;
             }
+            RaisePropertyChanged("Items");
         }
 
         private void SelectedItemsChanged(object sender, NotifyCollectionChangedEventArgs e)

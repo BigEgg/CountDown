@@ -88,7 +88,7 @@ namespace CountDown.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Count Down (Beta).
+        ///   Looks up a localized string similar to Count Down.
         /// </summary>
         public static string ApplicationName {
             get {

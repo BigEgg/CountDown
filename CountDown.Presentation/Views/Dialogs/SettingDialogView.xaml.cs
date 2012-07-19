@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
-using CountDown.Applications.Views.Dialogs;
-using System;
-using CountDown.Applications.ViewModels.Dialogs;
 using BigEgg.Framework.Applications;
+using BigEgg.Presentation;
+using CountDown.Applications.ViewModels.Dialogs;
+using CountDown.Applications.Views.Dialogs;
 
 namespace CountDown.Presentation.Views.Dialogs
 {
@@ -11,7 +12,7 @@ namespace CountDown.Presentation.Views.Dialogs
     /// Interaction logic for SettingDialogView.xaml
     /// </summary>
     [Export(typeof(ISettingDialogView)), PartCreationPolicy(CreationPolicy.NonShared)]
-    public partial class SettingDialogView : Window, ISettingDialogView
+    public partial class SettingDialogView : DialogWindow, ISettingDialogView
     {
         private readonly Lazy<SettingDialogViewModel> viewModel;
 
@@ -20,12 +21,6 @@ namespace CountDown.Presentation.Views.Dialogs
             InitializeComponent();
 
             viewModel = new Lazy<SettingDialogViewModel>(() => ViewHelper.GetViewModel<SettingDialogViewModel>(this));
-        }
-
-        public void ShowDialog(object owner)
-        {
-            Owner = owner as Window;
-            ShowDialog();
         }
 
 

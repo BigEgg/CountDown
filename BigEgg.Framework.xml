@@ -4,6 +4,46 @@
         <name>BigEgg.Framework</name>
     </assembly>
     <members>
+        <member name="T:BigEgg.Framework.Foundation.DataErrorInfoSupport">
+            <summary>
+            This class provides an implementation for the <see cref="T:System.ComponentModel.IDataErrorInfo"/> interface which uses the
+            validation classes found in the <see cref="N:System.ComponentModel.DataAnnotations"/> namespace.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoSupport.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Foundation.DataErrorInfoSupport"/> class.
+            </summary>
+            <param name="instance">The instance.</param>
+            <exception cref="T:System.ArgumentNullException">instance must not be <c>null</c>.</exception>
+        </member>
+        <member name="P:BigEgg.Framework.Foundation.DataErrorInfoSupport.Error">
+            <summary>
+            Gets an error message indicating what is wrong with this object.
+            </summary>
+            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
+        </member>
+        <member name="P:BigEgg.Framework.Foundation.DataErrorInfoSupport.Item(System.String)">
+            <summary>
+            Gets the error message for the property with the given name.
+            </summary>
+            <param name="memberName">The name of the property whose error message to get.</param>
+            <returns>The error message for the property. The default is an empty string ("").</returns>
+        </member>
+        <member name="T:BigEgg.Framework.BEConfiguration">
+            <summary>
+            Configuration settings for the BigEgg Application Framework.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.BEConfiguration.Debug">
+            <summary>
+            Gets or sets a value indicating whether the application should run in Debug mode.
+            </summary>
+            <remarks>
+            The Debug mode helps to find errors in the application but it might reduce the
+            performance.
+            </remarks>
+        </member>
         <member name="T:BigEgg.Framework.Applications.ViewModel">
             <summary>
             Abstract base class for a ViewModel implementation.
@@ -91,187 +131,162 @@
             Gets the associated view.
             </summary>
         </member>
-        <member name="T:BigEgg.Framework.Applications.RecentFileList">
+        <member name="T:BigEgg.Framework.Presentation.Services.MessageService">
             <summary>
-            This class encapsulates the logic for a recent file list.
+            This is the default implementation of the <see cref="T:BigEgg.Framework.Applications.Services.IMessageService"/> interface. It shows messages via the MessageBox 
+            to the user.
             </summary>
             <remarks>
-            This class can be used in a Settings file to store and load the recent file list as user settings. In Visual Studio you might need
-            to enter the full class name "BigEgg.Framework.Applications.RecentFileList" in the "Select a type" dialog.
+            If the default implementation of this service doesn't serve your need then you can provide your own implementation.
             </remarks>
         </member>
-        <member name="M:BigEgg.Framework.Applications.RecentFileList.#ctor">
+        <member name="T:BigEgg.Framework.Applications.Services.IMessageService">
             <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.RecentFileList"/> class.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.RecentFileList.Load(System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.RecentFile})">
-            <summary>
-            Loads the specified collection into the recent file list. Use this method when you need to initialize the RecentFileList 
-            manually. This can be useful when you are using an own persistence implementation.
-            </summary>
-            <remarks>Recent file items that exist before the Load method is called are removed.</remarks>
-            <param name="recentFiles">The recent files.</param>
-            <exception cref="T:System.ArgumentNullException">The argument recentFiles must not be null.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.RecentFileList.AddFile(System.String)">
-            <summary>
-            Adds a file to the recent file list. If the file already exists in the list then it only changes the position in the list.
-            </summary>
-            <param name="fileName">The path of the recent file.</param>
-            <exception cref="T:System.ArgumentException">The argument fileName must not be null or empty.</exception>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.RecentFileList.RecentFiles">
-            <summary>
-            Gets the list of recent files.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.RecentFileList.MaxFilesNumber">
-            <summary>
-            Gets or sets the maximum number of recent files in the list.
+            This service shows messages to the user. It returns the answer when the message was a question.
             </summary>
             <remarks>
-            If the set number is lower than the list count then the recent file list is truncated to the number.
+            This interface is designed for simplicity. If you have to accomplish more advanced
+            scenarios then we recommend implementing your own specific message service.
             </remarks>
-            <exception cref="T:System.ArgumentException">The value must be equal or larger than 1.</exception>
         </member>
-        <member name="T:BigEgg.Framework.Applications.ApplicationInfo">
+        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowMessage(System.Object,System.String)">
             <summary>
-            This class provides information about the running application.
+            Shows the message.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.ProductName">
+        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowWarning(System.Object,System.String)">
             <summary>
-            Gets the product name of the application.
+            Shows the message as warning.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Version">
+        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowError(System.Object,System.String)">
             <summary>
-            Gets the version number of the application.
+            Shows the message as error.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Company">
+        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowQuestion(System.Object,System.String)">
             <summary>
-            Gets the company of the application.
+            Shows the specified question.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The question.</param>
+            <returns><c>true</c> for yes, <c>false</c> for no and <c>null</c> for cancel.</returns>
         </member>
-        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Copyright">
+        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowYesNoQuestion(System.Object,System.String)">
             <summary>
-            Gets the copyright information of the application.
+            Shows the specified yes/no question.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The question.</param>
+            <returns><c>true</c> for yes and <c>false</c> for no.</returns>
         </member>
-        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.ApplicationPath">
+        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowMessage(System.Object,System.String)">
             <summary>
-            Gets the path for the executable file that started the application, not including the executable name.
+            Shows the message.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="T:BigEgg.Framework.Applications.ViewHelper">
+        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowWarning(System.Object,System.String)">
             <summary>
-            Provides helper methods that perform common tasks involving a view.
+            Shows the message as warning.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="M:BigEgg.Framework.Applications.ViewHelper.GetViewModel(BigEgg.Framework.Applications.IView)">
+        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowError(System.Object,System.String)">
             <summary>
-            Gets the ViewModel which is associated with the specified view.
+            Shows the message as error.
             </summary>
-            <param name="view">The view.</param>
-            <returns>The associated ViewModel, or <c>null</c> when no ViewModel was found.</returns>
-            <exception cref="T:System.ArgumentNullException">view must not be <c>null</c>.</exception>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The message.</param>
         </member>
-        <member name="M:BigEgg.Framework.Applications.ViewHelper.GetViewModel``1(BigEgg.Framework.Applications.IView)">
+        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowQuestion(System.Object,System.String)">
             <summary>
-            Gets the ViewModel which is associated with the specified view.
+            Shows the specified question.
             </summary>
-            <typeparam name="T">The type of the ViewModel</typeparam>
-            <param name="view">The view.</param>
-            <returns>The associated ViewModel, or <c>null</c> when no ViewModel was found.</returns>
-            <exception cref="T:System.ArgumentNullException">view must not be <c>null</c>.</exception>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The question.</param>
+            <returns><c>true</c> for yes, <c>false</c> for no and <c>null</c> for cancel.</returns>
         </member>
-        <member name="T:BigEgg.Framework.Properties.Resources">
+        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowYesNoQuestion(System.Object,System.String)">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            Shows the specified yes/no question.
             </summary>
+            <param name="owner">The window that owns this Message Window.</param>
+            <param name="message">The question.</param>
+            <returns><c>true</c> for yes and <c>false</c> for no.</returns>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.ResourceManager">
+        <member name="T:BigEgg.Framework.Presentation.Services.FileDialogService">
             <summary>
-              Returns the cached ResourceManager instance used by this class.
+            This is the default implementation of the <see cref="T:BigEgg.Framework.Applications.Services.IFileDialogService"/> interface. It shows an open or save file dialog box.
             </summary>
+            <remarks>
+            If the default implementation of this service doesn't serve your need then you can provide your own implementation.
+            </remarks>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.Culture">
+        <member name="T:BigEgg.Framework.Applications.Services.IFileDialogService">
             <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
+            This service allows a user to specify a filename to open or save a file.
             </summary>
+            <remarks>
+            This interface is designed for simplicity. If you have to accomplish more advanced
+            scenarios then we recommend implementing your own specific file dialog service.
+            </remarks>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeDefault">
+        <member name="M:BigEgg.Framework.Applications.Services.IFileDialogService.ShowOpenFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
             <summary>
-              Looks up a localized string similar to {0} {1} {2}..
+            Shows the open file dialog box that allows a user to specify a file that should be opened.
             </summary>
+            <param name="owner">The window that owns this OpenFileDialog.</param>
+            <param name="fileTypes">The supported file types.</param>
+            <param name="defaultFileType">Default file type.</param>
+            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
+            <returns>A FileDialogResult object which contains the filename selected by the user.</returns>
+            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
+            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeEqualTo">
+        <member name="M:BigEgg.Framework.Applications.Services.IFileDialogService.ShowSaveFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
             <summary>
-              Looks up a localized string similar to {0} is required due to {1} equal to {2}..
+            Shows the save file dialog box that allows a user to specify a filename to save a file as.
             </summary>
+            <param name="owner">The window that owns this SaveFileDialog.</param>
+            <param name="fileTypes">The supported file types.</param>
+            <param name="defaultFileType">Default file type.</param>
+            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
+            <returns>A FileDialogResult object which contains the filename entered by the user.</returns>
+            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
+            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeGreaterThan">
+        <member name="M:BigEgg.Framework.Presentation.Services.FileDialogService.ShowOpenFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
             <summary>
-              Looks up a localized string similar to {0} is required due to {1} greater than {2}..
+            Shows the open file dialog box that allows a user to specify a file that should be opened.
             </summary>
+            <param name="owner">The window that owns this OpenFileDialog.</param>
+            <param name="fileTypes">The supported file types.</param>
+            <param name="defaultFileType">Default file type.</param>
+            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
+            <returns>A FileDialogResult object which contains the filename selected by the user.</returns>
+            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
+            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
         </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeGreaterThanOrEqualTo">
+        <member name="M:BigEgg.Framework.Presentation.Services.FileDialogService.ShowSaveFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
             <summary>
-              Looks up a localized string similar to {0} is required due to {1} greater than or equal to {2}..
+            Shows the save file dialog box that allows a user to specify a filename to save a file as.
             </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeLessThan">
-            <summary>
-              Looks up a localized string similar to {0} is required due to {1} less than {2}..
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeLessThanOrEqualTo">
-            <summary>
-              Looks up a localized string similar to {0} is required due to {1} less than or equal to {2}..
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Properties.Resources.AttributeNotEqualTo">
-            <summary>
-              Looks up a localized string similar to {0} is required due to {1} not equal to {2}..
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.Operator">
-            <summary>
-            The numberic operator Enumerable 
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.EqualTo">
-            <summary>
-            EqualTo
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.NotEqualTo">
-            <summary>
-            NotEqualTo
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.GreaterThan">
-            <summary>
-            GreaterThan
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.LessThan">
-            <summary>
-            LessThan
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.GreaterThanOrEqualTo">
-            <summary>
-            GreaterThanOrEqualTo
-            </summary>
-        </member>
-        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.LessThanOrEqualTo">
-            <summary>
-            LessThanOrEqualTo
-            </summary>
+            <param name="owner">The window that owns this SaveFileDialog.</param>
+            <param name="fileTypes">The supported file types.</param>
+            <param name="defaultFileType">Default file type.</param>
+            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
+            <returns>A FileDialogResult object which contains the filename entered by the user.</returns>
+            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
+            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
         </member>
         <member name="T:BigEgg.Framework.Foundation.Validations.LessThanOrEqualToAttribute">
             <summary>
@@ -324,6 +339,292 @@
             Initializes a new instance of the LessThanOrEqualToAttribute class with the specified object to compare.
             </summary>
             <param name="dependentObject">The specified object to compare</param>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.ViewHelper">
+            <summary>
+            Provides helper methods that perform common tasks involving a view.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.ViewHelper.GetViewModel(BigEgg.Framework.Applications.IView)">
+            <summary>
+            Gets the ViewModel which is associated with the specified view.
+            </summary>
+            <param name="view">The view.</param>
+            <returns>The associated ViewModel, or <c>null</c> when no ViewModel was found.</returns>
+            <exception cref="T:System.ArgumentNullException">view must not be <c>null</c>.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.ViewHelper.GetViewModel``1(BigEgg.Framework.Applications.IView)">
+            <summary>
+            Gets the ViewModel which is associated with the specified view.
+            </summary>
+            <typeparam name="T">The type of the ViewModel</typeparam>
+            <param name="view">The view.</param>
+            <returns>The associated ViewModel, or <c>null</c> when no ViewModel was found.</returns>
+            <exception cref="T:System.ArgumentNullException">view must not be <c>null</c>.</exception>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.RecentFileList">
+            <summary>
+            This class encapsulates the logic for a recent file list.
+            </summary>
+            <remarks>
+            This class can be used in a Settings file to store and load the recent file list as user settings. In Visual Studio you might need
+            to enter the full class name "BigEgg.Framework.Applications.RecentFileList" in the "Select a type" dialog.
+            </remarks>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.RecentFileList.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.RecentFileList"/> class.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.RecentFileList.Load(System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.RecentFile})">
+            <summary>
+            Loads the specified collection into the recent file list. Use this method when you need to initialize the RecentFileList 
+            manually. This can be useful when you are using an own persistence implementation.
+            </summary>
+            <remarks>Recent file items that exist before the Load method is called are removed.</remarks>
+            <param name="recentFiles">The recent files.</param>
+            <exception cref="T:System.ArgumentNullException">The argument recentFiles must not be null.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.RecentFileList.AddFile(System.String)">
+            <summary>
+            Adds a file to the recent file list. If the file already exists in the list then it only changes the position in the list.
+            </summary>
+            <param name="fileName">The path of the recent file.</param>
+            <exception cref="T:System.ArgumentException">The argument fileName must not be null or empty.</exception>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.RecentFileList.RecentFiles">
+            <summary>
+            Gets the list of recent files.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.RecentFileList.MaxFilesNumber">
+            <summary>
+            Gets or sets the maximum number of recent files in the list.
+            </summary>
+            <remarks>
+            If the set number is lower than the list count then the recent file list is truncated to the number.
+            </remarks>
+            <exception cref="T:System.ArgumentException">The value must be equal or larger than 1.</exception>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.Validations.GreaterThanOrEqualToAttribute">
+            <summary>
+            Specifies that a data field value is "GreaterThanOrEqualTo" (or other operator which set) to another dependent data.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.GreaterThanOrEqualToAttribute.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the GreaterThanOrEqualToAttribute class with the specified object to compare.
+            </summary>
+            <param name="dependentObject">The specified object to compare</param>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.SynchronizingCollection`2">
+            <summary>
+            Represents a collection that synchronizes all of it's items with the items of the specified original collection.
+            When the original collection notifies a change via the <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/> interface then
+            this collection synchronizes it's own items with the original items.
+            </summary>
+            <typeparam name="T">The type of elements in the collection.</typeparam>
+            <typeparam name="TOriginal">The type of elements in the original collection.</typeparam>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.SynchronizingCollection`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Func{`1,`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.SynchronizingCollection`2"/> class.
+            </summary>
+            <param name="originalCollection">The original collection.</param>
+            <param name="factory">The factory which is used to create new elements in this collection.</param>
+            <exception cref="T:System.ArgumentNullException">The argument originalCollection must not be null.</exception>
+            <exception cref="T:System.ArgumentNullException">The argument factory must not be null.</exception>
+        </member>
+        <member name="E:BigEgg.Framework.Applications.SynchronizingCollection`2.CollectionChanged">
+            <summary>
+            Occurs when the collection changes.
+            </summary>
+        </member>
+        <member name="E:BigEgg.Framework.Applications.SynchronizingCollection`2.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.Services.FileType">
+            <summary>
+            Represents a file type.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Services.FileType.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileType"/> class.
+            </summary>
+            <param name="description">The description of the file type.</param>
+            <param name="fileExtension">The file extension. This string has to start with a '.' point.</param>
+            <exception cref="T:System.ArgumentException">description is null or an empty string.</exception>
+            <exception cref="T:System.ArgumentException">fileExtension is null, an empty string or doesn't start with a '.' point character.</exception>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.Services.FileType.Description">
+            <summary>
+            Gets the description of the file type.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.Services.FileType.FileExtension">
+            <summary>
+            Gets the file extension. This string starts with a '.' point.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.ApplicationInfo">
+            <summary>
+            This class provides information about the running application.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.ProductName">
+            <summary>
+            Gets the product name of the application.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Version">
+            <summary>
+            Gets the version number of the application.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Company">
+            <summary>
+            Gets the company of the application.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.Copyright">
+            <summary>
+            Gets the copyright information of the application.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ApplicationInfo.ApplicationPath">
+            <summary>
+            Gets the path for the executable file that started the application, not including the executable name.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.Validations.NotEqualToAttribute">
+            <summary>
+            Specifies that a data field value is "NotEqualTo" (or other operator which set) to another dependent data.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.NotEqualToAttribute.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the NotEqualToAttribute class with the specified object to compare.
+            </summary>
+            <param name="dependentObject">The specified object to compare</param>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.DispatcherHelper.DoEvents">
+            <summary>
+            Execute the event queue of the dispatcher.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.Controller">
+            <summary>
+            Abstract base class for a Controller implementation
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.AddWeakEventListener(System.ComponentModel.INotifyPropertyChanged,System.ComponentModel.PropertyChangedEventHandler)">
+            <summary>
+            Adds a weak event listener for a PropertyChanged event.
+            </summary>
+            <param name="source">The source of the event.</param>
+            <param name="handler">The event handler.</param>
+            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.RemoveWeakEventListener(System.ComponentModel.INotifyPropertyChanged,System.ComponentModel.PropertyChangedEventHandler)">
+            <summary>
+            Removes the weak event listener for a PropertyChanged event.
+            </summary>
+            <param name="source">The source of the event.</param>
+            <param name="handler">The event handler.</param>
+            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.AddWeakEventListener(System.Collections.Specialized.INotifyCollectionChanged,System.Collections.Specialized.NotifyCollectionChangedEventHandler)">
+            <summary>
+            Adds a weak event listener for a CollectionChanged event.
+            </summary>
+            <param name="source">The source of the event.</param>
+            <param name="handler">The event handler.</param>
+            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.RemoveWeakEventListener(System.Collections.Specialized.INotifyCollectionChanged,System.Collections.Specialized.NotifyCollectionChangedEventHandler)">
+            <summary>
+            Removes the weak event listener for a CollectionChanged event.
+            </summary>
+            <param name="source">The source of the event.</param>
+            <param name="handler">The event handler.</param>
+            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.OnInitialize">
+            <summary>
+            The method which will execute when the Controller.Initialize() execute.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.Controller.Initialize">
+            <summary>
+            Initialize the Controller.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.Controller.IsInitialized">
+            <summary>
+            Get the flag of the Initialization of the Controller.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.Validations.LessThanAttribute">
+            <summary>
+            Specifies that a data field value is "LessThan" (or other operator which set) to another dependent data.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.LessThanAttribute.#ctor(System.Object)">
+            <summary>
+            Initializes a new instance of the LessThanAttribute class with the specified object to compare.
+            </summary>
+            <param name="dependentObject">The specified object to compare</param>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.PathExtensions">
+            <summary>
+            Extends the <see cref="T:System.IO.Path"/> class with new methods.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.PathExtensions.GetRelativePath(System.String,System.String)">
+            <summary>
+            Get the relative path fo the specific two path.
+            </summary>
+            <param name="fromPath">Contains the directory that defines the start of the relative path.</param> 
+            <param name="toPath">Contains the path that defines the endpoint of the relative path.</param> 
+            <returns>The relative path from the start directory to the end path.</returns> 
+            <exception cref="T:System.ArgumentNullException"></exception> 
+            <example>
+            @"..\..\regedit.exe" = GetRelativePath(@"D:\Windows\Web\Wallpaper\", @"D:\Windows\regedit.exe" );
+            </example>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.RecentFile">
+            <summary>
+            Represents a recent file.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.RecentFile.#ctor">
+            <summary>
+            This constructor overload is reserved and should not be used. It is used internally by the XmlSerializer.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.RecentFile.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.RecentFile"/> class.
+            </summary>
+            <param name="path">The file path.</param>
+            <exception cref="T:System.ArgumentException">The argument path must not be null or empty.</exception>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.RecentFile.IsPinned">
+            <summary>
+            Gets or sets a value indicating whether this recent file is pinned.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.RecentFile.Path">
+            <summary>
+            Gets the file path.
+            </summary>
         </member>
         <member name="T:BigEgg.Framework.Applications.DelegateCommand">
             <summary>
@@ -393,16 +694,38 @@
             Occurs when changes occur that affect whether or not the command should execute.
             </summary>
         </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.LessThanAttribute">
+        <member name="T:BigEgg.Framework.Foundation.Validations.GreaterThanAttribute">
             <summary>
-            Specifies that a data field value is "LessThan" (or other operator which set) to another dependent data.
+            Specifies that a data field value is "GreaterThan" (or other operator which set) to another dependent data.
             </summary>
         </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.LessThanAttribute.#ctor(System.Object)">
+        <member name="M:BigEgg.Framework.Foundation.Validations.GreaterThanAttribute.#ctor(System.Object)">
             <summary>
-            Initializes a new instance of the LessThanAttribute class with the specified object to compare.
+            Initializes a new instance of the GreaterThanAttribute class with the specified object to compare.
             </summary>
             <param name="dependentObject">The specified object to compare</param>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.DataErrorInfoExtensions">
+            <summary>
+            Extends the <see cref="T:System.ComponentModel.IDataErrorInfo"/> interface with new Validation methods.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoExtensions.Validate(System.ComponentModel.IDataErrorInfo)">
+            <summary>
+            Validates the specified object.
+            </summary>
+            <param name="instance">The object to validate.</param>
+            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
+            <exception cref="T:System.ArgumentNullException">The argument instance must not be null.</exception>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoExtensions.Validate(System.ComponentModel.IDataErrorInfo,System.String)">
+            <summary>
+            Validates the specified member of the object.
+            </summary>
+            <param name="instance">The object to validate.</param>
+            <param name="memberName">The name of the member to validate.</param>
+            <returns>The error message for the member. The default is an empty string ("").</returns>
+            <exception cref="T:System.ArgumentNullException">The argument instance must not be null.</exception>
         </member>
         <member name="T:BigEgg.Framework.Applications.Services.MessageServiceExtensions">
             <summary>
@@ -450,334 +773,6 @@
             <param name="message">The question.</param>
             <returns><c>true</c> for yes and <c>false</c> for no.</returns>
             <exception cref="T:System.ArgumentNullException">The argument service must not be null.</exception>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.GreaterThanAttribute">
-            <summary>
-            Specifies that a data field value is "GreaterThan" (or other operator which set) to another dependent data.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.GreaterThanAttribute.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of the GreaterThanAttribute class with the specified object to compare.
-            </summary>
-            <param name="dependentObject">The specified object to compare</param>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.ViewModel`1">
-            <summary>
-            Abstract base class for a ViewModel implementation.
-            </summary>
-            <typeparam name="TView">The type of the view. Do provide an interface as type and not the concrete type itself.</typeparam>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.ViewModel`1.#ctor(`0)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.ViewModel`1"/> class and
-            attaches itself as <c>DataContext</c> to the view.
-            </summary>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.ViewModel`1.#ctor(`0,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.ViewModel`1"/> class.
-            </summary>
-            <param name="view">The view.</param>
-            <param name="isChild">if set to <c>true</c> then the ViewModel is a child of another ViewModel.</param>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.ViewModel`1.ViewCore">
-            <summary>
-            Gets the associated view as specified view type.
-            </summary>
-            <remarks>
-            Use this property in a ViewModel class to avoid casting.
-            </remarks>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.GreaterThanOrEqualToAttribute">
-            <summary>
-            Specifies that a data field value is "GreaterThanOrEqualTo" (or other operator which set) to another dependent data.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.GreaterThanOrEqualToAttribute.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of the GreaterThanOrEqualToAttribute class with the specified object to compare.
-            </summary>
-            <param name="dependentObject">The specified object to compare</param>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.IView">
-            <summary>
-            Represents a view
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.IView.DataContext">
-            <summary>
-            Gets or sets the data context of the view.
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.Controller">
-            <summary>
-            Abstract base class for a Controller implementation
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.AddWeakEventListener(System.ComponentModel.INotifyPropertyChanged,System.ComponentModel.PropertyChangedEventHandler)">
-            <summary>
-            Adds a weak event listener for a PropertyChanged event.
-            </summary>
-            <param name="source">The source of the event.</param>
-            <param name="handler">The event handler.</param>
-            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
-            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.RemoveWeakEventListener(System.ComponentModel.INotifyPropertyChanged,System.ComponentModel.PropertyChangedEventHandler)">
-            <summary>
-            Removes the weak event listener for a PropertyChanged event.
-            </summary>
-            <param name="source">The source of the event.</param>
-            <param name="handler">The event handler.</param>
-            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
-            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.AddWeakEventListener(System.Collections.Specialized.INotifyCollectionChanged,System.Collections.Specialized.NotifyCollectionChangedEventHandler)">
-            <summary>
-            Adds a weak event listener for a CollectionChanged event.
-            </summary>
-            <param name="source">The source of the event.</param>
-            <param name="handler">The event handler.</param>
-            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
-            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.RemoveWeakEventListener(System.Collections.Specialized.INotifyCollectionChanged,System.Collections.Specialized.NotifyCollectionChangedEventHandler)">
-            <summary>
-            Removes the weak event listener for a CollectionChanged event.
-            </summary>
-            <param name="source">The source of the event.</param>
-            <param name="handler">The event handler.</param>
-            <exception cref="T:System.ArgumentNullException">source must not be <c>null</c>.</exception>
-            <exception cref="T:System.ArgumentNullException">handler must not be <c>null</c>.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.OnInitialize">
-            <summary>
-            The method which will execute when the Controller.Initialize() execute.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Controller.Initialize">
-            <summary>
-            Initialize the Controller.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Controller.IsInitialized">
-            <summary>
-            Get the flag of the Initialization of the Controller.
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Presentation.Services.FileDialogService">
-            <summary>
-            This is the default implementation of the <see cref="T:BigEgg.Framework.Applications.Services.IFileDialogService"/> interface. It shows an open or save file dialog box.
-            </summary>
-            <remarks>
-            If the default implementation of this service doesn't serve your need then you can provide your own implementation.
-            </remarks>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.Services.IFileDialogService">
-            <summary>
-            This service allows a user to specify a filename to open or save a file.
-            </summary>
-            <remarks>
-            This interface is designed for simplicity. If you have to accomplish more advanced
-            scenarios then we recommend implementing your own specific file dialog service.
-            </remarks>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IFileDialogService.ShowOpenFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
-            <summary>
-            Shows the open file dialog box that allows a user to specify a file that should be opened.
-            </summary>
-            <param name="owner">The window that owns this OpenFileDialog.</param>
-            <param name="fileTypes">The supported file types.</param>
-            <param name="defaultFileType">Default file type.</param>
-            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
-            <returns>A FileDialogResult object which contains the filename selected by the user.</returns>
-            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
-            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IFileDialogService.ShowSaveFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
-            <summary>
-            Shows the save file dialog box that allows a user to specify a filename to save a file as.
-            </summary>
-            <param name="owner">The window that owns this SaveFileDialog.</param>
-            <param name="fileTypes">The supported file types.</param>
-            <param name="defaultFileType">Default file type.</param>
-            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
-            <returns>A FileDialogResult object which contains the filename entered by the user.</returns>
-            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
-            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.FileDialogService.ShowOpenFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
-            <summary>
-            Shows the open file dialog box that allows a user to specify a file that should be opened.
-            </summary>
-            <param name="owner">The window that owns this OpenFileDialog.</param>
-            <param name="fileTypes">The supported file types.</param>
-            <param name="defaultFileType">Default file type.</param>
-            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
-            <returns>A FileDialogResult object which contains the filename selected by the user.</returns>
-            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
-            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.FileDialogService.ShowSaveFileDialog(System.Object,System.Collections.Generic.IEnumerable{BigEgg.Framework.Applications.Services.FileType},BigEgg.Framework.Applications.Services.FileType,System.String)">
-            <summary>
-            Shows the save file dialog box that allows a user to specify a filename to save a file as.
-            </summary>
-            <param name="owner">The window that owns this SaveFileDialog.</param>
-            <param name="fileTypes">The supported file types.</param>
-            <param name="defaultFileType">Default file type.</param>
-            <param name="defaultFileName">Default filename. The directory name is used as initial directory when it is specified.</param>
-            <returns>A FileDialogResult object which contains the filename entered by the user.</returns>
-            <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
-            <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute">
-            <summary>
-            Specifies that a data field value is required if other Property is is "EqualTo" (or other operator which set) to another dependent data.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.#ctor(System.String,System.String,System.Object,BigEgg.Framework.Foundation.Validations.Operator)">
-            <summary>
-            Initializes a new instance of the RequiredIfAttribute class with the specified property name and object to compare and the Operator value.
-            </summary>
-            <param name="propertyName">The specified property name which is Required.</param>
-            <param name="dependentPropertyName">The specified object name which need to be compared.</param>
-            <param name="dependentObject">The specified object to compare.</param>
-            <param name="operator">The compare operator.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.IsValid(System.Object)">
-            <summary>
-            Validation method.
-            </summary>
-            <param name="value">The class object.</param>
-            <returns>True if the data field pass the validation. Otherwise, return false.</returns>
-        </member>
-        <member name="P:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.PropertyName">
-            <summary>
-            The property name which is Required.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.DependentPropertyName">
-            <summary>
-            The property name which need to be compared.
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.RecentFile">
-            <summary>
-            Represents a recent file.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.RecentFile.#ctor">
-            <summary>
-            This constructor overload is reserved and should not be used. It is used internally by the XmlSerializer.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.RecentFile.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.RecentFile"/> class.
-            </summary>
-            <param name="path">The file path.</param>
-            <exception cref="T:System.ArgumentException">The argument path must not be null or empty.</exception>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.RecentFile.IsPinned">
-            <summary>
-            Gets or sets a value indicating whether this recent file is pinned.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.RecentFile.Path">
-            <summary>
-            Gets the file path.
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.PathAttribute">
-            <summary>
-            Specifies that a string field value contains absolute or relative path information.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.PathAttribute.IsValid(System.Object)">
-            <summary>
-            Validation method.
-            </summary>
-            <param name="value">The data field.</param>
-            <returns>True if the data field pass the validation. Otherwise, return false.</returns>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.DataErrorInfoSupport">
-            <summary>
-            This class provides an implementation for the <see cref="T:System.ComponentModel.IDataErrorInfo"/> interface which uses the
-            validation classes found in the <see cref="N:System.ComponentModel.DataAnnotations"/> namespace.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoSupport.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Foundation.DataErrorInfoSupport"/> class.
-            </summary>
-            <param name="instance">The instance.</param>
-            <exception cref="T:System.ArgumentNullException">instance must not be <c>null</c>.</exception>
-        </member>
-        <member name="P:BigEgg.Framework.Foundation.DataErrorInfoSupport.Error">
-            <summary>
-            Gets an error message indicating what is wrong with this object.
-            </summary>
-            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
-        </member>
-        <member name="P:BigEgg.Framework.Foundation.DataErrorInfoSupport.Item(System.String)">
-            <summary>
-            Gets the error message for the property with the given name.
-            </summary>
-            <param name="memberName">The name of the property whose error message to get.</param>
-            <returns>The error message for the property. The default is an empty string ("").</returns>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.PathExtensions">
-            <summary>
-            Extends the <see cref="T:System.IO.Path"/> class with new methods.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.PathExtensions.GetRelativePath(System.String,System.String)">
-            <summary>
-            Get the relative path fo the specific two path.
-            </summary>
-            <param name="fromPath">Contains the directory that defines the start of the relative path.</param> 
-            <param name="toPath">Contains the path that defines the endpoint of the relative path.</param> 
-            <returns>The relative path from the start directory to the end path.</returns> 
-            <exception cref="T:System.ArgumentNullException"></exception> 
-            <example>
-            @"..\..\regedit.exe" = GetRelativePath(@"D:\Windows\Web\Wallpaper\", @"D:\Windows\regedit.exe" );
-            </example>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.Services.FileDialogResult">
-            <summary>
-            Contains the result information about the work with the file dialog box.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.FileDialogResult.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileDialogResult"/> class with null values.
-            Use this constructor when the user canceled the file dialog box.
-            </summary>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.FileDialogResult.#ctor(System.String,BigEgg.Framework.Applications.Services.FileType)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileDialogResult"/> class.
-            </summary>
-            <param name="fileName">The filename entered by the user.</param>
-            <param name="selectedFileType">The file type selected by the user.</param>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.IsValid">
-            <summary>
-            Gets a value indicating whether this instance contains valid data. This property returns <c>false</c>
-            when the user canceled the file dialog box.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.FileName">
-            <summary>
-            Gets the filename entered by the user or <c>null</c> when the user canceled the dialog box.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.SelectedFileType">
-            <summary>
-            Gets the file type selected by the user or <c>null</c> when the user canceled the dialog box.
-            </summary>
         </member>
         <member name="T:BigEgg.Framework.Applications.Services.FileDialogServiceExtensions">
             <summary>
@@ -944,200 +939,206 @@
             <exception cref="T:System.ArgumentNullException">fileTypes must not be null.</exception>
             <exception cref="T:System.ArgumentException">fileTypes must contain at least one item.</exception>
         </member>
-        <member name="T:BigEgg.Framework.Presentation.Services.MessageService">
+        <member name="T:BigEgg.Framework.Foundation.Validations.Operator">
             <summary>
-            This is the default implementation of the <see cref="T:BigEgg.Framework.Applications.Services.IMessageService"/> interface. It shows messages via the MessageBox 
-            to the user.
+            The numberic operator Enumerable 
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.EqualTo">
+            <summary>
+            EqualTo
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.NotEqualTo">
+            <summary>
+            NotEqualTo
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.GreaterThan">
+            <summary>
+            GreaterThan
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.LessThan">
+            <summary>
+            LessThan
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.GreaterThanOrEqualTo">
+            <summary>
+            GreaterThanOrEqualTo
+            </summary>
+        </member>
+        <member name="F:BigEgg.Framework.Foundation.Validations.Operator.LessThanOrEqualTo">
+            <summary>
+            LessThanOrEqualTo
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.IView">
+            <summary>
+            Represents a view
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.IView.DataContext">
+            <summary>
+            Gets or sets the data context of the view.
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeDefault">
+            <summary>
+              Looks up a localized string similar to {0} {1} {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeEqualTo">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} equal to {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeGreaterThan">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} greater than {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeGreaterThanOrEqualTo">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} greater than or equal to {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeLessThan">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} less than {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeLessThanOrEqualTo">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} less than or equal to {2}..
+            </summary>
+        </member>
+        <member name="P:BigEgg.Framework.Properties.Resources.AttributeNotEqualTo">
+            <summary>
+              Looks up a localized string similar to {0} is required due to {1} not equal to {2}..
+            </summary>
+        </member>
+        <member name="T:BigEgg.Framework.Foundation.Validations.PathAttribute">
+            <summary>
+            Specifies that a string field value contains absolute or relative path information.
+            </summary>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.PathAttribute.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="AllowEmptyString"></param>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.PathAttribute.IsValid(System.Object)">
+            <summary>
+            Validation method.
+            </summary>
+            <param name="value">The data field.</param>
+            <returns>True if the data field pass the validation. Otherwise, return false.</returns>
+        </member>
+        <member name="T:BigEgg.Framework.Applications.ViewModel`1">
+            <summary>
+            Abstract base class for a ViewModel implementation.
+            </summary>
+            <typeparam name="TView">The type of the view. Do provide an interface as type and not the concrete type itself.</typeparam>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.ViewModel`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.ViewModel`1"/> class and
+            attaches itself as <c>DataContext</c> to the view.
+            </summary>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:BigEgg.Framework.Applications.ViewModel`1.#ctor(`0,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.ViewModel`1"/> class.
+            </summary>
+            <param name="view">The view.</param>
+            <param name="isChild">if set to <c>true</c> then the ViewModel is a child of another ViewModel.</param>
+        </member>
+        <member name="P:BigEgg.Framework.Applications.ViewModel`1.ViewCore">
+            <summary>
+            Gets the associated view as specified view type.
             </summary>
             <remarks>
-            If the default implementation of this service doesn't serve your need then you can provide your own implementation.
+            Use this property in a ViewModel class to avoid casting.
             </remarks>
         </member>
-        <member name="T:BigEgg.Framework.Applications.Services.IMessageService">
+        <member name="T:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute">
             <summary>
-            This service shows messages to the user. It returns the answer when the message was a question.
-            </summary>
-            <remarks>
-            This interface is designed for simplicity. If you have to accomplish more advanced
-            scenarios then we recommend implementing your own specific message service.
-            </remarks>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowMessage(System.Object,System.String)">
-            <summary>
-            Shows the message.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowWarning(System.Object,System.String)">
-            <summary>
-            Shows the message as warning.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowError(System.Object,System.String)">
-            <summary>
-            Shows the message as error.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowQuestion(System.Object,System.String)">
-            <summary>
-            Shows the specified question.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The question.</param>
-            <returns><c>true</c> for yes, <c>false</c> for no and <c>null</c> for cancel.</returns>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.Services.IMessageService.ShowYesNoQuestion(System.Object,System.String)">
-            <summary>
-            Shows the specified yes/no question.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The question.</param>
-            <returns><c>true</c> for yes and <c>false</c> for no.</returns>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowMessage(System.Object,System.String)">
-            <summary>
-            Shows the message.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowWarning(System.Object,System.String)">
-            <summary>
-            Shows the message as warning.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowError(System.Object,System.String)">
-            <summary>
-            Shows the message as error.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowQuestion(System.Object,System.String)">
-            <summary>
-            Shows the specified question.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The question.</param>
-            <returns><c>true</c> for yes, <c>false</c> for no and <c>null</c> for cancel.</returns>
-        </member>
-        <member name="M:BigEgg.Framework.Presentation.Services.MessageService.ShowYesNoQuestion(System.Object,System.String)">
-            <summary>
-            Shows the specified yes/no question.
-            </summary>
-            <param name="owner">The window that owns this Message Window.</param>
-            <param name="message">The question.</param>
-            <returns><c>true</c> for yes and <c>false</c> for no.</returns>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.SynchronizingCollection`2">
-            <summary>
-            Represents a collection that synchronizes all of it's items with the items of the specified original collection.
-            When the original collection notifies a change via the <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/> interface then
-            this collection synchronizes it's own items with the original items.
-            </summary>
-            <typeparam name="T">The type of elements in the collection.</typeparam>
-            <typeparam name="TOriginal">The type of elements in the original collection.</typeparam>
-        </member>
-        <member name="M:BigEgg.Framework.Applications.SynchronizingCollection`2.#ctor(System.Collections.Generic.IEnumerable{`1},System.Func{`1,`0})">
-            <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.SynchronizingCollection`2"/> class.
-            </summary>
-            <param name="originalCollection">The original collection.</param>
-            <param name="factory">The factory which is used to create new elements in this collection.</param>
-            <exception cref="T:System.ArgumentNullException">The argument originalCollection must not be null.</exception>
-            <exception cref="T:System.ArgumentNullException">The argument factory must not be null.</exception>
-        </member>
-        <member name="E:BigEgg.Framework.Applications.SynchronizingCollection`2.CollectionChanged">
-            <summary>
-            Occurs when the collection changes.
+            Specifies that a data field value is required if other Property is is "EqualTo" (or other operator which set) to another dependent data.
             </summary>
         </member>
-        <member name="E:BigEgg.Framework.Applications.SynchronizingCollection`2.PropertyChanged">
+        <member name="M:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.#ctor(System.String,System.Object,BigEgg.Framework.Foundation.Validations.Operator)">
             <summary>
-            Occurs when a property value changes.
+            Initializes a new instance of the RequiredIfAttribute class with the specified property name and object to compare and the Operator value.
+            </summary>
+            <param name="dependentPropertyName">The specified object name which need to be compared.</param>
+            <param name="dependentObject">The specified object to compare.</param>
+            <param name="operator">The compare operator.</param>
+        </member>
+        <member name="M:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Validates the specified value with respect to the current validation attribute.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="validationContext">The context information about the validation operation.</param>
+            <returns>An instance of the ValidationResult class.</returns>
+        </member>
+        <member name="P:BigEgg.Framework.Foundation.Validations.RequiredIfAttribute.DependentPropertyName">
+            <summary>
+            The property name which need to be compared.
             </summary>
         </member>
-        <member name="T:BigEgg.Framework.Foundation.DataErrorInfoExtensions">
+        <member name="T:BigEgg.Framework.Applications.Services.FileDialogResult">
             <summary>
-            Extends the <see cref="T:System.ComponentModel.IDataErrorInfo"/> interface with new Validation methods.
+            Contains the result information about the work with the file dialog box.
             </summary>
         </member>
-        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoExtensions.Validate(System.ComponentModel.IDataErrorInfo)">
+        <member name="M:BigEgg.Framework.Applications.Services.FileDialogResult.#ctor">
             <summary>
-            Validates the specified object.
-            </summary>
-            <param name="instance">The object to validate.</param>
-            <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
-            <exception cref="T:System.ArgumentNullException">The argument instance must not be null.</exception>
-        </member>
-        <member name="M:BigEgg.Framework.Foundation.DataErrorInfoExtensions.Validate(System.ComponentModel.IDataErrorInfo,System.String)">
-            <summary>
-            Validates the specified member of the object.
-            </summary>
-            <param name="instance">The object to validate.</param>
-            <param name="memberName">The name of the member to validate.</param>
-            <returns>The error message for the member. The default is an empty string ("").</returns>
-            <exception cref="T:System.ArgumentNullException">The argument instance must not be null.</exception>
-        </member>
-        <member name="T:BigEgg.Framework.BEConfiguration">
-            <summary>
-            Configuration settings for the BigEgg Application Framework.
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileDialogResult"/> class with null values.
+            Use this constructor when the user canceled the file dialog box.
             </summary>
         </member>
-        <member name="P:BigEgg.Framework.BEConfiguration.Debug">
+        <member name="M:BigEgg.Framework.Applications.Services.FileDialogResult.#ctor(System.String,BigEgg.Framework.Applications.Services.FileType)">
             <summary>
-            Gets or sets a value indicating whether the application should run in Debug mode.
+            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileDialogResult"/> class.
             </summary>
-            <remarks>
-            The Debug mode helps to find errors in the application but it might reduce the
-            performance.
-            </remarks>
+            <param name="fileName">The filename entered by the user.</param>
+            <param name="selectedFileType">The file type selected by the user.</param>
         </member>
-        <member name="M:BigEgg.Framework.Applications.DispatcherHelper.DoEvents">
+        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.IsValid">
             <summary>
-            Execute the event queue of the dispatcher.
-            </summary>
-        </member>
-        <member name="T:BigEgg.Framework.Foundation.Validations.NotEqualToAttribute">
-            <summary>
-            Specifies that a data field value is "NotEqualTo" (or other operator which set) to another dependent data.
+            Gets a value indicating whether this instance contains valid data. This property returns <c>false</c>
+            when the user canceled the file dialog box.
             </summary>
         </member>
-        <member name="M:BigEgg.Framework.Foundation.Validations.NotEqualToAttribute.#ctor(System.Object)">
+        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.FileName">
             <summary>
-            Initializes a new instance of the NotEqualToAttribute class with the specified object to compare.
-            </summary>
-            <param name="dependentObject">The specified object to compare</param>
-        </member>
-        <member name="T:BigEgg.Framework.Applications.Services.FileType">
-            <summary>
-            Represents a file type.
+            Gets the filename entered by the user or <c>null</c> when the user canceled the dialog box.
             </summary>
         </member>
-        <member name="M:BigEgg.Framework.Applications.Services.FileType.#ctor(System.String,System.String)">
+        <member name="P:BigEgg.Framework.Applications.Services.FileDialogResult.SelectedFileType">
             <summary>
-            Initializes a new instance of the <see cref="T:BigEgg.Framework.Applications.Services.FileType"/> class.
-            </summary>
-            <param name="description">The description of the file type.</param>
-            <param name="fileExtension">The file extension. This string has to start with a '.' point.</param>
-            <exception cref="T:System.ArgumentException">description is null or an empty string.</exception>
-            <exception cref="T:System.ArgumentException">fileExtension is null, an empty string or doesn't start with a '.' point character.</exception>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Services.FileType.Description">
-            <summary>
-            Gets the description of the file type.
-            </summary>
-        </member>
-        <member name="P:BigEgg.Framework.Applications.Services.FileType.FileExtension">
-            <summary>
-            Gets the file extension. This string starts with a '.' point.
+            Gets the file type selected by the user or <c>null</c> when the user canceled the dialog box.
             </summary>
         </member>
     </members>

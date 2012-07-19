@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using BigEgg.Framework.Applications;
+using BigEgg.Presentation;
 using CountDown.Applications.ViewModels.Dialogs;
 using CountDown.Applications.Views.Dialogs;
 
@@ -13,7 +14,7 @@ namespace CountDown.Presentation.Views.Dialogs
     /// Interaction logic for AlertDialogView.xaml
     /// </summary>
     [Export(typeof(IAlertDialogView))]
-    public partial class AlertDialogView : Window, IAlertDialogView
+    public partial class AlertDialogView : DialogWindow, IAlertDialogView
     {
         private readonly Lazy<AlertDialogViewModel> viewModel;
         private AlertDialogViewModel ViewModel { get { return viewModel.Value; } }
@@ -27,10 +28,10 @@ namespace CountDown.Presentation.Views.Dialogs
         }
 
 
-        public void ShowDialog(object owner)
+        public override void ShowDialog(object owner)
         {
-            Owner = owner as Window;
             Show();
+            Owner = owner as Window;
             this.Visibility = Visibility.Visible;
 
             if (ViewModel.HasAlertSound)

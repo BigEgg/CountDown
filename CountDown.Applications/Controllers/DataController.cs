@@ -15,6 +15,7 @@ using CountDown.Applications.Properties;
 using CountDown.Applications.Services;
 using CountDown.Applications.ViewModels.Dialogs;
 using CountDown.Applications.Views.Dialogs;
+using CountDown.Applications.ViewModels;
 
 namespace CountDown.Applications.Controllers
 {
@@ -28,7 +29,7 @@ namespace CountDown.Applications.Controllers
         private readonly IMessageService messageService;
         private readonly IShellService shellService;
         private readonly DataService dataService;
-
+        private ShellViewModel shellViewModel;
         private AlertDialogViewModel alertDialogViewModel;
 
         private Timer cleanExpiredTimer = null;
@@ -49,6 +50,8 @@ namespace CountDown.Applications.Controllers
         #region Methods
         protected override void OnInitialize()
         {
+            this.shellViewModel = container.GetExportedValue<ShellViewModel>();
+
             LoadData();
 
             this.dataService.SelectedItem = this.dataService.Items.FirstOrDefault();
@@ -120,7 +123,6 @@ namespace CountDown.Applications.Controllers
                 sr.ReadLine();
                 sr.ReadLine();
 
-                this.dataService.Items.Clear();
                 while (!sr.EndOfStream)
                 {
                     line = sr.ReadLine().Split('|');
@@ -148,6 +150,10 @@ namespace CountDown.Applications.Controllers
             if (e.PropertyName == "AlertedItems")
             {
                 ShowAlert();
+            }
+            else if (e.PropertyName == "Items")
+            {
+                this.shellViewModel.ItemCount = this.dataService.Items.Count;
             }
         }
 

@@ -44,6 +44,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BigEgg.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="BigEgg.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BigEgg.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="BigEgg.Skins.BlackSkin, Version=0.3.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BigEgg.Skins.BlackSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />

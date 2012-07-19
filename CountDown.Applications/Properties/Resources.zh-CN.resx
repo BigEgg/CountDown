@@ -127,7 +127,7 @@
     <value>预报时间是必须的。</value>
   </data>
   <data name="ApplicationName" xml:space="preserve">
-    <value>小闹钟（Beta）</value>
+    <value>小闹钟</value>
   </data>
   <data name="BeforeAlertMinutesMandatory" xml:space="preserve">
     <value>提前报时时间是必须的。</value>

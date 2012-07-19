@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using BigEgg.Framework.Applications;
 using BigEgg.Framework.Foundation;
+using BigEgg.Presentation;
 using CountDown.Applications.Properties;
-using CountDown.Applications.Views.Dialogs;
 
 namespace CountDown.Applications.ViewModels.Dialogs
 {

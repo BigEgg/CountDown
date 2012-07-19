@@ -1,20 +1,22 @@
-﻿<Window x:Class="CountDown.Presentation.Views.Dialogs.AlertDialogView"
+﻿<BEP:DialogWindow x:Class="CountDown.Presentation.Views.Dialogs.AlertDialogView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:c="clr-namespace:CountDown.Presentation.Converters"
         xmlns:domain="clr-namespace:CountDown.Applications.Domain;assembly=CountDown.Applications"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:p="clr-namespace:CountDown.Presentation.Properties"
+        xmlns:BEP="clr-namespace:BigEgg.Presentation;assembly=BigEgg.Presentation"
 		WindowStartupLocation="CenterOwner"
         Title="{Binding Title}" Height="300" Width="300" Closing="Window_Closing"
-        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Icon="{StaticResource CountDownImageSource}">
-    <Window.Resources>
+        Icon="{StaticResource CountDownImageSource}">
+    
+    <BEP:DialogWindow.Resources>
         <CollectionViewSource Source="{Binding Items}" x:Key="ItemsCVS">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Time"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
-    </Window.Resources>
+    </BEP:DialogWindow.Resources>
     
     <Grid Margin="10">
     	<Grid.RowDefinitions>
@@ -35,4 +37,4 @@
         <Button Content="{x:Static p:Resources.IKnowIt}" Command="{Binding OKCommand}" Margin="0" Grid.Row="3" Width="75" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         <CheckBox Grid.Row="2" Content="{x:Static p:Resources.SettingHasAlertSound}" IsChecked="{Binding HasAlertSound}" HorizontalAlignment="Left" VerticalAlignment="Center" Unchecked="CheckBox_Unchecked" />
     </Grid>
-</Window>
+</BEP:DialogWindow>
