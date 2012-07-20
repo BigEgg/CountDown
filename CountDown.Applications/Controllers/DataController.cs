@@ -161,19 +161,18 @@ namespace CountDown.Applications.Controllers
         {
             // Show the Alert dialg view to the user
             IAlertDialogView alertDialog = container.GetExportedValue<IAlertDialogView>();
+            List<IAlertItem> newAlertItem = this.dataService.AlertedItems.Where(c => !c.HasAlert).ToList(); ;
 
-            if ((this.alertDialogViewModel != null))
+            if (this.alertDialogViewModel == null)
             {
-                DateTime lastTime = this.alertDialogViewModel.Items.Max(c => c.AlertTime);
-                List<IAlertItem> newAlertItem = this.dataService.AlertedItems.Where(
-                    c => (c.AlertTime > lastTime) && (!c.HasAlert)).ToList();
+                MultiThreadingObservableCollection<IAlertItem> items = new MultiThreadingObservableCollection<IAlertItem>();
 
-                foreach (IAlertItem item in newAlertItem)
-                    this.alertDialogViewModel.Items.Add(item);
+                this.alertDialogViewModel = new AlertDialogViewModel(alertDialog, items);
             }
-            else
+            foreach (IAlertItem item in newAlertItem)
             {
-                this.alertDialogViewModel = new AlertDialogViewModel(alertDialog, this.dataService.AlertedItems);
+                if (!this.alertDialogViewModel.Items.Contains(item))
+                    this.alertDialogViewModel.Items.Add(item);
             }
             this.alertDialogViewModel.HasAlertSound = Settings.Default.HasAlertSound;
 
@@ -198,7 +197,7 @@ namespace CountDown.Applications.Controllers
         {
             DateTime expiredTime = DateTime.Now.AddMinutes(0 - Settings.Default.DefaultExpiredMinutes);
             List<IAlertItem> expiredItems = this.dataService.AlertedItems.Where(
-                c => (c.Time < expiredTime) && (c.HasAlert == true)).ToList();
+                c => (c.Time <= expiredTime) && (c.HasAlert)).ToList();
 
             foreach (IAlertItem item in expiredItems)
             {
@@ -209,7 +208,7 @@ namespace CountDown.Applications.Controllers
         private void CheckAlertItems()
         {
             List<IAlertItem> newAlertItems = this.dataService.Items.Where(
-                i => i.AlertTime < DateTime.Now).ToList();
+                i => i.AlertTime <= DateTime.Now).ToList();
 
             foreach (IAlertItem item in newAlertItems)
             {

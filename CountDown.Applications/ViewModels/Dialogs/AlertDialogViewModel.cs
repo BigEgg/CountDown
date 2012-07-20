@@ -56,6 +56,7 @@ namespace CountDown.Applications.ViewModels.Dialogs
             {
                 item.HasAlert = true;
             }
+            this.items.Clear();
             Close(true);
         }
     }

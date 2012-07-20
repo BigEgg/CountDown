@@ -71,7 +71,8 @@ namespace CountDown.Applications.Models
         public override AlertItem ToAlertItem(int beforeAlertMinutes)
         {
             AlertItem item = new AlertItem();
-            item.Time = DateTime.Now;
+            item.Time = DateTime.Now.Date.AddHours(DateTime.Now.Hour).AddMinutes(DateTime.Now.Minute);
+            
             item.HasAlert = false;
 
             item.Time = item.Time.Add(new TimeSpan(this.Days, this.Hours, this.Minutes, 0));
