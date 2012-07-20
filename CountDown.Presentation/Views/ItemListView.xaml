@@ -15,7 +15,7 @@
     <UserControl.Resources>
         <CollectionViewSource Source="{Binding DataService.AlertedItems}" x:Key="AlertCVS">
             <CollectionViewSource.SortDescriptions>
-                <scm:SortDescription PropertyName="Time"/>
+                <scm:SortDescription PropertyName="Time" Direction="Descending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
 
