@@ -10,7 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		BigEgg.Framework.dll = BigEgg.Framework.dll
 		BigEgg.Framework.UnitTesting.dll = BigEgg.Framework.UnitTesting.dll
 		BigEgg.Presentation.dll = BigEgg.Presentation.dll
-		BigEgg.Skins.BlackSkin.dll = BigEgg.Skins.BlackSkin.dll
 		CountDown.vsmdi = CountDown.vsmdi
 		Local.testsettings = Local.testsettings
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
