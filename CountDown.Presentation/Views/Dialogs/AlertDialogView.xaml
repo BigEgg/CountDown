@@ -35,6 +35,6 @@
         </ListView>
         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,3" Text="{x:Static p:Resources.AlertList}" VerticalAlignment="Bottom"/>
         <Button Content="{x:Static p:Resources.IKnowIt}" Command="{Binding OKCommand}" Margin="0" Grid.Row="3" Width="75" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-        <CheckBox Grid.Row="2" Content="{x:Static p:Resources.SettingHasAlertSound}" IsChecked="{Binding HasAlertSound}" HorizontalAlignment="Left" VerticalAlignment="Center" Unchecked="CheckBox_Unchecked" />
+        <CheckBox Name="isPlaySound" Grid.Row="2" Content="{x:Static p:Resources.SettingHasAlertSound}" IsChecked="{Binding HasAlertSound}" HorizontalAlignment="Left" VerticalAlignment="Center" Unchecked="CheckBox_Unchecked" />
     </Grid>
 </BEP:DialogWindow>

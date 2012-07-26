@@ -34,15 +34,20 @@ namespace CountDown.Presentation.Views.Dialogs
             Owner = owner as Window;
             this.Visibility = Visibility.Visible;
 
-            if (ViewModel.HasAlertSound)
+            if (File.Exists(ViewModel.SoundPath))
             {
-                if (File.Exists(ViewModel.SoundPath))
+                if (ViewModel.HasAlertSound)
                 {
                     if (this.player == null) { this.player = new MediaPlayer(); }
                     player.Stop();
                     player.Open(new Uri(ViewModel.SoundPath, UriKind.Relative));
                     player.Play();
                 }
+            }
+            else
+            {
+                isPlaySound.IsChecked = false;
+                isPlaySound.IsEnabled = false;
             }
         }
 

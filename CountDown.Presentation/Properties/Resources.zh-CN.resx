@@ -212,7 +212,7 @@
     <value>语言(_L)</value>
   </data>
   <data name="NewAlertBeforeMinutes" xml:space="preserve">
-    <value>提前预报（分钟）</value>
+    <value>提前预报(分钟)</value>
   </data>
   <data name="NewCountDownDays" xml:space="preserve">
     <value>天</value>
