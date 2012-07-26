@@ -170,7 +170,7 @@
     <value>作者： BigEgg</value>
   </data>
   <data name="DateAndTime" xml:space="preserve">
-    <value>时间/日期</value>
+    <value>日期</value>
   </data>
   <data name="DateString" xml:space="preserve">
     <value>HH:mm</value>

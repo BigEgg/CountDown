@@ -215,7 +215,7 @@ namespace CountDown.Presentation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date and time.
+        ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string DateAndTime {
             get {
